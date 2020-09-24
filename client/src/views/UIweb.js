@@ -1,8 +1,8 @@
 import React from 'react';
-import '../css/bootstrap.css'
-import '../css/all.css';
-import '../css/2.css';
-import '../css/login.css';
+import '../scss/css/bootstrap.css';
+import '../scss/css/2.css';
+import '../scss/css/login.css';
+import '../scss/css/all.css'
 
 function UIweb() {
   return (
@@ -44,7 +44,7 @@ function UIweb() {
                     <div className="container">
                       <div className="row">
                         <div className="col-md-4">
-                          <img style={{width: '100%'}} src="images/login21.jpg" alt="" />
+                          <img style={{width: '100%'}} src={require("../images/login21.jpg")} alt="" />
                         </div>
                         <div className="col-md-4">
                           <div className="mt-3">
