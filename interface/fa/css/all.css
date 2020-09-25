@@ -7,15 +7,6 @@
 .far,
 .fal,
 .fad,
-
-.modal-backdrop.fade.show {
-  z-index: 1;
-}
-
-.modal-dialog {
-  max-width: 890px;
-}
-
 .fab {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
