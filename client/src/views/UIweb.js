@@ -1,8 +1,15 @@
 import React from 'react';
+<<<<<<< Updated upstream
 import '../scss/css/bootstrap.css';
 import '../scss/css/2.css';
 import '../scss/css/login.css';
 import '../scss/css/all.css'
+=======
+import '../css/bootstrap.css';
+import '../css/all.css'
+import '../css/2.css';
+import '../css/login.css';
+>>>>>>> Stashed changes
 
 function UIweb() {
   return (
