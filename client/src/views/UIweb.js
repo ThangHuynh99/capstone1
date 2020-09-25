@@ -1,8 +1,8 @@
 import React from 'react';
-import '../scss/css/bootstrap.css';
-import '../scss/css/2.css';
-import '../scss/css/login.css';
-import '../scss/css/all.css'
+import '../scss/cssUIweb/bootstrap.css';
+import '../scss/cssUIweb/2.css';
+import '../scss/cssUIweb/login.css';
+import '../scss/cssUIweb/all.css';
 
 function UIweb() {
   return (
@@ -315,8 +315,5 @@ function UIweb() {
       </div>
   );
 }
-
-
-
 
 export default UIweb;
