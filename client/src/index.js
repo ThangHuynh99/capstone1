@@ -4,15 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import UIweb from './views/UIweb';
-import login from './views/login';
-import register from './views/register';
-
-
+import Login from './views/login';
+import Register from './views/register';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <register />
+    <Register/>
   </React.StrictMode>,
   document.getElementById('root')
 );

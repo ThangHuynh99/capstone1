@@ -3,7 +3,7 @@ import '../scss/register.css'
 import '../scss/fa/css/all.css';
 import '../scss/bootstrap/css/bootstrap.css';
 
-function register() {
+function Register() {
     return (
         <div class="bgr">
         <nav className="navbar navbar-expand-lg navbar-light pb-5">
@@ -27,7 +27,7 @@ function register() {
         <div style={{maxWidth: '890px'}} className="container pt-5">
           <div className="row">
             <div className="col-md-4">
-              <img style={{width: '100%'}} src="images/login21.jpg" alt="" />
+              <img style={{width: '100%'}} src={require("../images/login21.jpg")} alt="" />
             </div>
             <div className="col-md-4">
               <div className="mt-3">
@@ -55,6 +55,7 @@ function register() {
         </div>
       </div>
     );
+
 }
 
-export default register;
+export default Register;

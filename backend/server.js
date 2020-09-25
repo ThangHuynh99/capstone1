@@ -9,7 +9,7 @@ app.listen(port, () => {
 
 app.use(bodyParser.json());
 
-app.post('/signin', function (req, res) {
+app.post('/login', function (req, res) {
   var user_name=req.body.email;
   var password=req.body.password;
   if(user_name=='admin' && password=='admin'){

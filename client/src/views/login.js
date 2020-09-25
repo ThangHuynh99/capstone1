@@ -3,7 +3,7 @@ import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/login.css';
 import '../scss/fa/css/all.css';
 
-function login() {
+function Login() {
   return (
     <div class="bgr">
        <div className="container p-5 mt-5 mb-5">
@@ -71,4 +71,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
