@@ -1,11 +1,11 @@
 import React from 'react';
-import '../scss/cssUIweb/register.css';
-import '../scss/cssUIweb/all.css';
-import '../scss/cssUIweb/bootstrap.css';
+import '../scss/register.css'
+import '../scss/fa/css/all.css';
+import '../scss/bootstrap/css/bootstrap.css';
 
 function register() {
     return (
-        <div>
+        <div class="bgr">
         <nav className="navbar navbar-expand-lg navbar-light pb-5">
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />

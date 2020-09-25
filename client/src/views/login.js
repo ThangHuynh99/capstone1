@@ -1,62 +1,73 @@
 import React from 'react';
-import '../scss/cssUIweb/login.css';
-import '../scss/cssUIweb/all.css';
-import '../scss/cssUIweb/bootstrap.css';
+import '../scss/bootstrap/css/bootstrap.css';
+import '../scss/login.css';
+import '../scss/fa/css/all.css';
 
 function login() {
   return (
-    <div >
-      <div>
-        <nav className="navbar navbar-expand-lg navbar-light pb-5">
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="bgr">
+       <div className="container p-5 mt-5 mb-5">
+        <nav className="navbar navbar-expand-lg navbar-light 
+                sticky-top">
+          <a className="navbar-brand" href="#" style={{fontWeight: 700}}><h4>Plan
+              Meeting</h4></a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
+                    navigation">
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav ml-auto">
+            <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a className="nav-link pr-5" href="#">Home <span className="sr-only">(current)</span></a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link pr-5" href="#">Features</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link pr-5" href="#">Pricing</a>
+                <div className="btn-group">
+                  <button type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Action
+                  </button>
+                  <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">Action</a>
+                    <a className="dropdown-item" href="#">Another action</a>
+                    <a className="dropdown-item" href="#">Something else here</a>
+                    <div className="dropdown-divider" />
+                    <a className="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </div>
               </li>
             </ul>
+            <span className="navbar-text pr-3">
+              <button className="register"><a className="nav-link" href="#">Đăng
+                  Ký</a></button>
+            </span>
+            <span className="navbar-text pr-3">
+              <button className="login"><a className="nav-link" href="#">Đăng
+                  Nhập</a></button>
+            </span>
           </div>
         </nav>
-        <div style={{maxWidth: '890px'}} className="container pt-5">
-          <div className="row">
-            <div className="col-md-4">
-              <img style={{width: '100%'}} src="images/login21.jpg" alt="" />
-            </div>
-            <div className="col-md-4">
-              <div className="mt-3">
-                <a style={{color: 'silver', fontWeight: 600}} className="pt-5" href="#">Sign in/ </a>
-                <a style={{color: 'black', fontWeight: 600}} className="pt-5" href="register.html">Sign up</a>
+        <div className="row">
+          <div className="col-md-12">
+            <form>
+              <div className="form-group">
+                <label htmlFor="exampleFormControlInput1">Email address</label>
+                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
               </div>
-              <div className="pr-3" style={{borderRight: 'solid  1px silver'}}>
-                <input type="email" className="form-control mt-4 mb-5
-                        text-center" id="inputEmail4" placeholder="Email" />
-                <input type="password" className="form-control text-center" id="inputPassword4" placeholder="Password" />
-                <div style={{border: 'transparent'}} className="text-center">
-                  <button className="button mt-4">
-                    <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
-                  </button>
-                </div>
+              <div className="form-group">
+                <label htmlFor="exampleFormControlSelect1">Example select</label>
+                <select className="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
               </div>
-              <h6 style={{color: 'silver'}} className=" Forgot text-center pt-4">Forgot your password</h6>
-            </div>
-            <div className="col-md-4 ">
-              <div className="text-center loginwith">
-                <button className="fb p-2"> login on facebook <i className="fab fa-facebook" aria-hidden="true" /></button> <br />
-                <button className="gm mt-2 pt-2 pb-2 pl-4 pr-4"> login on Gmail <i className="far fa-envelope" /></button>
+              <div className="form-group">
+                <label htmlFor="exampleFormControlTextarea1">Example textarea</label>
+                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
-    </div>
+      </div>
   );
 }
 

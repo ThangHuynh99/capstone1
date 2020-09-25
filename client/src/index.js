@@ -9,6 +9,7 @@ import register from './views/register';
 
 
 
+
 ReactDOM.render(
   <React.StrictMode>
     <register />
