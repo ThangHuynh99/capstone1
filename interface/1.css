@@ -1,0 +1,50 @@
+*{margin: 0;padding: 0;}
+button{
+    border: solid 1px silver;
+}
+button.meeting{
+    background-color: #1a73e8;
+    
+}
+button a{
+    color: white;
+    font-weight: 600;
+}
+.banner{
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(images/banner4.jpg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    height: 500px;
+    margin-top: 10px;
+    
+}
+h4.title.pt-3 {
+    color: rgb(0 192 255);
+}
+.slide{
+    background-image: url(https://www.iris.edu.vn/Libs/theme/wp-content/uploads/2018/07/Untitled-2.jpg);
+}
+.avt{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+.comment{
+    font-family: serif!important;
+    font-style: italic;
+    font-size: 30px;
+}
+.form2{
+    background-image: linear-gradient(rgb(0 0 0 / 74%),rgba(0,0,0,0.4)),url(images/bgr.jpg) ;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+
+    
+}
+.logo{
+    display: inline-block;
+}

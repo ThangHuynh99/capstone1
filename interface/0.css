@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.index0{
+    background-image: url(https://www.iris.edu.vn/Libs/theme/wp-content/uploads/2018/07/Untitled-2.jpg);
+    height: 650px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+.title{
+    font-family: "Google Sans",Arial,sans-serif;
+    font-weight: 400;
+    
+}
+.text{
+    font-family: 'Google Sans',Roboto,Arial,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5rem;
+    color: #5f6368;
+    color: var(--gm-color-caption,#5f6368);
+    max-width: 30rem;
+    padding-bottom: 3em;
+}
+a:hover{
+  text-decoration:none ;
+}
+.btn.btn-Link{
+    border: solid 1px silver;
+    border-radius: 3px; 
+    color:black;
+    font-weight: 500;
+}
+.btn.btn-primary{
+    
+    border-radius: 3px; 
+    font-weight: 500;
+}
+.meeting{
+    background-color: #1a73e8;
+    border: none;
+    border-radius: 5px;
+}
+.register{
+    border: solid 1px silver;
+    border-radius: 3px;
+}
+.login{
+    border: solid 1px silver;
+    border-radius: 3px; 
+}
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top{
+    animation: menu 6s forwards;
+    opacity: 0;
+  }
+  @keyframes menu{
+    from {top:-100px; opacity: 0;}
+    to {top:0px; opacity: 1;}
+  }
+.title {
+    animation: example 6s forwards;
+    animation-delay: 3s;
+    opacity: 0;
+  }
+  
+  @keyframes example {
+    from {transform: scale(0); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+  }
+  .text {
+    animation: hien 6s forwards;
+    animation-delay: 6s;
+    opacity: 0;
+  }
+  
+  @keyframes hien{
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+  .anh {
+    animation: anh 8s forwards;
+    animation-delay: 9s;
+    opacity: 0;
+  }
+  
+  @keyframes anh {
+    from {transform: scale(0); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+  }
+  .button {
+    animation: button 8s forwards;
+    animation-delay: 12s;
+    opacity: 0;
+  }
+  
+  @keyframes button {
+    from {opacity: 0;}
+    to { opacity: 1;}
+  }
