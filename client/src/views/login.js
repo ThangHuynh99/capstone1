@@ -5,6 +5,30 @@ import '../scss/fa/css/all.css';
 import { NavLink } from 'react-router-dom';
 
 function Login() {
+  Login1 = (e) => {
+    e.preventDefault();
+    const users = {
+      id: 'toan',
+      password: '123'
+    };
+    fetch('http://localhost:3001/checkLogin', {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(users)
+    })
+      .then(result => {
+        if (result === null)
+          alert("Account don't exist")
+        else
+          alert("Account exist")
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
   return (
     <div class="bgr">
       <nav className="navbar navbar-expand-lg navbar-light pb-5">
@@ -42,7 +66,7 @@ function Login() {
                 Login
                 </NavLink>
 
-                <NavLink
+              <NavLink
                 exact activeStyle={{
                   fontWeight: 600,
                   color: "black"
@@ -58,7 +82,9 @@ function Login() {
               <input type="password" className="form-control text-center" id="inputPassword4" placeholder="Password" />
               <div style={{ border: 'transparent' }} className="text-center">
                 <button className="button mt-4">
-                  <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
+                  <button type="button" onClick={this.Login1}>
+                    <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
+                  </button>
                 </button>
               </div>
             </div>
