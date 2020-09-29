@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import UIweb from './views/UIweb';
 import Login from './views/login';
 import Register from './views/register';
+import Changepw from './views/changepw';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import NotFound from './views/notFound';
 
@@ -22,7 +23,8 @@ const routing = (
       <Route path="/" exact component={UIweb} />
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
-      <Route component={NotFound} />
+      <Route path="/change" exact component={Changepw} />
+      <Route exact component={NotFound} />
     </div>
   </Router>
 );

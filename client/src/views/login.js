@@ -62,7 +62,17 @@ function Login() {
                 </button>
               </div>
             </div>
-            <h6 style={{ color: 'silver' }} className=" Forgot text-center pt-4">Forgot your password</h6>
+            {/* <h6 style={{ color: 'silver' }} className=" Forgot text-center pt-4"></h6> */}
+
+              <NavLink
+              exact activeStyle={{
+                 fontWeight: 600,
+                 color: "sliver"
+               }}
+               activeClassName= 'Forgot text-center pt-4'
+               to = '/change'>
+              Forgot your password
+              </NavLink>
           </div>
           <div className="col-md-4 ">
             <div className="text-center loginwith">
