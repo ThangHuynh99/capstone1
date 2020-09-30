@@ -9,6 +9,7 @@ import Register from './views/register';
 import Changepw from './views/changepw';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import NotFound from './views/notFound';
+import Occasion from './views/Occasion';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -24,7 +25,8 @@ const routing = (
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <Route path="/change" exact component={Changepw} />
-      <Route exact component={NotFound} />
+      <Route path="/create" exact component={Occasion} />
+      <Route exact={true} component={NotFound} />
     </div>
   </Router>
 );
