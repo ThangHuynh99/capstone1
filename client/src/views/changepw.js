@@ -5,18 +5,10 @@ import '../scss/fa/css/all.css';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
-function Changepw() {
+class Changepw extends React.Component {
 
-  axios({
-    method: "POST",
-    url: "http://localhost:3001/",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    console.log(res.data.message);
-  });
 
+  render() {
     return (
       <div class="bgr">
         <nav className="navbar navbar-expand-lg navbar-light pb-5">
@@ -25,7 +17,7 @@ function Changepw() {
           </button>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav ml-auto">
-              <li   className="nav-item active">
+              <li className="nav-item active">
                 <a className="nav-link pr-5" href="#">Home <span className="sr-only">(current)</span></a>
               </li>
               <li className="nav-item">
@@ -53,19 +45,19 @@ function Changepw() {
                   to='/login'>
                   Login
                   </NavLink>
-  
+
               </div>
               <form method="POST">
-              <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
-                <input type="email" className="form-control mt-4 mb-3" id="inputEmail4" placeholder="Username" />
-                <input type="password" className="form-control " id="inputPassword4" placeholder="Password" />
-                <input type="password" className="form-control mt-3 " id="inputPassword4" placeholder="New Password" />
-                <div style={{ border: 'transparent' }} className="text-center">
-                  <input type="submit" className="button mt-4" name = "change" value="Change" />
+                <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
+                  <input type="email" className="form-control mt-4 mb-3" id="inputEmail4" placeholder="Username" />
+                  <input type="password" className="form-control " id="inputPassword4" placeholder="Password" />
+                  <input type="password" className="form-control mt-3 " id="inputPassword4" placeholder="New Password" />
+                  <div style={{ border: 'transparent' }} className="text-center">
+                    <input type="submit" className="button mt-4" name="change" value="Change" />
                     {/* <span><h5 className="pt-1 pb-1 pl-4 pr-4">Change</h5> </span>
                   </input> */}
+                  </div>
                 </div>
-              </div>
               </form>
             </div>
             <div className="col-md-4 pt-5 pb-5">
@@ -79,5 +71,6 @@ function Changepw() {
       </div>
     );
   }
-  
-  export default Changepw;
+}
+
+export default Changepw;
