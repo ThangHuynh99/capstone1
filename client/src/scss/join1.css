@@ -1,5 +1,5 @@
 .container{
-    box-shadow: 0 1.5px 4px rgba(0,0,0,0.24), 0 1.5px 6px rgba(0,0,0,0.12); 
+    box-shadow: 0 1.5px 4px rgba(0,0,0,0.24), 0 1.5px 6px rgba(0,0,0,0.12);
     max-width: 850px;
 }
 a#navbarDropdown {
@@ -12,39 +12,44 @@ a#navbarDropdown {
     content: none;
 }
 
-.row{
-    box-shadow: none;
-}
 
-input#inputEmail4{
+input#addtitle{
     border: none;
     border-bottom: solid 1px silver;
     box-shadow: none;
+
 }
-select#exampleFormControlSelect1 {
+select#addlocation {
     box-shadow: none;
     border: none;
 }
+
+
 .form-group{
     border: none;
     border-bottom: solid 1px silver;
 }
-input#inputPassword4{
+input#addnote{
     border: none;
     border-bottom: solid 1px silver;
     box-shadow: none;
 }
+
+.row{
+    box-shadow: none;
+}
+
 .button{
-    color: black;
-    background-color: silver;
+    color: white;
+    background-color: black;
     font-weight: 400;
     font-size: 24px;
     border-radius: 20px;
     border:none;
 }
 .button:hover{
-    background-color: skyblue;
-    color: black;
+    background-color: white;
+    color: #000;
     border:solid 1px silver;
     transition: 2s;
 }

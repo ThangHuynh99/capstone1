@@ -24,6 +24,12 @@ app.post('/checklogin',login.checkLogin)
 //     res.send('Failure');
 //   }
 // })
+
+app.post('/create', (req, res) => {
+  const user = {title: req.body.title, location: req.body.location, note: req.body.note};
+  req.send(user);
+});
+
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });
