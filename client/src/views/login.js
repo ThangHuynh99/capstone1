@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/login.css';
 import '../scss/fa/css/all.css';
 import { NavLink } from 'react-router-dom';
 
-class Login extends React.Component {
+class Login extends Component {
+
+  Login1 = (e) => {
+    e.preventDefault();
+    const users = {
+      id: 'toan',
+      password: '123'
+    };
+    fetch('http://localhost:3001/checklogin', {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(users)
+    })
+      .then(result => {
+        if (result === null)
+          alert("Account don't exist")
+        else
+          alert("Account exist")
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
   render() {
     return (
       <div class="bgr">
