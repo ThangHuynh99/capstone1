@@ -2,14 +2,18 @@ const express = require('express');
 const app = express();
 const port = 3001;
 const bodyParser = require('body-parser');
-
-app.listen(port, () => {
-    console.log(`Server started on port `, port);
-});
-
+const login=require('./Authentication/Login')
 app.use(bodyParser.json());
-
-app.get('/', (req, res) => res.send('<h1>hello world!</h1>'));
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
+  next();
+});
+app.get('/',(res,req) =>{
+  req.json({info:'Nodejs,Express and SQL server'})
+})
+app.post('/checklogin',login.checkLogin)
 // app.post('/login', function (req, res) {
 //   var user_name=req.body.email;
 //   var password=req.body.password;
@@ -20,3 +24,6 @@ app.get('/', (req, res) => res.send('<h1>hello world!</h1>'));
 //     res.send('Failure');
 //   }
 // })
+app.listen(port, () => {
+  console.log(`Server started on port `, port);
+});
