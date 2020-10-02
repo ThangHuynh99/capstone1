@@ -26,7 +26,7 @@ const routing = (
       <Route path="/register" exact component={Register} />
       <Route path="/change" exact component={Changepw} />
       <Route path="/create" exact component={Occasion} />
-      <Route exact={true} component={NotFound} />
+      <Route  exact={true} component={NotFound} />
     </div>
   </Router>
 );

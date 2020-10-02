@@ -7,8 +7,20 @@ import { NavLink } from 'react-router-dom';
 
 class Occasion extends React.Component {
 
+      constructor(props){
+          super(props)
+
+        this.state={
+            title = '',
+            location = '',
+            note = ''
+        }
+      }
+
     render() {
+        const {title, location, note} = this.state
         return (
+
             <div class="bgr">
                 <div className="container mt-5 p-5">
                     <div className="account mb-5">
@@ -38,11 +50,11 @@ class Occasion extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <form method="POST">
+                            <form>
                                 <div>
-                                    <input type="text" className="form-control mt-4 mb-5" id="inputEmail4" placeholder="Enter title" />
+                                    <input type="text" className="form-control mt-4 mb-5" id="addtitle" name={title} value = "title" placeholder="Enter title" />
                                     <div className="form-group">
-                                        <select className="form-control" id="exampleFormControlSelect1">
+                                        <select className="form-control" id="addlocation" name="select" value = {location}>
                                             <option>Add location</option>
                                             <option>To be defined</option>
                                             <option>Phone</option>
@@ -52,7 +64,7 @@ class Occasion extends React.Component {
                                             <option>Zoom</option>
                                         </select>
                                     </div>
-                                    <input type="text" className="form-control mt-5" id="inputPassword4" placeholder="Add note" />
+                                    <input type="text" className="form-control mt-5" id="addnote" name="note" value={note} placeholder="Add note" />
                                     <div style={{ border: 'transparent' }} className="text-center">
                                         <input type="submit" className="button mt-4" name="change" value="Continue" />
                                     </div>
