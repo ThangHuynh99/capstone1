@@ -13,6 +13,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.sticky-top {
     background-color: #1a73e8;
     border: none;
     border-radius: 5px;
+    height: 45px;
 }
 .register{
     border: solid 1px silver;

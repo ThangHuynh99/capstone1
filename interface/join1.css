@@ -1,0 +1,45 @@
+.container{
+    box-shadow: 0 1.5px 4px rgba(0,0,0,0.24), 0 1.5px 6px rgba(0,0,0,0.12);
+    max-width: 850px;
+}
+a#navbarDropdown {
+    color: sliver;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: cursive;
+}
+.dropdown-toggle::after{
+    content: none;
+}
+input#inputEmail4{
+    border: none;
+    border-bottom: solid 1px silver;
+    box-shadow: none;
+}
+select#exampleFormControlSelect1 {
+    box-shadow: none;
+    border: none;
+}
+.form-group{
+    border: none;
+    border-bottom: solid 1px silver;
+}
+input#inputPassword4{
+    border: none;
+    border-bottom: solid 1px silver;
+    box-shadow: none;
+}
+.button{
+    color: white;
+    background-color: black;
+    font-weight: 400;
+    font-size: 24px;
+    border-radius: 20px;
+    border:none;
+}
+.button:hover{
+    background-color: white;
+    color: #000;
+    border:solid 1px silver;
+    transition: 2s;
+}

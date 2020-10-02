@@ -81,8 +81,21 @@ function UIweb() {
             </div>
           </span>
           <span className="navbar-text">
-            <button className="meeting"><a className="nav-link" href="join.html" style={{ color: 'white' }}> <i className="fas fa-plus" />
-                  Tạo cuộc họp</a></button>
+            {/* <button className="meeting"><a className="nav-link" href="join.html" style={{ color: 'white' }}> <i className="fas fa-plus" />
+                  Tạo cuộc họp</a></button> */}
+
+            <button className="meeting">
+            <NavLink
+              exact activeStyle={{
+                color: "white"
+              }}
+              activeClassName="nav-link"
+              to='/login'>
+                <i className="fas fa-plus" />
+              Tạo cuộc họp
+                </NavLink>
+                </button>
+                
           </span>
         </div>
       </nav>
