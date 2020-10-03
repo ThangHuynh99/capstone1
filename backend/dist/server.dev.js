@@ -7,6 +7,10 @@ var port = 3001;
 
 var bodyParser = require('body-parser');
 
+var urlencodedParser = bodyParser.urlencoded({
+  extended: false
+});
+
 var login = require('./Authentication/Login');
 
 app.use(bodyParser.json());
@@ -32,13 +36,18 @@ app.post('/checklogin', login.checkLogin); // app.post('/login', function (req, 
 //   }
 // })
 
-app.post('/create', function (req, res) {
+app.post('/create', urlencodedParser, function (req, res) {
+  var _req$body = req.body,
+      title = _req$body.title,
+      location = _req$body.location,
+      note = _req$body.note;
   var user = {
-    title: req.body.title,
-    location: req.body.location,
-    note: req.body.note
+    title: title,
+    location: location,
+    note: note
   };
-  req.send(user);
+  var user1 = JSON.stringify(user);
+  console.log(user1); // console.log("title " + user.title + " " + " location " + user.location + " " + "note " + user.note);
 });
 app.listen(port, function () {
   console.log("Server started on port ", port);

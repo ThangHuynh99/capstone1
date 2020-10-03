@@ -28,14 +28,18 @@ class Occasion extends React.Component {
     submitHandler = e => {
         e.preventDefault();
         console.log(this.state);
-        axios.post('localhost:3001/create', this.state)
+       
+        
+        axios.post('http://localhost:3001/create',  this.state )
         .then(response => {
             console.log(response.data);
         })
         .catch(error => {
             console.log(error);
-        })
+        })       
     }
+
+    
 
     render() {
         const { title, location, note } = this.state;

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3001;
 const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({ extended: false }) 
 const login=require('./Authentication/Login')
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
@@ -10,10 +11,13 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
 });
+
 app.get('/',(res,req) =>{
   req.json({info:'Nodejs,Express and SQL server'})
 })
-app.post('/checklogin',login.checkLogin)
+
+app.post('/checklogin',login.checkLogin);
+
 // app.post('/login', function (req, res) {
 //   var user_name=req.body.email;
 //   var password=req.body.password;
@@ -25,9 +29,14 @@ app.post('/checklogin',login.checkLogin)
 //   }
 // })
 
-app.post('/create', (req, res) => {
-  const user = {title: req.body.title, location: req.body.location, note: req.body.note};
-  req.send(user);
+app.post('/create', urlencodedParser, (req, res) => {
+  const { title, location, note } = req.body;
+  const user = {title: title, location: location, note: note};
+  const user1 = JSON.stringify(user);
+
+  console.log(user1);
+  // console.log("title " + user.title + " " + " location " + user.location + " " + "note " + user.note);
+
 });
 
 app.listen(port, () => {
