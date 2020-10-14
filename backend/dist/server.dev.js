@@ -13,7 +13,12 @@ var urlencodedParser = bodyParser.urlencoded({
 
 var login = require('./Authentication/Login');
 
+var re = require('./Authentication/Register');
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
@@ -49,6 +54,8 @@ app.post('/create', urlencodedParser, function (req, res) {
   var user1 = JSON.stringify(user);
   console.log(user1); // console.log("title " + user.title + " " + " location " + user.location + " " + "note " + user.note);
 });
+app.post('/checklogin', login.checkLogin);
+app.post('/registers', re.register);
 app.listen(port, function () {
   console.log("Server started on port ", port);
 });
