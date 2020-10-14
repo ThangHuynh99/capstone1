@@ -3,7 +3,13 @@ const app = express();
 const port = 3001;
 const bodyParser = require('body-parser');
 const login=require('./Authentication/Login')
-app.use(bodyParser.json());
+const re=require('./Authentication/Register')
+app.use(bodyParser.json())
+app.use(
+    bodyParser.urlencoded({ 
+        extended: true, 
+    })
+)
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
@@ -14,16 +20,7 @@ app.get('/',(res,req) =>{
   req.json({info:'Nodejs,Express and SQL server'})
 })
 app.post('/checklogin',login.checkLogin)
-// app.post('/login', function (req, res) {
-//   var user_name=req.body.email;
-//   var password=req.body.password;
-//   if(user_name=='admin' && password=='admin'){
-//       res.send('success');
-//   }
-//   else{
-//     res.send('Failure');
-//   }
-// })
+app.post('/registers',re.register)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });
