@@ -57,10 +57,45 @@ class Occasion extends React.Component {
                                     Thang
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="#">Dashboard</a>
+                                <NavLink
+                    exact activeStyle={{
+
+                    }}
+                    activeClassName='dropdown-item'
+                    to='#'>
+                    Dashboard
+                </NavLink>
+
+                <NavLink
+                    exact activeStyle={{
+
+                    }}
+                    activeClassName='dropdown-item'
+                    to='/profile'>
+                    Account setting
+                </NavLink>
+
+                <NavLink
+                    exact activeStyle={{
+
+                    }}
+                    activeClassName='dropdown-item'
+                    to='#'>
+                    Help
+                </NavLink>
+
+                <NavLink
+                    exact activeStyle={{
+
+                    }}
+                    activeClassName='dropdown-item'
+                    to='#'>
+                    Logout
+                </NavLink>
+                                    {/* <a className="dropdown-item" href="#">Dashboard</a>
                                     <a className="dropdown-item" href="#">Account settings</a>
                                     <a className="dropdown-item" href="#">Help</a>
-                                    <a className="dropdown-item" href="#">Logout</a>
+                                    <a className="dropdown-item" href="#">Logout</a> */}
                                 </div>
                             </li>
                         </nav>

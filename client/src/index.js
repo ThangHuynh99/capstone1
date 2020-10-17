@@ -10,6 +10,7 @@ import Changepw from './views/changepw';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import NotFound from './views/notFound';
 import Occasion from './views/Occasion';
+import Profile from './views/profile';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -26,7 +27,8 @@ const routing = (
       <Route path="/register" exact component={Register} />
       <Route path="/change" exact component={Changepw} />
       <Route path="/create" exact component={Occasion} />
-      <Route  exact={true} component={NotFound} />
+      <Route path="/profile" exact component={Profile} />
+      {/* <Route  exact={true} component={NotFound} /> */}
     </div>
   </Router>
 );
