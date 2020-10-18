@@ -103,7 +103,7 @@ class Register extends React.Component {
               <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
                 <input type="email" className="form-control mt-4 mb-3" id="inputEmail4" placeholder="Username" onChange={this.handleUsernameChange} />
                 <input type="password" className="form-control " id="inputPassword4" placeholder="Password" onChange={this.handlePasswordChange} />
-                <input type="password" className="form-control mt-3 " id="inputPassword4" placeholder="Password" onChange={this.handleRePasswordChange} />
+                <input type="password" className="form-control mt-3 " id="inputPassword4" placeholder="Repassword" onChange={this.handleRePasswordChange} />
                 <div style={{ border: 'transparent' }} className="text-center">
                   <button className="button mt-4" title="register" onClick={this.register}>
                     <span><h5 className="pt-1 pb-1 pl-4 pr-4">Sign up</h5></span>
@@ -114,12 +114,7 @@ class Register extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 pt-5 pb-5">
-              <div className="text-center mt-5 pt-5">
-                <button className="fb p-2"> login on facebook <i className="fab fa-facebook" aria-hidden="true" /></button> <br />
-                <button className="gm mt-2 pt-2 pb-2 pl-4 pr-4"> login on Gmail <i className="far fa-envelope" /></button>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>

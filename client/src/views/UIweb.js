@@ -9,7 +9,7 @@ function UIweb() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a className="navbar-brand" href="#" style={{ fontWeight: 700 }}><h4>Plan
+        <a className="navbar-brand" href="#" style={{ fontWeight: 700, color: 'blue'}}><h4>Plan
               Meeting</h4></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
                 navigation">
@@ -50,10 +50,9 @@ function UIweb() {
                       <div className="col-md-4">
                         <img style={{ width: '100%' }} src={require("../images/login21.jpg")} alt="" />
                       </div>
-                      <div className="col-md-4">
-                        <div className="mt-3">
-                          <a style={{ color: 'silver', fontWeight: 600 }} className="pt-5" href="#">Sign in/ </a>
-                          <a style={{ color: 'black', fontWeight: 600 }} className="pt-5" href="register.html">Sign up</a>
+                      <div className="col-md-8">
+                        <div className="mt-3 text-center">
+                          <a style={{ color: 'black', fontWeight: 600 }} className="pt-5 " href="#">Sign in</a>
                         </div>
                         <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
                           <input type="email" className="form-control mt-4 mb-5
@@ -64,16 +63,11 @@ function UIweb() {
                               <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
                             </button>
                           </div>
-                          <a href="register.html"> <h6 className="text-center pt-2">Sign up</h6></a>
+                         
                         </div>
-                        <h6 style={{ color: 'silver' }} className=" Forgot text-center pt-4">Forgot your password</h6>
+                        <h6 style={{ color: 'silver' }} className=" Forgot text-center pt-4"></h6>
                       </div>
-                      <div className="col-md-4 ">
-                        <div className="text-center loginwith">
-                          <button className="fb p-2"> login on facebook <i className="fab fa-facebook" aria-hidden="true" /></button> <br />
-                          <button className="gm mt-2 pt-2 pb-2 pl-4 pr-4"> login on Gmail <i className="far fa-envelope" /></button>
-                        </div>
-                      </div>
+                      
                     </div>
                   </div>
                 </div>

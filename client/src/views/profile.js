@@ -58,7 +58,7 @@ class Profile extends React.Component {
                     Dashboard
                 </NavLink>
 
-                <NavLink
+                  <NavLink
                     exact activeStyle={{
 
                     }}
@@ -67,7 +67,7 @@ class Profile extends React.Component {
                     Account setting
                 </NavLink>
 
-                <NavLink
+                  <NavLink
                     exact activeStyle={{
 
                     }}
@@ -76,7 +76,7 @@ class Profile extends React.Component {
                     Help
                 </NavLink>
 
-                <NavLink
+                  <NavLink
                     exact activeStyle={{
 
                     }}
@@ -95,7 +95,10 @@ class Profile extends React.Component {
                 <div className="form-row">
                   <div style={{ maxWidth: '360px' }} className="col-md-12 mb-3">
                     <label htmlFor="validationDefault01">First name</label>
-                    <input type="text" className="form-control" id="validationDefault01" defaultValue="Mark" required />
+                    <input type="text" className="form-control" id="validationDefault01" placeholder="Your name" value="" />
+                    <br></br>
+                    <label htmlFor="validationDefault01">Birthday</label>
+                    <input type="date" className="form-control" id="validationDefault01"  value="" />
                   </div>
                 </div>
                 <div className="form-row">
@@ -108,63 +111,22 @@ class Profile extends React.Component {
                 <div className="form-row">
                   <div style={{ maxWidth: '360px' }} className="col-md-12 mb-3">
                     <label htmlFor="validationDefault03">Email and password</label>
-                    <button style={{ border: '1px solid #ced4da', boxShadow: 'none' }} type="button" className="btn text-left col-md-12" data-toggle="modal" data-target="#exampleModal">
-                      Launch demo modal
-                    </button>
+                    <input type="text" className="form-control" id="validationDefault01" placeholder="Your email" value="" />
+
                     {/* Modal */}
-                    <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div className="modal-dialog">
-                        <div className="modal-content">
-                          <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Modal
-                              title</h5>
-                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">×</span>
-                            </button>
-                          </div>
-                          <div className="modal-body">
-                            <div className="container">
-                              <div className="row">
-                                <div className="col-md-12 mb-3">
-                                  <div className="pr-3">
-                                    <input type="email" className="form-control mt-4
-                                  mb-5
-                                  text-center" id="inputEmail4" placeholder="Email" />
-                                    <input type="password" className="form-control
-                                  text-center" id="inputPassword4" placeholder="Password" />
-                                  </div>
-                                  <div className="InputFeedback">Before the change of
-                                  email address becomes
-                                  effective, you will need to activate your new
-                                  email address. A message with activation
-                                  instructions will be sent to the new email
-                                  address. In the meantime, your old email address
-                                  will still be active.
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save
-                              changes</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
+
                 <div className="form-row">
                   <div style={{ maxWidth: '360px' }} className="col-md-12 mb-3">
-                    <button type="button" className="btn pass" data-toggle="modal" data-target="#test1">Open Modal 1
+                    <button type="button" className="btn pass" data-toggle="modal" data-target="#test1">Change password
                     </button>
+        
                     <div id="test1" className="modal fade" role="dialog" style={{ zIndex: 1400 }}>
                       <div className="modal-dialog">
                         <div className="modal-content">
                           <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Modal
-                              title</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">Change password</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">×</span>
                             </button>
@@ -173,43 +135,28 @@ class Profile extends React.Component {
                             <div className="container">
                               <div className="row">
                                 <div className="col-md-12 mb-3">
-                                  <div className="pr-3">
-                                    <input type="email" className="form-control mt-4
+                                  <form>
+                                    <div className="pr-3">
+                                      <input type="password" className="form-control mt-4
                                   mb-5
-                                  text-center" id="inputEmail4" placeholder="Email" />
-                                    <input type="password" className="form-control
-                                  text-center" id="inputPassword4" placeholder="Password" />
-                                  </div>
-                                  <div className="InputFeedback">Before the change of
-                                  email address becomes
-                                  effective, you will need to activate your new
-                                  email address. A message with activation
-                                  instructions will be sent to the new email
-                                  address. In the meantime, your old email address
-                                  will still be active.
-                                  </div>
+                                  text-center" id="inputEmail4" placeholder="Your current password" required />
+                                      <input type="password" className="form-control mt-4
+                                  mb-5 text-center" id="inputPassword4" placeholder="New password" required />
+                                      <input type="password" className="form-control
+                                  text-center" id="inputPassword4" placeholder="Confirm new password" required />
+                                    </div>
+                                  </form>
                                 </div>
                               </div>
                             </div>
                           </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save
-                              changes</button>
+                            <button type="button" className="btn btn-primary">Save changes</button>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="form-row">
-                  <div style={{ maxWidth: '360px' }} className="col-md-12 mb-3">
-                    <img src="C:\Users\PC\Desktop\captons1\images\iconfb.jpg" width={50} height={50} alt="" /> FaceBook
-                  </div> <br />
-                </div>
-                <div className="form-row">
-                  <div style={{ maxWidth: '360px' }} className="col-md-12 mb-3">
-                    <img src="C:\Users\PC\Desktop\captons1\images\icongg.jpg" width={49} height={34} alt="" /> Google
                   </div>
                 </div>
                 <div className="form-row">

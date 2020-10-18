@@ -89,23 +89,8 @@ class Login extends Component {
                 </div>
               </div>
               {/* <h6 style={{ color: 'silver' }} className=" Forgot text-center pt-4"></h6> */}
-
-              <NavLink
-                exact activeStyle={{
-                  fontWeight: 600,
-                  color: "sliver"
-                }}
-                activeClassName='Forgot text-center pt-4'
-                to='/change'>
-                Forgot your password
-              </NavLink>
             </div>
-            <div className="col-md-4 ">
-              <div className="text-center loginwith">
-                <button className="fb p-2"> login on facebook <i className="fab fa-facebook" aria-hidden="true" /></button> <br />
-                <button className="gm mt-2 pt-2 pb-2 pl-4 pr-4"> login on Gmail <i className="far fa-envelope" /></button>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
