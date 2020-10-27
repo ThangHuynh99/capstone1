@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3001;
 const bodyParser = require('body-parser');
-const urlencodedParser = bodyParser.urlencoded({ extended: false }) 
+// const urlencodedParser = bodyParser.urlencoded({ extended: false }) 
 const login=require('./Authentication/Login')
 const re=require('./Authentication/Register')
+const cre=require('./Authentication/Create')
+const changepw =require('./Authentication/Change')
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({ 
@@ -35,16 +37,8 @@ app.post('/checklogin',login.checkLogin);
 //   }
 // })
 
-app.post('/create', urlencodedParser, (req, res) => {
-  const { title, location, note } = req.body;
-  const user = {title: title, location: location, note: note};
-  const user1 = JSON.stringify(user);
-
-  console.log(user1);
-  // console.log("title " + user.title + " " + " location " + user.location + " " + "note " + user.note);
-
-});
-
+// app.post('/create', urlencodedParser, cre.Create);
+app.post('/changepw',changepw.changePassword)
 app.post('/checklogin',login.checkLogin)
 app.post('/registers',re.register)
 app.listen(port, () => {

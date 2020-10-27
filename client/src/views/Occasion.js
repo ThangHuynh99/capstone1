@@ -21,11 +21,11 @@ class Occasion extends React.Component {
 
     }
 
-    changeHandler = e => {
+    changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    submitHandler = e => {
+    submitHandler = (e) => {
         e.preventDefault();
         console.log(this.state);
        

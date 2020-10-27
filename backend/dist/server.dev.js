@@ -29,8 +29,7 @@ app.get('/', function (res, req) {
   req.json({
     info: 'Nodejs,Express and SQL server'
   });
-});
-app.post('/checklogin', login.checkLogin); // app.post('/login', function (req, res) {
+}); // app.post('/login', function (req, res) {
 //   var user_name=req.body.email;
 //   var password=req.body.password;
 //   if(user_name=='admin' && password=='admin'){

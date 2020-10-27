@@ -6,6 +6,54 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      password: '',
+      NewPassword:'',
+      ReNewPassword: ''
+    }
+  }
+  saveChange=(e)=>{
+    e.preventDefault();
+    var message = document.getElementById('error')
+    if (this.state.NewPassword === this.state.ReNewPassword) {
+      const user = ({
+        email: sessionStorage["email"],
+        password: this.state.password
+      });
+      fetch('http://localhost:3001/registers', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+        .then(response => { response.text() })
+        .then(result => {
+          if (result === 'Complete')
+            message.innerHTML = "Complete"
+          else
+            message.innerHTML = "Username invalid"
+        })
+    }
+    else {
+      alert("khac")
+    }
+  }
+  handlePassword = (e) => {
+    this.setState({ password: e.target.value })
+    console.log(this.state.password)
+  }
+  handleNewPassword = (e) => {
+    this.setState({ NewPassword: e.target.value })
+    console.log(this.state.NewPassword)
+  }
+  handleReNewPassword = (e) => {
+    this.setState({ ReNewPassword: e.target.value })
+    console.log(this.state.ReNewPassword)
+  }
   render() {
     return (
       <div class="bgr" >
@@ -139,11 +187,11 @@ class Profile extends React.Component {
                                     <div className="pr-3">
                                       <input type="password" className="form-control mt-4
                                   mb-5
-                                  text-center" id="inputEmail4" placeholder="Your current password" required />
+                                  text-center" id="inputEmail4" placeholder="Your current password" onChange={this.handlePassword} required />
                                       <input type="password" className="form-control mt-4
-                                  mb-5 text-center" id="inputPassword4" placeholder="New password" required />
+                                  mb-5 text-center" id="inputPassword4" placeholder="New password" onChange={this.handleNewPassword} required />
                                       <input type="password" className="form-control
-                                  text-center" id="inputPassword4" placeholder="Confirm new password" required />
+                                  text-center" id="inputPassword4" placeholder="Confirm new password" onChange={this.handleReNewPassword} required />
                                     </div>
                                   </form>
                                 </div>
@@ -152,7 +200,7 @@ class Profile extends React.Component {
                           </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="button" className="btn btn-primary" onClick={this.saveChange} >Save changes</button>
                           </div>
                         </div>
                       </div>

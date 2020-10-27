@@ -7,16 +7,53 @@ import { NavLink } from 'react-router-dom';
 
 class Changepw extends React.Component {
 
-    constructor(props){
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-          username: '',
-          password: '',
-          newPassword: ''
-      }
+    this.state = {
+      email: '',
+      password: '',
+      newPassword: ''
     }
-
+  }
+  change = (e) => {
+    const data ={
+      email : this.state.email,
+      password:this.state.password
+    }
+    var message = document.getElementById('error');
+    e.preventDefault();
+    fetch('http://localhost:3001/changepw', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res =>{res.JSON(data)})
+    .then((result) =>{
+      if(result==='Successful'){
+        message.innerHTML='Change password complete';
+      }
+      else if(result==='not exist'){
+        message.innerHTML='email is not exist';
+      }
+      else{
+        message.innerHTML= 'Error: '+result;
+      }
+    })
+    
+  }
+  handleEmail=(e)=>{
+    this.setState({email:e.target.value})
+  }
+  handleNewPassword=(e)=>{
+    this.setState({password:e.target.value})
+  }
+  handleNewPassword1=(e)=>{
+    this.setState({newPassword:e.target.value})
+  }
   render() {
     return (
       <div class="bgr">
@@ -31,7 +68,7 @@ class Changepw extends React.Component {
               </li>
               <li className="nav-item">
                 <a className="nav-link pr-5" href="#">Features</a>
-              </li>
+    .          </li>
               <li className="nav-item">
                 <a className="nav-link pr-5" href="#">Pricing</a>
               </li>
@@ -47,7 +84,7 @@ class Changepw extends React.Component {
               <div className="mt-3">
                 <NavLink
                   exact activeStyle={{
-                    fontWeight: 600,
+                   fontWeight: 600,
                     color: "red"
                   }}
                   activeClassName='pt-5'
@@ -58,13 +95,16 @@ class Changepw extends React.Component {
               </div>
               <form method="POST">
                 <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
-                  <input type="email" className="form-control mt-4 mb-3" id="inputEmail4" placeholder="Username" />
-                  <input type="password" className="form-control " id="inputPassword4" placeholder="Password" />
-                  <input type="password" className="form-control mt-3 " id="inputPassword4" placeholder="New Password" />
+                  <input type="email" className="form-control mt-4 mb-3" id="inputEmail4" placeholder="Username" onChange={this.handleEmail} />
+                  <input type="password" className="form-control " id="inputPassword4" placeholder="New Password" onChange={this.handleNewPassword} />
+                  <input type="password" className="form-control mt-3 " id="inputPassword4" placeholder="New Password" onChange={this.handleNewPassword1} />
                   <div style={{ border: 'transparent' }} className="text-center">
                     <input type="submit" className="button mt-4" name="change" value="Change" />
                     {/* <span><h5 className="pt-1 pb-1 pl-4 pr-4">Change</h5> </span>
                   </input> */}
+                  </div>
+                  <div className="error-group">
+                    <span htmlFor="error" id="error" className="error"></span>
                   </div>
                 </div>
               </form>

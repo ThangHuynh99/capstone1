@@ -79,15 +79,15 @@ function UIweb() {
                   Tạo cuộc họp</a></button> */}
 
             <button className="meeting">
-            <NavLink
+            {/* <NavLink
               exact activeStyle={{
                 color: "white"
               }}
               activeClassName="nav-link"
-              to='/login'>
+              to='/login'> */}
                 <i className="fas fa-plus" />
               Tạo cuộc họp
-                </NavLink>
+                {/* </NavLink> */}
                 </button>
                 
           </span>
