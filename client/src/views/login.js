@@ -33,7 +33,7 @@ class Login extends Component {
           sessionStorage.setItem("email", this.state.email);
           setTimeout(() => {
             window.location = "/";
-      }, 1500);
+          }, 1500);
         }
 
       })

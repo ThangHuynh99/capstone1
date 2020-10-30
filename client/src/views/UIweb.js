@@ -9,7 +9,7 @@ function UIweb() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a className="navbar-brand" href="#" style={{ fontWeight: 700, color: 'blue'}}><h4>Plan
+        <a className="navbar-brand" href="#" style={{ fontWeight: 700, color: 'blue' }}><h4>Plan
               Meeting</h4></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
                 navigation">
@@ -63,11 +63,11 @@ function UIweb() {
                               <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
                             </button>
                           </div>
-                         
+
                         </div>
                         <h6 style={{ color: 'silver' }} className=" Forgot text-center pt-4"></h6>
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
@@ -79,17 +79,17 @@ function UIweb() {
                   Tạo cuộc họp</a></button> */}
 
             <button className="meeting">
-            {/* <NavLink
+              {/* <NavLink
               exact activeStyle={{
                 color: "white"
               }}
               activeClassName="nav-link"
               to='/login'> */}
-                <i className="fas fa-plus" />
+              <i className="fas fa-plus" />
               Tạo cuộc họp
                 {/* </NavLink> */}
-                </button>
-                
+            </button>
+
           </span>
         </div>
       </nav>

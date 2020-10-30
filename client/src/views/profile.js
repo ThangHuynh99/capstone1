@@ -10,11 +10,11 @@ class Profile extends React.Component {
     super(props);
     this.state = {
       password: '',
-      NewPassword:'',
+      NewPassword: '',
       ReNewPassword: ''
     }
   }
-  saveChange=(e)=>{
+  saveChange = (e) => {
     e.preventDefault();
     var message = document.getElementById('error')
     if (this.state.NewPassword === this.state.ReNewPassword) {
@@ -142,11 +142,11 @@ class Profile extends React.Component {
               <form className="mt-5 pt-3">
                 <div className="form-row">
                   <div style={{ maxWidth: '360px' }} className="col-md-12 mb-3">
-                    <label htmlFor="validationDefault01">First name</label>
+                    <label htmlFor="validationDefault01">Name</label>
                     <input type="text" className="form-control" id="validationDefault01" placeholder="Your name" value="" />
                     <br></br>
                     <label htmlFor="validationDefault01">Birthday</label>
-                    <input type="date" className="form-control" id="validationDefault01"  value="" />
+                    <input type="date" className="form-control" id="validationDefault01" value="" />
                   </div>
                 </div>
                 <div className="form-row">
@@ -169,7 +169,7 @@ class Profile extends React.Component {
                   <div style={{ maxWidth: '360px' }} className="col-md-12 mb-3">
                     <button type="button" className="btn pass" data-toggle="modal" data-target="#test1">Change password
                     </button>
-        
+
                     <div id="test1" className="modal fade" role="dialog" style={{ zIndex: 1400 }}>
                       <div className="modal-dialog">
                         <div className="modal-content">
