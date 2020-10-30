@@ -6,6 +6,10 @@ import '../scss/fa/css/all.css';
 import { NavLink } from 'react-router-dom';
 
 function UIweb() {
+  // meeting = (e)=>{
+  //   e.preventDefault();
+    
+  // }
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -80,6 +84,7 @@ function UIweb() {
 
             <button className="meeting">
               {/* <NavLink
+            <NavLink
               exact activeStyle={{
                 color: "white"
               }}
@@ -90,6 +95,14 @@ function UIweb() {
                 {/* </NavLink> */}
             </button>
 
+              <button>
+                <NavLink
+                to='/create'>
+                <i className="fas fa-plus" />
+              Tạo cuộc họp
+                </NavLink>
+                </button>
+                
           </span>
         </div>
       </nav>

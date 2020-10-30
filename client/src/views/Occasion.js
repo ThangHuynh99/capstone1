@@ -13,7 +13,8 @@ class Occasion extends React.Component {
         this.state = {
             title: '',
             location: '',
-            note: ''
+            note: '',
+            disabled: "false"
         };
 
         this.changeHandler = this.changeHandler.bind(this);
@@ -25,21 +26,43 @@ class Occasion extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    // submitHandler = (e) => {
+    //     e.preventDefault();
+    //     console.log(this.state);
+
+
+    //     axios.post('http://localhost:3001/create',  this.state )
+    //     .then(response => {
+    //         console.log(response.data);
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //     })       
+    // }
     submitHandler = (e) => {
         e.preventDefault();
-        console.log(this.state);
-       
-        
-        axios.post('http://localhost:3001/create',  this.state )
-        .then(response => {
-            console.log(response.data);
+        const poll = {
+            title: this.state.title,
+            location: this.state.location,
+            note: this.state.note
+        };
+        console.log(poll);
+        fetch('http://localhost:3001/create', {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(poll)
         })
-        .catch(error => {
-            console.log(error);
-        })       
+            .then(result => {
+                if (result === "Success") {
+                    alert("Success")
+                }
+            })
     }
 
-    
+
 
     render() {
         const { title, location, note } = this.state;
@@ -57,40 +80,40 @@ class Occasion extends React.Component {
                                     Thang
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <NavLink
-                    exact activeStyle={{
+                                    <NavLink
+                                        exact activeStyle={{
 
-                    }}
-                    activeClassName='dropdown-item'
-                    to='#'>
-                    Dashboard
+                                        }}
+                                        activeClassName='dropdown-item'
+                                        to='#'>
+                                        Dashboard
                 </NavLink>
 
-                <NavLink
-                    exact activeStyle={{
+                                    <NavLink
+                                        exact activeStyle={{
 
-                    }}
-                    activeClassName='dropdown-item'
-                    to='/profile'>
-                    Account setting
+                                        }}
+                                        activeClassName='dropdown-item'
+                                        to='/profile'>
+                                        Account setting
                 </NavLink>
 
-                <NavLink
-                    exact activeStyle={{
+                                    <NavLink
+                                        exact activeStyle={{
 
-                    }}
-                    activeClassName='dropdown-item'
-                    to='#'>
-                    Help
+                                        }}
+                                        activeClassName='dropdown-item'
+                                        to='#'>
+                                        Help
                 </NavLink>
 
-                <NavLink
-                    exact activeStyle={{
+                                    <NavLink
+                                        exact activeStyle={{
 
-                    }}
-                    activeClassName='dropdown-item'
-                    to='#'>
-                    Logout
+                                        }}
+                                        activeClassName='dropdown-item'
+                                        to='#'>
+                                        Logout
                 </NavLink>
                                     {/* <a className="dropdown-item" href="#">Dashboard</a>
                                     <a className="dropdown-item" href="#">Account settings</a>
@@ -124,7 +147,13 @@ class Occasion extends React.Component {
                                     </div>
                                     <input type="text" className="form-control mt-5" id="addnote" name="note" value={note} placeholder="Add note" onChange={this.changeHandler} />
                                     <div style={{ border: 'transparent' }} className="text-center">
-                                        <input type="submit" className="button mt-4" name="change" value="Continue" />
+                                        <input type="submit" 
+                                        className="button mt-4" 
+                                        name="change" 
+                                        value="Continue" 
+                                        // required = {true}
+                                        // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
+                                         />
                                     </div>
                                 </div>
                             </form>

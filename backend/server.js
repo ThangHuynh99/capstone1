@@ -41,6 +41,7 @@ app.post('/checklogin',login.checkLogin);
 app.post('/changepw',changepw.changePassword)
 app.post('/checklogin',login.checkLogin)
 app.post('/registers',re.register)
+app.post('/create',cre.Create)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });
