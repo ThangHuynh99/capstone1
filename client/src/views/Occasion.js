@@ -3,8 +3,8 @@ import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/fa/css/all.css';
 import '../scss/join1.css';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
-
+import { Link, NavLink, Route, Router } from 'react-router-dom';
+import Schedule from './Schedule'
 class Occasion extends React.Component {
 
     constructor(props) {
@@ -68,6 +68,11 @@ class Occasion extends React.Component {
         const { title, location, note } = this.state;
         return (
             <div class="bgr">
+                {/* <Router>
+                    <div>
+                        <Route  path="/schedule" exact component={Schedule}/>
+                    </div>
+                </Router> */}
                 <div className="container mt-5 p-5">
                     <div className="account mb-5">
                         {/* Image and text */}
@@ -119,6 +124,14 @@ class Occasion extends React.Component {
                                     <a className="dropdown-item" href="#">Account settings</a>
                                     <a className="dropdown-item" href="#">Help</a>
                                     <a className="dropdown-item" href="#">Logout</a> */}
+                                    <NavLink
+                                            exact activeStyle={{
+                                                
+                                            }}
+                                            activeClassName='button mt-4'
+                                            to='/schedule'>
+                                            Continue
+                                         </NavLink>
                                 </div>
                             </li>
                         </nav>
@@ -146,14 +159,18 @@ class Occasion extends React.Component {
                                         </select>
                                     </div>
                                     <input type="text" className="form-control mt-5" id="addnote" name="note" value={note} placeholder="Add note" onChange={this.changeHandler} />
-                                    <div style={{ border: 'transparent' }} className="text-center">
-                                        <input type="submit" 
-                                        className="button mt-4" 
-                                        name="change" 
-                                        value="Continue" 
-                                        // required = {true}
-                                        // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
-                                         />
+                                    <div style={{ border: 'transparent' }} className="text-center" to="/create/schedule">
+                                        <Link to='/schedule'>
+                                            <input type="submit"
+                                                className="button mt-4"
+                                                name="change"
+                                                value="Continue"
+                                            // required = {true}
+                                            // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
+                                            >
+
+                                            </input>
+                                            </Link>
                                     </div>
                                 </div>
                             </form>

@@ -7,9 +7,9 @@ const pool = new Pool({
     port : 5432
 })
 const register = (req,res)=>{
-        const {id,password}=req.body;
+        const {email,password}=req.body;
         try{
-                pool.query('Insert into Users (users_id ,users_password) values ($1,$2)',[id,password],
+                pool.query('Insert into Users (users_email ,users_password) values ($1,$2)',[email,password],
                 (error,result)=>{
                         if(error){
                                 console.log("Error : ",error);

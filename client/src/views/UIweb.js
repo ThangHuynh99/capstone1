@@ -88,7 +88,7 @@ function UIweb() {
                 color: "white"
               }}
               activeClassName="nav-link"
-              to='/create'>
+              to={sessionStorage["email"]?'/create' : '/login'}>
                 <i className="fas fa-plus" />
               Tạo cuộc họp
                 </NavLink>
@@ -114,7 +114,7 @@ function UIweb() {
                 video nhiều người diễn ra thật dễ dàng.
                 <br />
               <div className="text-center">
-                <button className="meeting mt-3 text-center"><a className="nav-link" href="#" style={{ color: 'white' }}> <i className="fas
+                <button className="meeting mt-3 text-center" ><a className="nav-link"  style={{ color: 'white' }} > <i className="fas
                                         fa-plus" />
                       Tạo cuộc họp</a></button>
               </div>

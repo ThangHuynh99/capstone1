@@ -19,7 +19,7 @@ const changePassword = (req, res) => {
                         res.status(201).send(`not exist`)
                 }
                 else {
-                        pool.query('Update Users set users_id=$1 where users_password=$2', [users_id, users_password], (error, result) => {
+                        pool.query('Update Users set users_email=$1 where users_password=$2', [users_email, users_password], (error, result) => {
                                 if (error) {
                                         console.log(error);
                                         res.status(201).send(`Error: ` + error)
