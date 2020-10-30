@@ -15,8 +15,8 @@ class Login extends Component {
   Login1 = (e) => {
     e.preventDefault();
     const users = {
-      email: this.state.email,
-      password: this.state.password
+      user_email: this.state.email,
+      user_password: this.state.password
     };
     fetch('http://localhost:3001/checklogin', {
       method: "POST",

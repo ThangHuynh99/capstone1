@@ -6,11 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import UIweb from './views/UIweb';
 import Login from './views/login';
 import Register from './views/register';
+
 import Changepw from './views/changepw';
 import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import NotFound from './views/notFound';
 import Occasion from './views/Occasion';
 import Profile from './views/profile';
+import Schedule from './views/Schedule';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -26,7 +28,8 @@ const routing = (
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <Route path="/change" exact component={Changepw} />
-      <Route path="/create" exact component={Occasion} />
+      < Route path="/create" component={Occasion} />
+      <Route path="/schedule" component={Schedule} />
       <Route path="/profile" exact component={Profile} />
       {/* <Route  exact={true} component={NotFound} /> */}
     </div>

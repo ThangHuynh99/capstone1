@@ -9,8 +9,8 @@ const pool = new Pool({
         port: 5432
 })
 const changePassword = (req, res) => {
-        const { users_id, users_password } = req.body;
-        pool.query('Select * from Users where users_id = $1', [users_id], (error, result) => {
+        const { users_email, users_password } = req.body;
+        pool.query('Select * from Users where users_email = $1', [users_email], (error, result) => {
                 if (error) {
                         res.status(201).send(`Error: ` + error)
                 }
@@ -19,7 +19,7 @@ const changePassword = (req, res) => {
                         res.status(201).send(`not exist`)
                 }
                 else {
-                        pool.query('Update Users set users_id=$1 where users_password=$2', [users_id, users_password], (error, result) => {
+                        pool.query('Update Users set users_email=$1 where users_password=$2', [users_email, users_password], (error, result) => {
                                 if (error) {
                                         console.log(error);
                                         res.status(201).send(`Error: ` + error)
