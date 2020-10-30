@@ -9,8 +9,8 @@ const pool = new Pool({
         port: 5432
 })
 const changePassword = (req, res) => {
-        const { users_id, users_password } = req.body;
-        pool.query('Select * from Users where users_id = $1', [users_id], (error, result) => {
+        const { users_email, users_password } = req.body;
+        pool.query('Select * from Users where users_email = $1', [users_email], (error, result) => {
                 if (error) {
                         res.status(201).send(`Error: ` + error)
                 }
