@@ -3,7 +3,7 @@ import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/dashboard.css';
 import '../scss/fa/css/all.css';
 import { NavLink } from 'react-router-dom';
-
+import '../scss/2.css'
 class Dashboard extends React.Component {
     render() {
         return (
