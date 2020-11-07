@@ -25,6 +25,7 @@ const Create = (req, res) => {
             else{
                 console.log("Success");
                 console.log(result)
+                res.status(201).send(`${poll_id}`);
             }
 
         })

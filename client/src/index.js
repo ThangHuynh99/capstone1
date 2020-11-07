@@ -30,7 +30,7 @@ const routing = (
       <Route path="/register" exact component={Register} />
       <Route path="/change" exact component={Changepw} />
       <Route path="/create" exact component={Occasion} />
-      <Route path="/schedule" exact component={Schedule} />
+      {/* <Route path="/schedule" exact component={Schedule} /> */}
       <Route path="/profile" exact component={Profile} />
       <Route path="/dashboard" exact component={Dashboard}/>
       {/* <Route  exact={true} component={NotFound} /> */}

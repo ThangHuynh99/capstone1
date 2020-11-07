@@ -8,9 +8,10 @@ const pool = new Pool({
 })
 
 const checkLogin = (req, res) => {
-        const {email, password} = req.body;
+        const {user_email,user_password} = req.body;
+        console.log(user_email,user_password);
         try{
-            pool.query('SELECT * FROM Users WHERE users_email = $1 and users_password=$2' ,[id,password],
+            pool.query('SELECT * FROM Users WHERE users_email = $1 and users_password=$2' ,[user_email,user_password],
     
                         (error, result) => {
                             console.log(result);
