@@ -15,19 +15,19 @@ handleTime = (e) => {
 }
 render(){
   // console.log(date);
-  console.log(this.state.time)
-  const[date, setDate] = useState(new Date());
+  console.log(this.state.time);
+  // const[date, setDate] = useState(new Date());
   return (
     <div>
-      <DatePicker
+      {/* <DatePicker
         closeOnScroll={e => e.target.value === document}
         selected={date}
         onChange={date => setDate(date)} />
       <div class="md-form md-outline">
         <input type="time" id="default-picker" class="form-control" placeholder="Select time" onChange={this.handleTime} />
         <label for="default-picker">Default Time Picker</label>
-      </div>
-
+      </div> */}
+        Toan
     </div>
   );
 }

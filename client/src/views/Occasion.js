@@ -55,9 +55,11 @@ class Occasion extends React.Component {
             },
             body: JSON.stringify(poll)
         })
+            .then(res => { res.json()})
             .then(result => {
-                if (result === "Success") {
-                    alert("Success")
+                if(result){
+                console.log(result)
+                alert(result)
                 }
             })
     }
@@ -161,6 +163,7 @@ class Occasion extends React.Component {
                                         </select>
                                     </div>
                                     <input type="text" className="form-control mt-5" id="addnote" name="note" value={note} placeholder="Add note" onChange={this.changeHandler} />
+<<<<<<< Updated upstream
                                     <div style={{ border: 'transparent' }} className="text-center" to="/create/schedule">
                                         <Link to='/schedule'>
                                             <input type="submit"
@@ -173,6 +176,18 @@ class Occasion extends React.Component {
 
                                             </input>
                                         </Link>
+=======
+                                    <div style={{ border: 'transparent' }} className="text-center">
+                                        <input type="submit"
+                                            className="button mt-4"
+                                            name="change"
+                                            value="Continue"
+                                        // required = {true}
+                                        // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
+                                        >
+
+                                        </input>
+>>>>>>> Stashed changes
                                     </div>
                                 </div>
                             </form>
