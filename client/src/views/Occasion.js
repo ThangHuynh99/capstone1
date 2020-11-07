@@ -128,12 +128,12 @@ class Occasion extends React.Component {
                                     <a className="dropdown-item" href="#">Help</a>
                                     <a className="dropdown-item" href="#">Logout</a> */}
                                     <NavLink
-                                        exact activeStyle={{
-
-                                        }}
-                                        activeClassName='button mt-4'
-                                        to='/schedule'>
-                                        Continue
+                                            exact activeStyle={{
+                                                
+                                            }}
+                                            activeClassName='button mt-4'
+                                            to='/schedule'>
+                                            Continue
                                          </NavLink>
                                 </div>
                             </li>
@@ -170,7 +170,6 @@ class Occasion extends React.Component {
                                         // required = {true}
                                         // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
                                         >
-                                        <Popup ></Popup>
                                         </input>
                                     </div>
                                 </div>
