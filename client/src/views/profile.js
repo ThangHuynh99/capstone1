@@ -62,6 +62,9 @@ class Profile extends React.Component {
         navigation">
             <span className="navbar-toggler-icon" />
           </button>
+          <div className="text-right">
+            <h3 style={{ color: 'blue' }}>Meeting Planner</h3>
+            </div>
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item active">
@@ -76,7 +79,7 @@ class Profile extends React.Component {
             </ul>
           </div>
         </nav>
-        <div style={{ backgroundColor: 'white' }} className="container">
+        <div style={{ backgroundColor: 'white' }} className="container-xl">
           <div className="row">
             <div className="col-md-3 left">
               <span className="d-block p-4">

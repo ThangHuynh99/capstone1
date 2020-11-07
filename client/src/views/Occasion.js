@@ -68,15 +68,17 @@ class Occasion extends React.Component {
         const { title, location, note } = this.state;
         return (
             <div class="bgr">
+
                 {/* <Router>
                     <div>
                         <Route  path="/schedule" exact component={Schedule}/>
                     </div>
                 </Router> */}
-                <div className="container mt-5 p-5">
+                <div className="container mt-5 p-5 text-right">                  
                     <div className="account mb-5">
                         {/* Image and text */}
                         <nav className="navbar navbar-light float-right">
+
                             <a className="navbar-brand" href="#">
                                 <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%' }} className="d-inline-block align-top" alt="" loading="lazy" />
                             </a>
@@ -90,7 +92,7 @@ class Occasion extends React.Component {
 
                                         }}
                                         activeClassName='dropdown-item'
-                                        to='#'>
+                                        to='/dashboard'>
                                         Dashboard
                 </NavLink>
 
@@ -125,12 +127,12 @@ class Occasion extends React.Component {
                                     <a className="dropdown-item" href="#">Help</a>
                                     <a className="dropdown-item" href="#">Logout</a> */}
                                     <NavLink
-                                            exact activeStyle={{
-                                                
-                                            }}
-                                            activeClassName='button mt-4'
-                                            to='/schedule'>
-                                            Continue
+                                        exact activeStyle={{
+
+                                        }}
+                                        activeClassName='button mt-4'
+                                        to='/schedule'>
+                                        Continue
                                          </NavLink>
                                 </div>
                             </li>
@@ -170,7 +172,7 @@ class Occasion extends React.Component {
                                             >
 
                                             </input>
-                                            </Link>
+                                        </Link>
                                     </div>
                                 </div>
                             </form>

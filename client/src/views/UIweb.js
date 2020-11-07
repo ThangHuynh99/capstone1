@@ -13,8 +13,7 @@ function UIweb() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-        <a className="navbar-brand" href="#" style={{ fontWeight: 700, color: 'blue' }}><h4>Plan
-              Meeting</h4></a>
+        <a className="navbar-brand" href="#" style={{ fontWeight: 700, color: 'blue' }}><h4>Meeting Planner</h4></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
                 navigation">
           <span className="navbar-toggler-icon" />

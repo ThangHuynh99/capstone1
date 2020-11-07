@@ -12,7 +12,9 @@ a#navbarDropdown {
     content: none;
 }
 
-
+.bgr{
+    margin: 20px;
+}
 input#addtitle{
     border: none;
     border-bottom: solid 1px silver;

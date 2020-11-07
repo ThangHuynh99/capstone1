@@ -13,6 +13,7 @@ import NotFound from './views/notFound';
 import Occasion from './views/Occasion';
 import Profile from './views/profile';
 import Schedule from './views/Schedule';
+import Dashboard from './views/dashboard';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -28,9 +29,10 @@ const routing = (
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <Route path="/change" exact component={Changepw} />
-      < Route path="/create" component={Occasion} />
-      <Route path="/schedule" component={Schedule} />
+      <Route path="/create" exact component={Occasion} />
+      <Route path="/schedule" exact component={Schedule} />
       <Route path="/profile" exact component={Profile} />
+      <Route path="/dashboard" exact component={Dashboard}/>
       {/* <Route  exact={true} component={NotFound} /> */}
     </div>
   </Router>

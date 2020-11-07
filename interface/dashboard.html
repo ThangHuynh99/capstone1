@@ -1,0 +1,118 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dashboard</title>
+    <link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous">
+ 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"></script>
+  
+
+  </head>
+
+  <body class="bgr">
+    <div class="container">
+      <nav class="navbar navbar-light">
+        <div class="text-right">
+          <h3 style="color:lightskyblue;">Meeting Planner</h3>
+        </div>
+        <a class="navbar-brand ml-auto" href="#">
+          <img src="images/avt1.JPG" width="50"
+            height="50" style="border-radius: 50%;" class="d-inline-block
+            align-top" alt=""
+            loading="lazy">
+        </a>
+        <li style="list-style: none;" class="nav-item dropdown">
+          <div class="d-flex">
+            <div class="dropdown mr-1">
+              <button type="button" class="btn dropdown-toggle"
+                id="dropdownMenuOffset" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+              </button>
+              <div class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="dropdownMenuOffset">
+                <a class="dropdown-item" href="#">Dashboard</a>
+                <a class="dropdown-item" href="#">Acount Setting</a>
+                <a class="dropdown-item" href="#">Contact Support</a>
+                <a class="dropdown-item" href="#">Log out</a>
+              </div>
+            </div>
+          </div>
+        </li>
+          <!-- Example single danger button -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border-radius:4px ;">
+              <h5>+ Create</h5>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" href="#">Group Meeting
+                <br>
+                <small>Let everyone choose the best time to meet</small>
+              </a>
+              <a class="dropdown-item" href="#">Bookable Calendar
+                <br>
+                <small>The quickest way to share your live calendart</small></a>
+              <a class="dropdown-item" href="#">1:1 Meeting
+                <br>
+                <small>Share specific times that work best for you</small></a>
+              <a class="dropdown-item" href="#">Survey
+                <br>
+                <small>Share specific times that work best for you</small>
+              </a>
+          </div>
+        </div>
+        </nav>
+      
+    </div>
+      <div style="background-color: white;" class="container">
+        <div style="border: solid 1px #ced4da;" class="row">
+          <div class="col-md-3 left">
+            <span class="d-block p-4">
+              <h3>Invitations</h3>
+            </span>
+            <span style="background-color: #98cdfb;" class="d-block p-3">All</span>
+            <span class="d-block p-3">Sent</span>
+            <span class="d-block p-3">Received</span>
+            <span class="d-block p-3">Confirmed</span>
+            <span class="d-block p-3 mb-5">Archived</span>
+          </div>
+          <div class="col-md-8 right mt-3 pb-5 mb-5">
+            <div class="container">
+              <form class="form-inline my-2 my-lg-0 ">
+                <input class="form-control  ml-auto" type="search " placeholder="Search "  aria-label="Search">
+                <i class="fas fa-search"></i>
+              </form>
+              <div class="row mt-5">
+                <div class="col-md-12">
+                  <div style="height:75px ;"  class="border"></div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="text-center" style="color: lightsteelblue;">
+          <a href="">Help •</a>  
+          <a href="">Privacy •</a>
+          <a href="">Terms of Service</a>
+      </div>
+    </footer>
+  </body>
+</html>
