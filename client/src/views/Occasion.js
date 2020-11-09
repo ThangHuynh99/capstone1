@@ -2,6 +2,7 @@ import React from 'react';
 import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/fa/css/all.css';
 import '../scss/join1.css';
+import Popup from 'reactjs-popup';
 import axios from 'axios';
 import { Link, NavLink, Route, Router } from 'react-router-dom';
 import Schedule from './Schedule'
@@ -55,9 +56,11 @@ class Occasion extends React.Component {
             },
             body: JSON.stringify(poll)
         })
+            .then(res => { res.json()})
             .then(result => {
-                if (result === "Success") {
-                    alert("Success")
+                if(result){
+                console.log(result)
+                alert(result)
                 }
             })
     }
@@ -76,11 +79,10 @@ class Occasion extends React.Component {
                         <Route  path="/schedule" exact component={Schedule}/>
                     </div>
                 </Router> */}
-                <div className="container mt-5 p-5 text-right">                  
+                <div className="container mt-5 p-5">
                     <div className="account mb-5">
                         {/* Image and text */}
                         <nav className="navbar navbar-light float-right">
-
                             <a className="navbar-brand" href="#">
                                 <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%' }} className="d-inline-block align-top" alt="" loading="lazy" />
                             </a>
@@ -94,7 +96,7 @@ class Occasion extends React.Component {
 
                                         }}
                                         activeClassName='dropdown-item'
-                                        to='/dashboard'>
+                                        to='#'>
                                         Dashboard
                 </NavLink>
 
@@ -129,12 +131,12 @@ class Occasion extends React.Component {
                                     <a className="dropdown-item" href="#">Help</a>
                                     <a className="dropdown-item" href="#">Logout</a> */}
                                     <NavLink
-                                        exact activeStyle={{
-
-                                        }}
-                                        activeClassName='button mt-4'
-                                        to='/schedule'>
-                                        Continue
+                                            exact activeStyle={{
+                                                
+                                            }}
+                                            activeClassName='button mt-4'
+                                            to='/schedule'>
+                                            Continue
                                          </NavLink>
                                 </div>
                             </li>
@@ -163,18 +165,15 @@ class Occasion extends React.Component {
                                         </select>
                                     </div>
                                     <input type="text" className="form-control mt-5" id="addnote" name="note" value={note} placeholder="Add note" onChange={this.changeHandler} />
-                                    <div style={{ border: 'transparent' }} className="text-center" to="/create/schedule">
-                                        <Link to='/schedule'>
-                                            <input type="submit"
-                                                className="button mt-4"
-                                                name="change"
-                                                value="Continue"
-                                            // required = {true}
-                                            // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
-                                            >
-
-                                            </input>
-                                        </Link>
+                                    <div style={{ border: 'transparent' }} className="text-center">
+                                        <input type="submit"
+                                            className="button mt-4"
+                                            name="change"
+                                            value="Continue"
+                                        // required = {true}
+                                        // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
+                                        >
+                                        </input>
                                     </div>
                                 </div>
                             </form>

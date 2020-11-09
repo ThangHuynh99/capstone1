@@ -24,7 +24,7 @@ app.get('/',(res,req) =>{
   req.json({info:'Nodejs,Express and SQL server'})
 })
 
-app.post('/checklogin',login.checkLogin);
+// app.post('/checklogin',login.checkLogin);
 
 // app.post('/login', function (req, res) {
 //   var user_name=req.body.email;
