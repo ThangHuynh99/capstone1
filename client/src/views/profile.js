@@ -77,6 +77,20 @@ class Profile extends React.Component {
               <li className="nav-item">
                 <a className="nav-link pr-5" href="#">Pricing</a>
               </li>
+            
+              <span className="navbar-text">
+                            <button className="meeting" style={{backgroundColor: 'lightred'}}>
+                                <NavLink
+                                    exact activeStyle={{
+                                        color: 'black',
+                                    }}
+                                    activeClassName="nav-link"
+                                    to= '/create' >
+                                    <i className="fas fa-plus" style={{color: 'black'}}/>
+                                      Tạo cuộc họp
+                                     </NavLink>
+                            </button>
+                            </span>
             </ul>
           </div>
         </nav>
