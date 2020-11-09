@@ -14,6 +14,7 @@ import Occasion from './views/Occasion';
 import Profile from './views/profile';
 import Schedule from './views/Schedule';
 import Dashboard from './views/dashboard';
+import Example from './views/Option';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -33,6 +34,7 @@ const routing = (
       <Route path="/schedule" exact component={Schedule} />
       <Route path="/profile" exact component={Profile} />
       <Route path="/dashboard" exact component={Dashboard}/>
+      <Route path="/option" exact component={Example}/>
       {/* <Route  exact={true} component={NotFound} /> */}
     </div>
   </Router>

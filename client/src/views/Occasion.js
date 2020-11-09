@@ -67,8 +67,10 @@ class Occasion extends React.Component {
     render() {
         const { title, location, note } = this.state;
         return (
-            <div class="bgr">
-
+            <div class="bgr" >
+               
+                    
+            
                 {/* <Router>
                     <div>
                         <Route  path="/schedule" exact component={Schedule}/>
@@ -179,6 +181,7 @@ class Occasion extends React.Component {
                         </div>
                     </div>
                 </div>
+               
             </div>
         );
     }
