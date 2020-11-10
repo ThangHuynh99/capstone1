@@ -21,11 +21,11 @@ const checkLogin = (req, res) => {
                             }
                             else if(result.rowCount === 0){
                                 console.log("Failed");
-                                res.status(201).send(`null`);
+                                res.status(201).send(null);
                             }
                             else{
                                 console.log("Success");
-                                console.log(result)
+                                console.log(result.rows[0].users_id);
                                 res.status(201).send(result.rows[0]);
                             }
     

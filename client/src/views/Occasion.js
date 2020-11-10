@@ -43,11 +43,12 @@ class Occasion extends React.Component {
     submitHandler = (e) => {
         e.preventDefault();
         const poll = {
+            users_id: sessionStorage["users_id"],
             title: this.state.title,
             location: this.state.location,
             note: this.state.note
         };
-        console.log(poll);
+        // console.log(poll);
         fetch('http://localhost:3001/create', {
             method: "POST",
             headers: {
@@ -56,11 +57,12 @@ class Occasion extends React.Component {
             },
             body: JSON.stringify(poll)
         })
-            .then(res => { res.json()})
+            .then(response => response.text())
             .then(result => {
-                if(result){
-                console.log(result)
-                alert(result)
+                if (result === 'Successful') {
+                    console.log(result)
+                    // alert(result)
+                        window.location = "/schedule";
                 }
             })
     }
@@ -71,9 +73,9 @@ class Occasion extends React.Component {
         const { title, location, note } = this.state;
         return (
             <div class="bgr" >
-               
-                    
-            
+
+
+
                 {/* <Router>
                     <div>
                         <Route  path="/schedule" exact component={Schedule}/>
@@ -131,12 +133,12 @@ class Occasion extends React.Component {
                                     <a className="dropdown-item" href="#">Help</a>
                                     <a className="dropdown-item" href="#">Logout</a> */}
                                     <NavLink
-                                            exact activeStyle={{
-                                                
-                                            }}
-                                            activeClassName='button mt-4'
-                                            to='/schedule'>
-                                            Continue
+                                        exact activeStyle={{
+
+                                        }}
+                                        activeClassName='button mt-4'
+                                        to='/schedule'>
+                                        Continue
                                          </NavLink>
                                 </div>
                             </li>
@@ -180,7 +182,7 @@ class Occasion extends React.Component {
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         );
     }

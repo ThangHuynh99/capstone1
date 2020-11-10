@@ -9,11 +9,13 @@ class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      user: []
     }
   }
   Login1 = (e) => {
     e.preventDefault();
+    var message = document.getElementById('error');
     const users = {
       user_email: this.state.email,
       user_password: this.state.password
@@ -26,11 +28,24 @@ class Login extends Component {
       },
       body: JSON.stringify(users)
     })
+      .then(response => response.text())
       .then(result => {
-        if (result === null)
+        // chua on sai pass
+        if (result === null) {
           alert("Account don't exist")
+          message.innerHTML = "Account don't exist!!!";
+        }
         else {
-          sessionStorage.setItem("email", this.state.email);
+          var user = JSON.parse(result);
+          console.log(user.users_id)
+          console.log(user.users_email)
+          // this.setState({user:result})
+          // console.log(this.state.user);
+          // console.log(this.state.user[0].users_id);
+          sessionStorage.setItem("users_id", user.users_id);
+          sessionStorage.setItem("users_email", user.users_email);
+          //console.log(sessionStorage["users_email"],sessionStorage["users_id"])
+
           setTimeout(() => {
             window.location = "/";
           }, 1500);
@@ -99,6 +114,9 @@ class Login extends Component {
                 <input type="email" className="form-control mt-4 mb-5
                         text-center" id="inputEmail4" placeholder="Email" onChange={this.handleEmail} />
                 <input type="password" className="form-control text-center" id="inputPassword4" placeholder="Password" onChange={this.handlePassword} />
+                <div className="error-group">
+                  <span htmlFor="error" id="error" className="error"></span>
+                </div>
                 <div style={{ border: 'transparent' }} className="text-center">
                   <button className="button mt-4" onClick={this.Login1}>
                     <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
