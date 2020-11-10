@@ -4,6 +4,8 @@ import '../scss/dashboard.css';
 import '../scss/login.css';
 import { NavLink } from 'react-router-dom';
 import '../scss/2.css'
+import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 class Dashboard extends React.Component {
     render() {
         return (
@@ -41,18 +43,13 @@ class Dashboard extends React.Component {
                         </li>
                         {/* Example single danger button */}
                         <div className="btn-group">
-                        <span className="navbar-text">
-                            <button className="meeting" style={{backgroundColor: 'lightred'}}>
-                                <NavLink
-                                    exact activeStyle={{
-                                        color: 'black',
-                                    }}
-                                    activeClassName="nav-link"
-                                    to= '/create' >
-                                    <i className="fas fa-plus" style={{color: 'black'}}/>
-                                      Tạo cuộc họp
-                                     </NavLink>
-                            </button>
+                            <span className="navbar-text">
+                                <Link to="/create">
+                                    <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
+                                        <h5>+ Create</h5>
+                                    </button>
+                                </Link>
+
                             </span>
 
 

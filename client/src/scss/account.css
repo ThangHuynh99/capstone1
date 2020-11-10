@@ -3,12 +3,12 @@
     margin: 0;
     padding: 0;
 }
+
+
+
 .bgr{
-    background-image: url(https://www.iris.edu.vn/Libs/theme/wp-content/uploads/2018/07/Untitled-2.jpg);
-    height: 650px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+   
+    background-color:#c0c0c017 ;
 
 }
 .col-md-3{

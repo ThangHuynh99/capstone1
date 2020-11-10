@@ -1,0 +1,20 @@
+*{margin: 0;padding: 0;}
+.container{
+    max-width: 850px;
+}
+.nav-link{
+    color: black;
+    font-weight: 700;
+}
+.footer{
+    background-color: #c0c0c045;
+}
+.container{
+    box-shadow: 0px 5px 5px 1px silver;
+}
+table.i-border, table.i-border th, table.i-border td {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    text-align: center;
+    font-weight: 700;
+}

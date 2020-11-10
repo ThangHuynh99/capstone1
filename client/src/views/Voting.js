@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-class login1 extends Component {
+class login1 extends React.Component {
       constructor(props) {
             super(props);
             this.state = {
@@ -7,5 +7,12 @@ class login1 extends Component {
                   password: '123'
             }
             this.Login = this.Login.bind();
+      }
+
+      render() {
+            return {
+                  
+
+            };
       }
 }

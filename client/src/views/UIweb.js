@@ -3,12 +3,14 @@ import '../scss/bootstrap/css/bootstrap.css'
 import '../scss/2.css';
 import '../scss/login.css';
 import '../scss/fa/css/all.css';
+import { Link } from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
 function UIweb() {
   // meeting = (e)=>{
   //   e.preventDefault();
-    
+
   // }
   return (
     <div>
@@ -30,13 +32,13 @@ function UIweb() {
               <a className="nav-link" href="#">Pricing</a>
             </li>
           </ul>
-          <span className="navbar-text pr-3">
-            <NavLink
-              activeClassName="nav-link"
-              to='/register'>
-              Đăng ký
-                </NavLink>
-          </span>
+
+          <Link to="/register">
+            <span className="navbar-text pr-3">
+              <button class="register nav-link" style={{ color: 'black' }}>Đăng Ký</button>
+            </span>
+          </Link>
+
           <span className="navbar-text pr-3">
             <button className="login p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Đăng Nhập</button>
             <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,7 +57,7 @@ function UIweb() {
                       </div>
                       <div className="col-md-8">
                         <div className="mt-3 text-center">
-                          <a style={{ color: 'black', fontWeight: 600 }} className="pt-5 " href="#">Sign in</a>
+
                         </div>
                         <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
                           <input type="email" className="form-control mt-4 mb-5
@@ -81,18 +83,11 @@ function UIweb() {
             {/* <button className="meeting"><a className="nav-link" href="join.html" style={{ color: 'white' }}> <i className="fas fa-plus" />
                   Tạo cuộc họp</a></button> */}
 
-            <button className="meeting">
-            <NavLink
-              exact activeStyle={{
-                color: "white"
-              }}
-              activeClassName="nav-link"
-              to={sessionStorage["email"]?'/create' : '/login'}>
-                <i className="fas fa-plus" />
-              Tạo cuộc họp
-                </NavLink>
-                </button>
-                
+            <Link to={sessionStorage["email"] ? '/create' : '/login'}>
+              <button className="meeting">
+                <h5 style={{ color: 'white' }}>+ Create a poll </h5>
+              </button>
+            </Link>
           </span>
         </div>
       </nav>
@@ -113,9 +108,11 @@ function UIweb() {
                 video nhiều người diễn ra thật dễ dàng.
                 <br />
               <div className="text-center">
-                <button className="meeting mt-3 text-center" ><a className="nav-link"  style={{ color: 'white' }} > <i className="fas
-                                        fa-plus" />
-                      Tạo cuộc họp</a></button>
+                <Link to={sessionStorage["email"] ? '/create' : '/login'}>
+                  <button className="meeting">
+                    <h5 style={{ color: 'white' }}>+ Create a poll </h5>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
