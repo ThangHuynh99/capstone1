@@ -4,6 +4,8 @@ import '../scss/2.css';
 import '../scss/login.css';
 import '../scss/fa/css/all.css';
 import '../scss/account.css';
+import { Link } from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
@@ -60,7 +62,7 @@ class Profile extends React.Component {
     return (
       <div class="bgr" >
 
-        <nav className="navbar navbar-expand-lg navbar-light mb-5" >
+        <nav className="navbar navbar-expand-lg navbar-light mb-5 " >
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
   navigation">
             <span className="navbar-toggler-icon" />
@@ -77,6 +79,14 @@ class Profile extends React.Component {
               <li className="nav-item">
                 <a className="nav-link pr-5" href="#">Pricing</a>
               </li>
+            
+              <span className=" btn-group">
+              <Link to="/create">
+                            <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
+                                <h5>+ Create</h5>
+                            </button>
+                            </Link>
+                      </span>
             </ul>
           </div>
         </nav>
@@ -106,9 +116,9 @@ class Profile extends React.Component {
                   <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <NavLink
                       exact activeStyle={{
-
+                      
                       }}
-                      activeClassName='dropdown-item'
+                      activeClassName='dropdown-item justify-content-center'
                       to='/dashboard'>
                       Dashboard
                 </NavLink>

@@ -101,7 +101,7 @@ class Register extends React.Component {
                 </NavLink>
               </div>
               <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
-                <input type="email" className="form-control mt-4 mb-3" id="inputEmail4" placeholder="Username" onChange={this.handleUsernameChange} />
+                <input type="email" className="form-control mt-4 mb-3" id="inputEmail4" placeholder="Email" onChange={this.handleUsernameChange} />
                 <input type="password" className="form-control " id="inputPassword4" placeholder="Password" onChange={this.handlePasswordChange} />
                 <input type="password" className="form-control mt-3 " id="inputPassword4" placeholder="Repassword" onChange={this.handleRePasswordChange} />
                 <div style={{ border: 'transparent' }} className="text-center">
