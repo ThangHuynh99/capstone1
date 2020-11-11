@@ -1,17 +1,45 @@
 import React from 'react';
 import '../scss/bootstrap/css/bootstrap.css';
-import '../scss/dashboard.css';
-import '../scss/login.css';
+// import '../scss/dashboard.css';
+import '../scss/fa/css/all.css';
 import { NavLink } from 'react-router-dom';
 import '../scss/2.css'
-import { Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import ViewPoll from './ViewPoll'
 class Dashboard extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            users_id: sessionStorage["users_id"],
+            ViewPoll: [],
+        }
+    }
+    componentDidMount() {
+        const users_id = this.state.users_id;
+        console.log(users_id);
+        fetch('http://localhost:3001/dashboard', {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ users_id })
+        })
+            .then(response => response.json())
+            .then(result => {
+                this.setState({ ViewPoll: result.rows });
+                console.log(this.state.ViewPoll)
+            })
+
+    }
+
     render() {
+        let ViewPoll1 = this.state.ViewPoll.map(poll => {
+            return <ViewPoll  key={poll.poll_id} poll={poll}/>
+        })
         return (
             <div className="bgr">
-
-                <div className="container-xl" >
+                <div className="container-xl" style={{ width: '970px' }} >
                     <nav className="navbar navbar-light">
                         <div className="text-right">
                             <h3 style={{ color: 'lightskyblue' }}>Meeting Planner</h3>
@@ -43,20 +71,29 @@ class Dashboard extends React.Component {
                         </li>
                         {/* Example single danger button */}
                         <div className="btn-group">
-                            <span className="navbar-text">
-                                <Link to="/create">
-                                    <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
-                                        <h5>+ Create</h5>
-                                    </button>
-                                </Link>
-
-                            </span>
-
-
+                            <button type="button" className="btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ borderRadius: '4px' }}>
+                                <h5>+ Create</h5>
+                            </button>
+                            <div className="dropdown-menu dropdown-menu-right">
+                                <a className="dropdown-item" href="#">Group Meeting
+            <br />
+                                    <small>Let everyone choose the best time to meet</small>
+                                </a>
+                                <a className="dropdown-item" href="#">Bookable Calendar
+            <br />
+                                    <small>The quickest way to share your live calendart</small></a>
+                                <a className="dropdown-item" href="#">1:1 Meeting
+            <br />
+                                    <small>Share specific times that work best for you</small></a>
+                                <a className="dropdown-item" href="#">Survey
+            <br />
+                                    <small>Share specific times that work best for you</small>
+                                </a>
+                            </div>
                         </div>
                     </nav>
                 </div>
-                <div style={{ backgroundColor: 'white' }} className="container-xl">
+                <div style={{ backgroundColor: 'white', width: '970px' }} className="container-xl">
                     <div style={{ border: 'solid 1px #ced4da' }} className="row">
                         <div className="col-md-3 left">
                             <span className="d-block p-4">
@@ -76,7 +113,29 @@ class Dashboard extends React.Component {
                                 </form>
                                 <div className="row mt-5">
                                     <div className="col-md-12">
-                                        <div style={{ height: '75px' }} className="border" />
+                                        {ViewPoll1}
+                                        {/* <div style={{ height: '120px', width: '500px', "margin-left": '50px' }} className="border" >
+                                            <div className="Card-content" style={{ "margin": '16px', width: '94%', height: '73%', "padding-left": '24px' }}>
+                                                <div className="userAvatar" style={{"padding-top":'7px'}}>
+                                                    <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%', "float": 'left' ,"margin-top":'15px'}} className="d-inline-block
+      align-top" alt="" loading="lazy" />
+                                                </div>
+                                                <div className="info" style={{ "padding-left": '70px' }}>
+                                                    <div>
+                                                        <h4 style={{ "font-size": "18px", "margin-bottom": '0px' }}>Cuộc họp vui vẻ</h4>
+                                                    </div>
+                                                    <div>
+                                                        <i class="fa fa-calendar" aria-hidden="true" ></i>
+                                                        <span style={{"padding-left":'8px'}}>3 options</span>
+                                                    </div>
+                                                    <div>
+                                                        <i class="fa fa-user" aria-hidden="true" ></i>
+                                                        <span style={{"padding-left":'8px'}}>3 invitees</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>

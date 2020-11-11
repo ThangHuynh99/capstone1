@@ -24,8 +24,8 @@ const Create = (req, res) => {
                 res.status(201).send(null);
             }
             else{
-                console.log("Success");
-                console.log(result)
+                // console.log("Success");
+                // console.log(result)
                 const PU_Role='host';
                 pool.query('Insert into Poll_User(poll_id,users_id,PU_Role) values ($1,$2,$3)',[poll_id,users_id,PU_Role],
                 (error,result)=>{
