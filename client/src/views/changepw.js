@@ -2,7 +2,7 @@ import React from 'react';
 import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/login.css';
 import '../scss/fa/css/all.css';
-import axios from 'axios';
+// import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 class Changepw extends React.Component {

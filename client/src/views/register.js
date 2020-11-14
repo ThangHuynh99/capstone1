@@ -19,7 +19,7 @@ class Register extends React.Component {
     if (this.state.password === this.state.repass) {
       const user = ({
         users_email: this.state.id,
-        users_email: this.state.password
+        users_password: this.state.password
       });
       fetch('http://localhost:3001/registers', {
         method: 'POST',

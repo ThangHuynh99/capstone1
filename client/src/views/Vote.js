@@ -1,10 +1,75 @@
 import React from 'react';
 import '../scss/vote.css';
-import { Button } from 'semantic-ui-react';
-import { NavLink } from 'react-router-dom';
+import Schedule from './Schedule'
+// import { Button } from 'semantic-ui-react';
+// import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import VoteUser from './Vote_user'
 class Vote extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            poll_id: 'ZTjDhggXqJTMnW7f',
+            vote: [],
+            schedule: [],
+            user: []
+        }
+    }
+    componentDidMount() {
+        const poll_id = this.state.poll_id;
+        // console.log(poll_id);
+        fetch('http://localhost:3001/vote/user', {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ poll_id })
+        })
+            .then(response => response.json())
+            .then(result => {
+                this.setState({ user: result });
+                console.log("-------------------------------------------------------------------------------")
+                console.log(this.state.user)
+            })
+        fetch('http://localhost:3001/vote/schedule', {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ poll_id })
+        })
+            .then(response => response.json())
+            .then(result => {
+                this.setState({ schedule: result.rows });
+
+                console.log("-------------------------------------------------------------------------------")
+                console.log(this.state.schedule)
+            })
+
+    }
     render() {
+        let schedule1 = this.state.schedule.map(schedule => {
+            return <Schedule key={schedule.schedule_id} schedule={schedule} />
+        })
+        
+
+        let users = this.state.user.map(user => {
+            let vote = user.vote1.map(vote => {
+                return (<td className="value" width="72px">
+                    <p>{vote.vote_status}</p>
+                </td>)
+            })
+            return (
+                <tr>
+                    <td>{user.user_name} <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
+                    {vote}
+                </tr>
+            )
+
+        })
         return (
             <div style={{ padding: 0, boxShadow: '0px 5px 5px 1px silver' }} className="container mt-4 mb-4">
                 <nav className="navbar navbar-expand-lg navbar-light">
@@ -50,11 +115,11 @@ class Vote extends React.Component {
                         {/* Example single danger button */}
                         <div className="btn-group">
                             <Link to="/create">
-                            <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
-                                <h5>+ Create</h5>
-                            </button>
+                                <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
+                                    <h5>+ Create</h5>
+                                </button>
                             </Link>
-                          
+
 
                         </div>
                     </div></nav>
@@ -97,12 +162,13 @@ class Vote extends React.Component {
                     <tbody>
                         <tr>
                             <td style={{ width: '200px', height: '130px' }} />
-                            <td style={{ width: '72px', height: '130px', textAlign: 'center' }} className="date">Nov
+                            {schedule1}
+                            {/* <td style={{ width: '72px', height: '130px', textAlign: 'center' }} className="date">Nov
                             5
                             THU
                             8:00 AM
                             8:30 AM
-        </td>
+                            </td> */}
                         </tr>
                         <tr>
                             <td>0 participants <i style={{ float: 'right' }} className="fas fa-plus pr-2" /></td>
@@ -110,18 +176,13 @@ class Vote extends React.Component {
                                 <p>0/1</p>
                             </td>
                         </tr>
-                        <tr>
+                        {users}
+                        {/* <tr>
                             <td>Thang Huynh<i style={{ float: 'right' }} className="fas fa-pen pr-2" /></td>
                             <td>
                                 <p>0/1</p>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>Hoang <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
-                            <td>
-                                <p>0/1</p>
-                            </td>
-                        </tr>
+                        </tr> */}
                     </tbody>
                 </table>
                 <div className="footer pt-3 pb-3">

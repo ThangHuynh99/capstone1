@@ -2,8 +2,8 @@ import React from 'react';
 import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/fa/css/all.css';
 import '../scss/join1.css';
-import Popup from 'reactjs-popup';
-import axios from 'axios';
+// import Popup from 'reactjs-popup';
+// import axios from 'axios';
 import { Link, NavLink, Route, Router } from 'react-router-dom';
 import Schedule from './Schedule'
 class Occasion extends React.Component {

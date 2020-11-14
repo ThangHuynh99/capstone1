@@ -8,6 +8,7 @@ const re=require('./Authentication/Register')
 const cre=require('./Authentication/Create')
 const changepw =require('./Authentication/Change')
 const dashboard = require('./Authentication/Dashboard')
+const voting = require('./Authentication/Voting')
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({ 
@@ -44,6 +45,8 @@ app.post('/checklogin',login.checkLogin)
 app.post('/registers',re.register)
 app.post('/create',cre.Create)
 app.post('/dashboard',dashboard.dashboard);
+app.post('/vote/user',voting.voting)
+app.post('/vote/schedule',voting.voteSchedule)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });

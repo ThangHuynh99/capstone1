@@ -5,8 +5,8 @@ import '../scss/login.css';
 import '../scss/fa/css/all.css';
 import '../scss/account.css';
 import { Link } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
-import axios from 'axios';
+// import { Button } from 'semantic-ui-react';
+// import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 
 class Profile extends React.Component {

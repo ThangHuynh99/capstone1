@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import * as serviceWorker from './serviceWorker';
 import UIweb from './views/UIweb';
 import Login from './views/login';
 import Register from './views/register';
 
 import Changepw from './views/changepw';
-import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
-import NotFound from './views/notFound';
+import { BrowserRouter as Router, Route} from "react-router-dom";
+// import NotFound from './views/notFound';
 import Occasion from './views/Occasion';
 import Profile from './views/profile';
 import Schedule from './views/Schedule';

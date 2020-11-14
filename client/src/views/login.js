@@ -36,6 +36,7 @@ class Login extends Component {
           message.innerHTML = "Account don't exist!!!";
         }
         else {
+          console.log(result);
           var user = JSON.parse(result);
           console.log(user.users_id)
           console.log(user.users_email)
@@ -64,7 +65,7 @@ class Login extends Component {
   }
   render() {
     return (
-      <div class="bgr">
+      <div className="bgr">
         <nav className="navbar navbar-expand-lg navbar-light pb-5">
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
