@@ -10,6 +10,7 @@ const changepw =require('./Authentication/Change')
 const dashboard = require('./Authentication/Dashboard')
 const voting = require('./Authentication/Voting')
 const invite = require('./Authentication/Invite')
+const view = require ('./Authentication/ViewAdmin')
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({ 
@@ -48,7 +49,9 @@ app.post('/create',cre.Create)
 app.post('/dashboard',dashboard.dashboard);
 app.post('/vote/user',voting.voting)
 app.post('/vote/schedule',voting.voteSchedule)
-app.post('./invite',invite.invite)
+app.post('/invite',invite.invite)
+app.get('/viewuser',view.ViewUser)
+app.get('/viewpoll',view.ViewPoll)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });

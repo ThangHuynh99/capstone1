@@ -2,10 +2,32 @@ import React from 'react';
 import '../scss/fa/css/all.css';
 import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/1.css';
-import { render } from 'react-dom';
-
+import TableDataPoll from './tableDataPoll'
+import TableDataUser from './tableDataUser'
 class MenuAdmin extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isShowUser: true,
+            isShowPoll: false
+        }
+        this.showPoll=this.showPoll.bind(this)
+        this.showUser=this.showUser.bind(this)
+    }
+    showUser() {
+        this.setState ({
+            isShowUser: true, isShowPoll: false
+        })
+        console.log(this.state)
+    }
+    showPoll() {
+        this.setState ({
+            isShowUser: false, isShowPoll: true
+        })
+        console.log(this.state)
+    }
     render() {
+        // console.log(this.state)
         return (
             <div>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -38,14 +60,17 @@ class MenuAdmin extends React.Component {
                 <div className="container-xl mt-5 ">
                     <div className="row">
                         <div className="col-md-4 ">
-                            <span className="d-block p-3" style={{backgroundColor:'white',  width: '380px' }}><img src="anh.jpg" alt="" /> Admin</span>
-                            <button className="d-block p-3  " style={{ border: 'none ', width: '380px' }}> User</button>
-                            <button className="d-block p-3 text-decoration-none" style={{ border: 'none ', width: '380px' }}>Poll</button>
-                           </div>
-                           {/* đặt table data ở đây */}
-
+                            <span className="d-block p-3" style={{ backgroundColor: 'white', width: '380px' }}><img src="anh.jpg" alt="" /> Admin</span>
+                            <button className="d-block p-3  " style={{ border: 'none ', width: '380px' }} onClick={ this.showUser}> User</button>
+                            <button className="d-block p-3 text-decoration-none" style={{ border: 'none ', width: '380px' }} onClick={ this.showPoll}>Poll</button>
                         </div>
-                
+                        <>
+                            {/* {this.state.isShowUser? <TableDataPoll/> : <TableDataUser/>} */}
+                            {this.state.isShowPoll && <TableDataPoll />}
+                            {this.state.isShowUser && <TableDataUser />}
+                        </>
+                    </div>
+
                 </div>
             </div>
 
