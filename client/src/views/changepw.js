@@ -31,7 +31,7 @@ class Changepw extends React.Component {
       },
       body: JSON.stringify(data)
     })
-    .then(res =>{res.JSON(data)})
+    .then(res =>{res.text()})
     .then((result) =>{
       if(result==='Successful'){
         message.innerHTML='Change password complete';

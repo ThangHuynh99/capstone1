@@ -1,4 +1,4 @@
-const { Variant } = require('mssql');
+
 
 const Pool = require('pg').Pool;
 const pool = new Pool({

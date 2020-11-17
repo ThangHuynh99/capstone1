@@ -9,6 +9,7 @@ const cre=require('./Authentication/Create')
 const changepw =require('./Authentication/Change')
 const dashboard = require('./Authentication/Dashboard')
 const voting = require('./Authentication/Voting')
+const invite = require('./Authentication/Invite')
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({ 
@@ -47,6 +48,7 @@ app.post('/create',cre.Create)
 app.post('/dashboard',dashboard.dashboard);
 app.post('/vote/user',voting.voting)
 app.post('/vote/schedule',voting.voteSchedule)
+app.post('./invite',invite.invite)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });

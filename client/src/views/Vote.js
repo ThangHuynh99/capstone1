@@ -11,9 +11,9 @@ class Vote extends React.Component {
 
         this.state = {
             poll_id: 'ZTjDhggXqJTMnW7f',
-            vote: [],
-            schedule: [],
-            user: []
+            user:[],
+            schedule:[],
+            email:""
         }
     }
     componentDidMount() {
@@ -30,8 +30,8 @@ class Vote extends React.Component {
             .then(response => response.json())
             .then(result => {
                 this.setState({ user: result });
-                console.log("-------------------------------------------------------------------------------")
-                console.log(this.state.user)
+                // console.log("-------------------------------------------------------------------------------")
+                // console.log(this.state.user)
             })
         fetch('http://localhost:3001/vote/schedule', {
             method: "POST",
@@ -45,28 +45,66 @@ class Vote extends React.Component {
             .then(result => {
                 this.setState({ schedule: result.rows });
 
-                console.log("-------------------------------------------------------------------------------")
-                console.log(this.state.schedule)
+                // console.log("-------------------------------------------------------------------------------")
+                // console.log(this.state.schedule)
             })
 
     }
-    render() {
-        let schedule1 = this.state.schedule.map(schedule => {
-            return <Schedule key={schedule.schedule_id} schedule={schedule} />
+    // handleChange =(e,i)=>{
+    //     this.setState({change[i]})
+    // }
+    handleEmail=(e)=>{
+        this.setState({email:e.target.value})
+    }
+    invite(){
+        const invite= ({
+            user_email:this.state.email,
+            poll_id:this.state.poll_id
         })
-        
+        fetch('http://localhost:3001/invite', {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(invite)
+        })
+        .then (res=>res.json())
+        .then(result=>{
+            if(result==="Comple")
+                console.log("")
+        })
+    }
+    render() {
+        let schedule1 = this.state.schedule.map((schedule,i) => {
+            return <Schedule key={i} schedule={schedule} />
+        })
 
-        let users = this.state.user.map(user => {
-            let vote = user.vote1.map(vote => {
-                return (<td className="value" width="72px">
-                    <p>{vote.vote_status}</p>
+
+        let users = this.state.user.map((user, i) => {
+            
+            let vote = user.vote1.map((vote, j) => {
+                var status = '';
+                if (vote.vote_status === 1) {
+                    status = true;
+                }
+                else {
+                    status = false;
+                }
+                return (<td key={j} className="value" width="72px">
+                    {/* <p>{vote.vote_status}</p> */}
+                    <input  name="chkVote" type="checkbox" checked={status} ></input>
                 </td>)
             })
             return (
-                <tr>
-                    <td>{user.user_name} <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
-                    {vote}
-                </tr>
+                <>
+                    <tr key={i}>
+                        <td>{user.user_name} <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
+                        {vote}
+
+                    </tr>
+                    
+                </>
             )
 
         })
@@ -143,19 +181,19 @@ class Vote extends React.Component {
                     <form className="mb-4 ">
                         <div style={{ margin: '0 auto' }} className="col-md-8 mb-3">
                             <div className="form-group">
-                                <label htmlFor="exampleFormControlTextarea1">Enter Email</label>
+                                <label htmlFor="exampleFormControlTextarea1" onChange={this.handleEmail}>Enter Email</label>
                                 <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
                             </div>
                         </div>
                         <div style={{ margin: '0 auto' }} className="col-md-8">
                             <div className="form-group">
                                 <label htmlFor="exampleFormControlTextarea1">Messenger</label>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
+                                <textarea className="form-control" id="exampleFormControlTextarea1 1" rows={3} defaultValue={""} />
                             </div>
                         </div>
                     </form>
                     <div style={{ margin: '0 auto' }} className="col-md-8 mb-4">
-                        <button type="submit" className="btn btn-primary">Send</button>
+                        <button type="submit" className="btn btn-primary" >Send</button>
                     </div>
                 </div>
                 <table style={{ margin: '0 auto' }} className="i-square i-full i-border mb-5">
