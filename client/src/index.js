@@ -16,6 +16,8 @@ import Schedule from './views/Schedule';
 import Dashboard from './views/dashboard';
 import Example from './views/Option';
 import Vote from './views/Vote';
+import MenuAdmin from './views/menuAdmin';
+import TablePoll from './views/tableDataUser';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -37,6 +39,7 @@ const routing = (
       <Route path="/dashboard" exact component={Dashboard}/>
       <Route path="/option" exact component={Example}/>
       <Route path="/schedule/vote" exact component={Vote}/>
+      <Route path="/admin" exact component={MenuAdmin}/>
       {/* <Route  exact={true} component={NotFound} /> */}
     </div>
   </Router>

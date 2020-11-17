@@ -26,7 +26,7 @@ export default class Example extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className = "justify-center">
         <DayPicker
           selectedDays={this.state.selectedDays}
           onDayClick={this.handleDayClick}
