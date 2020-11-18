@@ -147,3 +147,83 @@ Insert into Vote (schedule_id,users_id,vote_status) values('6','2',0);
 
 ----------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------
+
+-----------------------------------insert table user(update)
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('nguyenquang@gmail.com','Nguyen Phu Quang','123','VietNam','10/05/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('sangtruong@gmail.com','Truong Sang','123','VietNam','07/02/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('cuteo@gmail.com','Le My Teo','123','VietNam','01/12/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('rickie@gmail.com','Hoang Tran','123','VietNam','15/12/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('vantruong@gmail.com','Van Truong','123','VietNam','21/10/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('phuochao@gmail.com','Phuoc Hao','123','VietNam','22/05/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('dinhloi@gmail.com','Dinh Loi','123','VietNam','12/11/1999','Viet Nam');
+
+-----------------------------------insert table group_user(update) tùy theo số lượng user mà tự tăng userID vào.
+Insert into Group_User (group_id,users_id) values(2,);
+Insert into Group_User (group_id,users_id) values(2,);
+Insert into Group_User (group_id,users_id) values(2,);
+Insert into Group_User (group_id,users_id) values(2,);
+Insert into Group_User (group_id,users_id) values(2,);
+Insert into Group_User (group_id,users_id) values(2,);
+Insert into Group_User (group_id,users_id) values(2,);
+Insert into Group_User (group_id,users_id) values(1,);
+Insert into Group_User (group_id,users_id) values(1,);
+Insert into Group_User (group_id,users_id) values(2,);
+
+------------------------------------insert table poll(update) cái poll_date dùng getdate nghe.
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('QF5O7kk1ual5WbnJ','Tiệc giáng sinh','18/12/2011','Nhà hàng for you','24/12/2020','18/12/2020','23/12/2020',1,'Đáng chú ý');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('PP01THf2al5KSnJ','Company trip','20/11/2020','Thư viện ','28/11/2020','20/11/2020','24/11/2020',1,'Đáng chú ý');
+
+------------------------------------insert table Poll_User(update).
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7kk1ual5WbnJ',5,'host');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7kk1ual5WbnJ',6,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7kk1ual5WbnJ',7,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('PP01THf2al5KSnJ',8,'host');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('PP01THf2al5KSnJ',9,'invitee')
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('PP01THf2al5KSnJ',10,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('PP01THf2al5KSnJ',11,'invitee');
+
+------------------------------------insert table Schedule
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('24/12/2020','17:00','20:00','QF5O7kk1ual5WbnJ');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('24/12/2020','18:00','21:00','QF5O7kk1ual5WbnJ');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('25/12/2020','17:00','20:00','QF5O7kk1ual5WbnJ');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('26/11/2020','17:00','20:00','PP01THf2al5KSnJ');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('27/11/2020','17:00','20:00','PP01THf2al5KSnJ');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('28/11/2020','17:00','20:00','PP01THf2al5KSnJ');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('29/11/2020','17:00','20:00','PP01THf2al5KSnJ');
+
+-------------------------------------insert table Vote 7-13
+Insert into Vote (schedule_id,users_id,vote_status) values('7','6',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('8','6',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('9','6',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('7','7',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('8','7',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('9','7',0);
+
+Insert into Vote (schedule_id,users_id,vote_status) values('10','9',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('11','9',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('12','9',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('13','9',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('10','10',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('11','10',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('12','10',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('13','10',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('10','11',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('11','11',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('12','11',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('13','11',1);
