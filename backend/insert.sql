@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS Users(
     users_birthday date,
     users_language varchar
 );
+
 CREATE TABLE IF NOT EXISTS Groups(
     group_id SERIAL PRIMARY KEY NOT NULL,
     group_auth Varchar
@@ -19,10 +20,12 @@ CREATE TABLE IF NOT EXISTS Group_User(
     FOREIGN KEY (users_id) REFERENCES Users(users_id),
     FOREIGN KEY (group_id) REFERENCES Groups(group_id)
 );
+
 Insert into Group_User (group_id,users_id) values(1,1);
 Insert into Group_User (group_id,users_id) values(1,1);
 Insert into Group_User (group_id,users_id) values(1,3);
 Insert into Group_User (group_id,users_id) values(2,4);
+
 CREATE TABLE IF NOT EXISTS Poll(
     poll_id VARCHAR(16) PRIMARY KEY NOT NULL,
     poll_title NCHAR,
@@ -34,6 +37,7 @@ CREATE TABLE IF NOT EXISTS Poll(
     poll_status int,
 	poll_note varchar,
 );
+
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
 values('QF5O7THf2al5WbnJ','Cuộc họp tuần 11','4/11/2011','Thư viện ','15/11/2011','4/11/2011','8/11/2011',1,'Đáng chú ý');
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
