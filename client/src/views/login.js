@@ -45,6 +45,7 @@ class Login extends Component {
           // console.log(this.state.user[0].users_id);
           sessionStorage.setItem("users_id", user.users_id);
           sessionStorage.setItem("users_email", user.users_email);
+          sessionStorage.setItem("users_name", user.users_name);
           //console.log(sessionStorage["users_email"],sessionStorage["users_id"])
 
           setTimeout(() => {

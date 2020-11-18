@@ -6,6 +6,9 @@ import '../scss/join1.css';
 // import axios from 'axios';
 import { Link, NavLink, Route, Router } from 'react-router-dom';
 import Schedule from './Schedule'
+import UserInfo from './UserInfo'
+
+
 class Occasion extends React.Component {
 
     constructor(props) {
@@ -62,7 +65,7 @@ class Occasion extends React.Component {
                 if (result === 'Successful') {
                     console.log(result)
                     // alert(result)
-                        window.location = "/schedule";
+                    window.location = "/schedule";
                 }
             })
     }
@@ -84,65 +87,7 @@ class Occasion extends React.Component {
                 <div className="container mt-5 p-5">
                     <div className="account mb-5">
                         {/* Image and text */}
-                        <nav className="navbar navbar-light float-right">
-                            <a className="navbar-brand" href="#">
-                                <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%' }} className="d-inline-block align-top" alt="" loading="lazy" />
-                            </a>
-                            <li style={{ listStyle: 'none' }} className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Thang
-                                </a>
-                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <NavLink
-                                        exact activeStyle={{
-
-                                        }}
-                                        activeClassName='dropdown-item'
-                                        to='#'>
-                                        Dashboard
-                </NavLink>
-
-                                    <NavLink
-                                        exact activeStyle={{
-
-                                        }}
-                                        activeClassName='dropdown-item'
-                                        to='/profile'>
-                                        Account setting
-                </NavLink>
-
-                                    <NavLink
-                                        exact activeStyle={{
-
-                                        }}
-                                        activeClassName='dropdown-item'
-                                        to='#'>
-                                        Help
-                </NavLink>
-
-                                    <NavLink
-                                        exact activeStyle={{
-
-                                        }}
-                                        activeClassName='dropdown-item'
-                                        to='#'>
-                                        Logout
-                </NavLink>
-                                    {/* <a className="dropdown-item" href="#">Dashboard</a>
-                                    <a className="dropdown-item" href="#">Account settings</a>
-                                    <a className="dropdown-item" href="#">Help</a>
-                                    <a className="dropdown-item" href="#">Logout</a> */}
-                                    <NavLink
-                                        exact activeStyle={{
-
-                                        }}
-                                        activeClassName='button mt-4'
-                                        to='/schedule'>
-                                        Continue
-                                         </NavLink>
-                                </div>
-                            </li>
-                        </nav>
+                       <UserInfo/>
                     </div>
                     <br />
                     <br />

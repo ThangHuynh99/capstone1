@@ -32,7 +32,6 @@ class tableDataUser extends React.Component {
                 </tr>
             )
         })
-        console.log(this.state.users)
         return (
             <>
                 <div className="col-md-8 ">

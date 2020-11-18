@@ -3,10 +3,11 @@ import '../scss/bootstrap/css/bootstrap.css'
 import '../scss/2.css';
 import '../scss/login.css';
 import '../scss/fa/css/all.css';
+import Authentication from './Authentication'
 import { Link } from 'react-router-dom';
 // import { Button } from 'semantic-ui-react';
 // import { NavLink } from 'react-router-dom';
-
+import UserInfo from './UserInfo'
 class UIweb extends React.Component {
   constructor(props) {
     super(props);
@@ -87,7 +88,11 @@ class UIweb extends React.Component {
                 <a className="nav-link" href="#">Pricing</a>
               </li>
             </ul>
-            <div className="item-auth">
+            <>
+                {sessionStorage["users_email"] ?<UserInfo/>:
+                 <Authentication/> }
+            </>
+            {/* <div className="item-auth">
               <Link to="/register">
                 <span className="navbar-text pr-3">
                   <button className="register nav-link" style={{ color: 'black' }}>Đăng Ký</button>
@@ -133,7 +138,7 @@ class UIweb extends React.Component {
                   </div>
                 </div>
               </span>
-            </div>
+            </div> */}
             <span className="navbar-text">
               {/* <button className="meeting"><a className="nav-link" href="join.html" style={{ color: 'white' }}> <i className="fas fa-plus" />
                   Tạo cuộc họp</a></button> */}

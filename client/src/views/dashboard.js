@@ -5,6 +5,7 @@ import '../scss/fa/css/all.css';
 import { NavLink } from 'react-router-dom';
 import '../scss/2.css'
 import ViewPoll from './ViewPoll'
+import UserInfo from './UserInfo'
 class Dashboard extends React.Component {
     constructor(props) {
         super(props)
@@ -35,7 +36,7 @@ class Dashboard extends React.Component {
 
     render() {
         let ViewPoll1 = this.state.ViewPoll.map(poll => {
-            return <ViewPoll  key={poll.poll_id} poll={poll}/>
+            return <ViewPoll key={poll.poll_id} poll={poll} />
         })
         return (
             <div className="bgr">
@@ -44,7 +45,10 @@ class Dashboard extends React.Component {
                         <div className="text-right">
                             <h3 style={{ color: 'lightskyblue' }}>Meeting Planner</h3>
                         </div>
-                        <a className="navbar-brand ml-auto" href="#">
+                        <>
+                        <UserInfo/>
+                        </>
+                        {/* <a className="navbar-brand ml-auto" href="#">
                             <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%' }} className="d-inline-block
       align-top" alt="" loading="lazy" />
                         </a>
@@ -68,7 +72,7 @@ class Dashboard extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                        </li>
+                        </li> */}
                         {/* Example single danger button */}
                         <div className="btn-group">
                             <button type="button" className="btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ borderRadius: '4px' }}>
@@ -76,7 +80,7 @@ class Dashboard extends React.Component {
                             </button>
                             <div className="dropdown-menu dropdown-menu-right">
                                 <a className="dropdown-item" href="#">Group Meeting
-            <br />
+             <br />
                                     <small>Let everyone choose the best time to meet</small>
                                 </a>
                                 <a className="dropdown-item" href="#">Bookable Calendar
@@ -114,28 +118,7 @@ class Dashboard extends React.Component {
                                 <div className="row mt-5">
                                     <div className="col-md-12">
                                         {ViewPoll1}
-                                        {/* <div style={{ height: '120px', width: '500px', "margin-left": '50px' }} className="border" >
-                                            <div className="Card-content" style={{ "margin": '16px', width: '94%', height: '73%', "padding-left": '24px' }}>
-                                                <div className="userAvatar" style={{"padding-top":'7px'}}>
-                                                    <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%', "float": 'left' ,"margin-top":'15px'}} className="d-inline-block
-      align-top" alt="" loading="lazy" />
-                                                </div>
-                                                <div className="info" style={{ "padding-left": '70px' }}>
-                                                    <div>
-                                                        <h4 style={{ "font-size": "18px", "margin-bottom": '0px' }}>Cuộc họp vui vẻ</h4>
-                                                    </div>
-                                                    <div>
-                                                        <i class="fa fa-calendar" aria-hidden="true" ></i>
-                                                        <span style={{"padding-left":'8px'}}>3 options</span>
-                                                    </div>
-                                                    <div>
-                                                        <i class="fa fa-user" aria-hidden="true" ></i>
-                                                        <span style={{"padding-left":'8px'}}>3 invitees</span>
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                        </div> */}
                                     </div>
                                 </div>
                             </div>

@@ -69,9 +69,9 @@ class Vote extends React.Component {
             },
             body: JSON.stringify(invite)
         })
-        .then (res=>res.json())
+        .then (res=>res.text())
         .then(result=>{
-            if(result==="Comple")
+            if(result==="Complete")
                 console.log("")
         })
     }
@@ -84,16 +84,10 @@ class Vote extends React.Component {
         let users = this.state.user.map((user, i) => {
             
             let vote = user.vote1.map((vote, j) => {
-                var status = '';
-                if (vote.vote_status === 1) {
-                    status = true;
-                }
-                else {
-                    status = false;
-                }
+               
                 return (<td key={j} className="value" width="72px">
                     {/* <p>{vote.vote_status}</p> */}
-                    <input  name="chkVote" type="checkbox" checked={status} ></input>
+                    <input  name="chkVote" type="checkbox" checked={vote.vote_status===1 ? true : false} ></input>
                 </td>)
             })
             return (
