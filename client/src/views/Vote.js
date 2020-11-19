@@ -9,7 +9,7 @@ class Vote extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            poll_id: 'QF5O7THf2al5WbnJ',
+            poll_id:sessionStorage["poll_id"],
             user: [],
             schedule: [],
             email: ""
@@ -103,7 +103,8 @@ class Vote extends React.Component {
 
     }
     render() {
-        console.log(this.state.user)
+        console.log("-------------------poll_id------------------------")
+        console.log(this.state.poll_id)
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} />
         })

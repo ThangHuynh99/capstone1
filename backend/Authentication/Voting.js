@@ -67,12 +67,13 @@ const voteSchedule = (req, res) => {
 const submitVote = (req, res) => {
     const user = req.body;
     // let user1=JSON.parse(user)
-    console.log("---------------------------------------------")
-    console.log(user)
+    // console.log("---------------------------------------------")
+    // console.log(user)
     user.forEach(element => {
         pool.query('Update vote set vote_status =$1 where vote_id=$2 ', [element.vote_status, element.vote_id], (error, result) => {
             if (error)
                 throw error
+            console.log()
         })
     });
     res.status(201).send("complete")
