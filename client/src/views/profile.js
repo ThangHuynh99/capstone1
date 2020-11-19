@@ -113,42 +113,14 @@ class Profile extends React.Component {
                   <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Thang
                                 </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <NavLink
-                      exact activeStyle={{
-                      
-                      }}
-                      activeClassName='dropdown-item justify-content-center'
-                      to='/dashboard'>
-                      Dashboard
-                </NavLink>
+                  <div className="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <li><a className="dropdown-item" href='/dashboard'>Dashboard</a></li>
+                            <li><a className="dropdown-item" href='/profile'>Account settings</a></li>
 
-                    <NavLink
-                      exact activeStyle={{
+                            <li><a className="dropdown-item" href="#">Help</a></li>
 
-                      }}
-                      activeClassName='dropdown-item'
-                      to='/profile'>
-                      Account setting
-                </NavLink>
+                            <li><a className="dropdown-item" href="#">Logout</a></li>
 
-                    <NavLink
-                      exact activeStyle={{
-
-                      }}
-                      activeClassName='dropdown-item'
-                      to='#'>
-                      Help
-                </NavLink>
-
-                    <NavLink
-                      exact activeStyle={{
-
-                      }}
-                      activeClassName='dropdown-item'
-                      to='#'>
-                      Logout
-                </NavLink>
                     {/* <a className="dropdown-item" href="#">Dashboard</a>
                   <a className="dropdown-item" href="#">Account settings</a>
                   <a className="dropdown-item" href="#">Help</a>

@@ -4,6 +4,7 @@ import '../scss/bootstrap/css/bootstrap.css';
 import '../scss/fa/css/all.css';
 import { NavLink } from 'react-router-dom';
 import '../scss/2.css'
+import { Link } from 'react-router-dom';
 import ViewPoll from './ViewPoll'
 import UserInfo from './UserInfo'
 class Dashboard extends React.Component {
@@ -48,6 +49,7 @@ class Dashboard extends React.Component {
                         <>
                         <UserInfo/>
                         </>
+                        
                         {/* <a className="navbar-brand ml-auto" href="#">
                             <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%' }} className="d-inline-block
       align-top" alt="" loading="lazy" />
@@ -75,25 +77,11 @@ class Dashboard extends React.Component {
                         </li> */}
                         {/* Example single danger button */}
                         <div className="btn-group">
-                            <button type="button" className="btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ borderRadius: '4px' }}>
-                                <h5>+ Create</h5>
-                            </button>
-                            <div className="dropdown-menu dropdown-menu-right">
-                                <a className="dropdown-item" href="#">Group Meeting
-             <br />
-                                    <small>Let everyone choose the best time to meet</small>
-                                </a>
-                                <a className="dropdown-item" href="#">Bookable Calendar
-            <br />
-                                    <small>The quickest way to share your live calendart</small></a>
-                                <a className="dropdown-item" href="#">1:1 Meeting
-            <br />
-                                    <small>Share specific times that work best for you</small></a>
-                                <a className="dropdown-item" href="#">Survey
-            <br />
-                                    <small>Share specific times that work best for you</small>
-                                </a>
-                            </div>
+                            <Link to="/create">
+                                <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
+                                    <h5>+ Create</h5>
+                                </button>
+                            </Link>
                         </div>
                     </nav>
                 </div>

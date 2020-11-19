@@ -151,8 +151,6 @@ class Vote extends React.Component {
                                     <h5>+ Create</h5>
                                 </button>
                             </Link>
-
-
                         </div>
                     </div></nav>
                 <nav style={{ backgroundColor: '#45505e' }} className="nav justify-content-center">

@@ -10,7 +10,8 @@ class UserInfo extends React.Component {
                                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 {sessionStorage["users_name"]}
                             </a>
-                                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                          
+                                        <div className="dropdown-menu" aria-labelledby="navbarDropdown" >
                                                 <li><a className="dropdown-item" href='/dashboard'>Dashboard</a></li>
                                                 <li><a className="dropdown-item" href='/profile'>Account settings</a></li>
 
