@@ -34,10 +34,10 @@ class Dashboard extends React.Component {
             })
 
     }
-
+  
     render() {
-        let ViewPoll1 = this.state.ViewPoll.map(poll => {
-            return <ViewPoll key={poll.poll_id} poll={poll} />
+        let ViewPoll1 = this.state.ViewPoll.map((poll,i) => {
+            return <ViewPoll key={i} poll={poll} />
         })
         return (
             <div className="bgr">
