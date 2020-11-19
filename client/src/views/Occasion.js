@@ -75,15 +75,7 @@ class Occasion extends React.Component {
     render() {
         const { title, location, note } = this.state;
         return (
-            <div class="bgr" >
-
-
-
-                {/* <Router>
-                    <div>
-                        <Route  path="/schedule" exact component={Schedule}/>
-                    </div>
-                </Router> */}
+            <div className="bgr" >
                 <div className="container mt-5 p-5">
                     <div className="account mb-5">
                         {/* Image and text */}

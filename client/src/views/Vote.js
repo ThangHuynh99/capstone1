@@ -8,13 +8,13 @@ import VoteUser from './Vote_user'
 class Vote extends React.Component {
     constructor(props) {
         super(props)
-
         this.state = {
-            poll_id: 'ZTjDhggXqJTMnW7f',
-            user:[],
-            schedule:[],
-            email:""
+            poll_id:sessionStorage["poll_id"],
+            user: [],
+            schedule: [],
+            email: ""
         }
+        this.submitVote = this.submitVote.bind(this)
     }
     componentDidMount() {
         const poll_id = this.state.poll_id;
@@ -30,8 +30,8 @@ class Vote extends React.Component {
             .then(response => response.json())
             .then(result => {
                 this.setState({ user: result });
-                // console.log("-------------------------------------------------------------------------------")
-                // console.log(this.state.user)
+                console.log("-------------------------------------------------------------------------------")
+                console.log(this.state.user)
             })
         fetch('http://localhost:3001/vote/schedule', {
             method: "POST",
@@ -45,21 +45,18 @@ class Vote extends React.Component {
             .then(result => {
                 this.setState({ schedule: result.rows });
 
-                // console.log("-------------------------------------------------------------------------------")
-                // console.log(this.state.schedule)
+                console.log("-------------------------------------------------------------------------------")
+                console.log(this.state.schedule)
             })
 
     }
-    // handleChange =(e,i)=>{
-    //     this.setState({change[i]})
-    // }
-    handleEmail=(e)=>{
-        this.setState({email:e.target.value})
+    handleEmail = (e) => {
+        this.setState({ email: e.target.value })
     }
-    invite(){
-        const invite= ({
-            user_email:this.state.email,
-            poll_id:this.state.poll_id
+    invite() {
+        const invite = ({
+            user_email: this.state.email,
+            poll_id: this.state.poll_id
         })
         fetch('http://localhost:3001/invite', {
             method: "POST",
@@ -69,25 +66,57 @@ class Vote extends React.Component {
             },
             body: JSON.stringify(invite)
         })
-        .then (res=>res.text())
-        .then(result=>{
-            if(result==="Complete")
-                console.log("")
+            .then(res => res.text())
+            .then(result => {
+                if (result === "Complete")
+                    console.log("")
+            })
+    }
+    vote(i, j) {
+        let newUser = [...this.state.user];
+        if (newUser[i].vote1[j].vote_status === 1)
+            newUser[i].vote1[j].vote_status = 0
+        else
+            newUser[i].vote1[j].vote_status = 1
+        this.setState({ user: newUser });
+
+    }
+    submitVote() {
+        var user = [...this.state.user];
+        user.forEach(element => {
+            if (element.user_id === sessionStorage["users_id"]) {
+                fetch('http://localhost:3001/vote/submit', {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(element.vote1 )
+                })
+                    .then(res => res.text())
+                    .then(result => {
+                        if (result === "complete")
+                            console.log("Xong rồi nha")
+                    })
+            }
         })
+
     }
     render() {
-        let schedule1 = this.state.schedule.map((schedule,i) => {
+        console.log("-------------------poll_id------------------------")
+        console.log(this.state.poll_id)
+        let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} />
         })
 
 
         let users = this.state.user.map((user, i) => {
-            
+
             let vote = user.vote1.map((vote, j) => {
-               
+
                 return (<td key={j} className="value" width="72px">
                     {/* <p>{vote.vote_status}</p> */}
-                    <input  name="chkVote" type="checkbox" checked={vote.vote_status===1 ? true : false} ></input>
+                    <input disabled={user.user_id === sessionStorage["users_id"] ? null : 'disabled'} onClick={this.vote.bind(this, i, j)} name="chkVote" type="checkbox" checked={vote.vote_status === 1 ? true : false} ></input>
                 </td>)
             })
             return (
@@ -97,7 +126,7 @@ class Vote extends React.Component {
                         {vote}
 
                     </tr>
-                    
+
                 </>
             )
 
@@ -215,6 +244,7 @@ class Vote extends React.Component {
                         </tr> */}
                     </tbody>
                 </table>
+                <button onClick={this.submitVote} style={{marginLeft:"570px"}}>submit</button>
                 <div className="footer pt-3 pb-3">
                     <nav className="nav justify-content-center">
                         <a className="nav-link active" href="#">Team</a>

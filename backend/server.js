@@ -49,6 +49,7 @@ app.post('/create',cre.Create)
 app.post('/dashboard',dashboard.dashboard);
 app.post('/vote/user',voting.voting)
 app.post('/vote/schedule',voting.voteSchedule)
+app.post('/vote/submit',voting.submitVote)
 app.post('/invite',invite.invite)
 app.get('/viewuser',view.ViewUser)
 app.get('/viewpoll',view.ViewPoll)
