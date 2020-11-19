@@ -7,6 +7,7 @@ import '../scss/join1.css';
 import { Link, NavLink, Route, Router } from 'react-router-dom';
 import Schedule from './Schedule'
 import UserInfo from './UserInfo'
+import Option from './Option'
 
 
 class Occasion extends React.Component {
@@ -21,8 +22,8 @@ class Occasion extends React.Component {
             disabled: "false"
         };
 
-        this.changeHandler = this.changeHandler.bind(this);
-        this.submitHandler = this.submitHandler.bind(this);
+        // this.changeHandler = this.changeHandler.bind(this);
+        // this.submitHandler = this.submitHandler.bind(this);
 
     }
 
@@ -43,43 +44,55 @@ class Occasion extends React.Component {
     //         console.log(error);
     //     })       
     // }
-    submitHandler = (e) => {
-        e.preventDefault();
-        const poll = {
-            users_id: sessionStorage["users_id"],
-            title: this.state.title,
-            location: this.state.location,
-            note: this.state.note
-        };
-        // console.log(poll);
-        fetch('http://localhost:3001/create', {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(poll)
-        })
-            .then(response => response.text())
-            .then(result => {
-                if (result === 'Successful') {
-                    console.log(result)
-                    // alert(result)
-                    window.location = "/schedule";
-                }
-            })
-    }
+    // submitHandler = (e) => {
+    //     e.preventDefault();
+    //     const poll = {
+    //         users_id: sessionStorage["users_id"],
+    //         title: this.state.title,
+    //         location: this.state.location,
+    //         note: this.state.note
+    //     };
+    //     // console.log(poll);
+    //     fetch('http://localhost:3001/create', {
+    //         method: "POST",
+    //         headers: {
+    //             "Accept": "application/json",
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(poll)
+    //     })
+    //         .then(response => response.text())
+    //         .then(result => {
+    //             if (result === 'Successful') {
+    //                 console.log(result)
+    //                 // alert(result)
+    //                 window.location = "/option";
+    //             }
+    //         })
+    // }
 
 
 
     render() {
         const { title, location, note } = this.state;
+        // let data={
+        //     return( <Option   />)
+        // }
+        const data = {
+            title: this.state.title,
+            location: this.state.location,
+            note: this.state.note
+        }
+        console.log(data)
+        const submitHandler = () => {
+
+        }
         return (
             <div className="bgr" >
                 <div className="container mt-5 p-5">
                     <div className="account mb-5">
                         {/* Image and text */}
-                       <UserInfo/>
+                        <UserInfo />
                     </div>
                     <br />
                     <br />
@@ -89,7 +102,7 @@ class Occasion extends React.Component {
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <form onSubmit={this.submitHandler}>
+                            <form onSubmit={submitHandler}>
                                 <div>
                                     <input type="text" className="form-control mt-4 mb-5" id="addtitle" name="title" value={title} placeholder="Enter title" onChange={this.changeHandler} />
                                     <div className="form-group">
@@ -105,14 +118,24 @@ class Occasion extends React.Component {
                                     </div>
                                     <input type="text" className="form-control mt-5" id="addnote" name="note" value={note} placeholder="Add note" onChange={this.changeHandler} />
                                     <div style={{ border: 'transparent' }} className="text-center">
-                                        <input type="submit"
-                                            className="button mt-4"
-                                            name="change"
-                                            value="Continue"
-                                        // required = {true}
-                                        // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
-                                        >
-                                        </input>
+                                        <Link
+                                            to={{
+                                                pathname: '/option',
+                                                state: {
+                                                    title: this.state.title,
+                                                    location: this.state.location,
+                                                    note: this.state.note
+                                                }
+                                            }}>
+                                            <input type="submit"
+                                                className="button mt-4"
+                                                name="change"
+                                                value="Continue"
+                                            // required = {true}
+                                            // disabled= {this.state.note||this.state.title||this.state.location  ? "true":"false"}
+                                            >
+                                            </input>
+                                        </Link>
                                     </div>
                                 </div>
                             </form>

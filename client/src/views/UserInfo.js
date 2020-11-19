@@ -26,7 +26,7 @@ class UserInfo extends React.Component {
                                 <div className="d-flex">
                                         <div className="dropdown mr-1">
                                                 <button type="button" className="btn dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                                <i class="fas fa-sort-down"></i></button>
+                                                <i className="fas fa-sort-down"></i></button>
                                                 <div className="dropdown-menu  mt-3" aria-labelledby="dropdownMenuOffset">
                                                
                                                 <li><a className="dropdown-item" href='/dashboard'>Dashboard</a></li>
