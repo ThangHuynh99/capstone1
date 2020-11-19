@@ -46,9 +46,7 @@ class Dashboard extends React.Component {
                         <div className="text-right">
                             <h3 style={{ color: 'lightskyblue' }}>Meeting Planner</h3>
                         </div>
-                        <>
-                        <UserInfo/>
-                        </>
+                       
                         
                         {/* <a className="navbar-brand ml-auto" href="#">
                             <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%' }} className="d-inline-block
@@ -77,8 +75,11 @@ class Dashboard extends React.Component {
                         </li> */}
                         {/* Example single danger button */}
                         <div className="btn-group">
+                        <>
+                        <UserInfo/>
+                        </>
                             <Link to="/create">
-                                <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
+                                <button type="button" className="btn btn-danger mt-3" style={{ borderRadius: '4px' }}>
                                     <h5>+ Create</h5>
                                 </button>
                             </Link>

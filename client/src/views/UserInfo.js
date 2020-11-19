@@ -6,7 +6,7 @@ class UserInfo extends React.Component {
                                 <a className="navbar-brand" href="#">
                                         <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%' }} className="d-inline-block align-top" alt="" loading="lazy" />
                                 </a>
-                                <li style={{ listStyle: 'none' }} className="nav-item dropdown">
+                                {/* <li style={{ listStyle: 'none' }} className="nav-item dropdown">
                                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 {sessionStorage["users_name"]}
                             </a>
@@ -21,8 +21,25 @@ class UserInfo extends React.Component {
 
 
                                         </div>
-                                </li>
-                        </nav>
+                                </li> */}
+                                <li style={{ listStyle: 'none'}} className="nav-item dropdown">
+                                <div className="d-flex">
+                                        <div className="dropdown mr-1">
+                                                <button type="button" className="btn dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                                                <i class="fas fa-sort-down"></i></button>
+                                                <div className="dropdown-menu  mt-3" aria-labelledby="dropdownMenuOffset">
+                                               
+                                                <li><a className="dropdown-item" href='/dashboard'>Dashboard</a></li>
+                                                <li><a className="dropdown-item" href='/profile'>Account settings</a></li>
+                                                <li><a className="dropdown-item" href="#">Help</a></li>
+                                                <li><a className="dropdown-item" href="#">Logout</a></li>
+                                               
+                                                </div>
+                                        </div>
+                                </div>
+</li>
+
+                        </nav >
                 )
         }
 }

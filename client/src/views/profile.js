@@ -113,7 +113,7 @@ class Profile extends React.Component {
                   <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Thang
                                 </a>
-                  <div className="dropdown-menu " aria-labelledby="navbarDropdown">
+                  <div className="dropdown-menu  mt-3" aria-labelledby="dropdownMenuOffset">
                             <li><a className="dropdown-item" href='/dashboard'>Dashboard</a></li>
                             <li><a className="dropdown-item" href='/profile'>Account settings</a></li>
 
