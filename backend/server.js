@@ -11,6 +11,7 @@ const dashboard = require('./Authentication/Dashboard')
 const voting = require('./Authentication/Voting')
 const invite = require('./Authentication/Invite')
 const view = require ('./Authentication/ViewAdmin')
+const schedule=require('./Authentication/Schedule')
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({ 
@@ -53,6 +54,7 @@ app.post('/vote/submit',voting.submitVote)
 app.post('/invite',invite.invite)
 app.get('/viewuser',view.ViewUser)
 app.get('/viewpoll',view.ViewPoll)
+app.post('/schedule',schedule.Schedule)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });
