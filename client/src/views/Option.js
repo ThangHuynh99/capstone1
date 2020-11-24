@@ -12,9 +12,9 @@ export default class Example extends React.Component {
       selectedDays: [],
       schedule: [],
       data: props.data,
-      title: "Cuộc họp điểm danh",
-      location: "Zoom",
-      note: "chỉ 15 phút",
+      title:"" ,
+      location: "",
+      note:"",
       endTime: '',
       beginTime: ''
     };
@@ -23,12 +23,12 @@ export default class Example extends React.Component {
     this.ChangeTimeEnd = this.ChangeTimeEnd.bind(this)
   }
   componentDidMount() {
-    // const { title, location, note } = this.props.location.state
-    // this.setState({
-    //   title: title,
-    //   location: location,
-    //   note: note
-    // })
+    const { title, location, note } = this.props.location.state
+    this.setState({
+      title: title,
+      location: location,
+      note: note
+    })
   }
 
   handleDayClick(day, { selected }) {

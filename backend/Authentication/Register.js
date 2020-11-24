@@ -1,4 +1,5 @@
 const Pool=require('pg').Pool;
+var md5 = require('md5');
 const pool = new Pool({
     user : 'postgres',
     host : 'localhost',
@@ -9,7 +10,7 @@ const pool = new Pool({
 const register = (req,res)=>{
         const {email,password}=req.body;
         try{
-                pool.query('Insert into Users (users_email ,users_password) values ($1,$2)',[email,password],
+                pool.query('Insert into Users (users_email ,users_password) values ($1,$2)',[email,md5(password)],
                 (error,result)=>{
                         if(error){
                                 console.log("Error : ",error);
