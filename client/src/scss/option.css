@@ -3,3 +3,19 @@
     /* font-size: 1rem; */
     font-size: 22px;
 }
+.col-md-12.mt-4 {
+    height: 300px;
+    overflow: scroll;
+}
+@media only screen and (max-width:600px) {
+    select#exampleFormControlSelect1 {
+        width: 116px;
+    }
+    a.btn.btn-primary{
+        margin: 0px auto;
+        float: left;
+    }
+    .a.btn.btn-primary.mt-2{
+        float: left;
+    }
+  }
