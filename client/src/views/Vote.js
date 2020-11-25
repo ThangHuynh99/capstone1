@@ -33,21 +33,21 @@ class Vote extends React.Component {
                 console.log("-------------------------------------------------------------------------------")
                 console.log(this.state.user)
             })
-        fetch('http://localhost:3001/vote/schedule', {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ poll_id })
-        })
-            .then(response => response.json())
-            .then(result => {
-                this.setState({ schedule: result.rows });
+        // fetch('http://localhost:3001/vote/schedule', {
+        //     method: "POST",
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({ poll_id })
+        // })
+        //     .then(response => response.json())
+        //     .then(result => {
+        //         this.setState({ schedule: result.rows });
 
-                console.log("-------------------------------------------------------------------------------")
-                console.log(this.state.schedule)
-            })
+        //         console.log("-------------------------------------------------------------------------------")
+        //         console.log(this.state.schedule)
+        //     })
 
     }
     handleEmail = (e) => {
