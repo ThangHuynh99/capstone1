@@ -12,6 +12,7 @@ class Vote extends React.Component {
             poll_id:sessionStorage["poll_id"],
             user: [],
             schedule: [],
+            data:[],
             email: ""
         }
         this.submitVote = this.submitVote.bind(this)
@@ -29,9 +30,18 @@ class Vote extends React.Component {
         })
             .then(response => response.json())
             .then(result => {
-                this.setState({ user: result });
-                console.log("-------------------------------------------------------------------------------")
-                console.log(this.state.user)
+                const {data,dataSchedule,dataUser}=result
+                this.setState({
+                    data:data,
+                    schedule:dataSchedule.rows,
+                    user:dataUser.rows
+                })
+            //     console.log("-------------------------------------------------------------------------------")
+            //    console.log(this.state.data)
+            //    console.log("-------------------------------------------------------------------------------")
+            //    console.log(this.state.schedule)
+            //    console.log("-------------------------------------------------------------------------------")
+            //    console.log(this.state.user)
             })
         // fetch('http://localhost:3001/vote/schedule', {
         //     method: "POST",
@@ -103,34 +113,34 @@ class Vote extends React.Component {
 
     }
     render() {
-        console.log("-------------------poll_id------------------------")
-        console.log(this.state.poll_id)
+        // console.log("-------------------poll_id------------------------")
+        // console.log(this.state.poll_id)
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} />
         })
 
 
-        let users = this.state.user.map((user, i) => {
+        // let users = this.state.user.map((user, i) => {
 
-            let vote = user.vote1.map((vote, j) => {
+        //     let vote = user.vote1.map((vote, j) => {
 
-                return (<td key={j} className="value" width="72px">
-                    {/* <p>{vote.vote_status}</p> */}
-                    <input disabled={user.user_id === sessionStorage["users_id"] ? null : 'disabled'} onClick={this.vote.bind(this, i, j)} name="chkVote" type="checkbox" checked={vote.vote_status === 1 ? true : false} ></input>
-                </td>)
-            })
-            return (
-                <>
-                    <tr key={i}>
-                        <td>{user.user_name} <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
-                        {vote}
+        //         return (<td key={j} className="value" width="72px">
+        //             {/* <p>{vote.vote_status}</p> */}
+        //             <input disabled={user.user_id === sessionStorage["users_id"] ? null : 'disabled'} onClick={this.vote.bind(this, i, j)} name="chkVote" type="checkbox" checked={vote.vote_status === 1 ? true : false} ></input>
+        //         </td>)
+        //     })
+        //     return (
+        //         <>
+        //             <tr key={i}>
+        //                 <td>{user.user_name} <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
+        //                 {vote}
 
-                    </tr>
+        //             </tr>
 
-                </>
-            )
+        //         </>
+        //     )
 
-        })
+        // })
         return (
             <div style={{ padding: 0, boxShadow: '0px 5px 5px 1px silver' }} className="container mt-4 mb-4">
                 <nav className="navbar navbar-expand-lg navbar-light">
@@ -235,7 +245,7 @@ class Vote extends React.Component {
                                 <p>0/1</p>
                             </td>
                         </tr>
-                        {users}
+                        {/* {users} */}
                         {/* <tr>
                             <td>Thang Huynh<i style={{ float: 'right' }} className="fas fa-pen pr-2" /></td>
                             <td>

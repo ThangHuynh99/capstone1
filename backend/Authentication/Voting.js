@@ -10,65 +10,58 @@ const pool = new Pool({
 const voting = (req, res) => {
     const { poll_id } = req.body;
     console.log(poll_id)
-    let schedule =dataSchedule(poll_id);
-    console.log(schedule)
-    // let user =dataUser(poll_id);
-    // console.log(user)
-}
-function dataSchedule(poll_id,callback) {
     pool.query('select * from schedule where poll_id=$1', [poll_id], (error, result) => {
-            if (error)
-                callback(error,null)
-            else {
-                // console.log(result);
-                callback(null,JSON.parse(result))
-            }
-        })
+        if (error)
+            throw error;
+        else {
+            const dataSchedule = result;
+            pool.query('select users.* from users, poll_user where poll_id=$1 and users.users_id=poll_user.users_id', [poll_id], (error, result) => {
+                if (error)
+                    throw error
+                else {
+                    const dataUser = result;
+                    pool.query('Select Vote.* from Vote,Schedule where poll_id=$1 and Vote.schedule_id=Schedule.schedule_id', [poll_id], (error, result) => {
+                        if (error)
+                            throw error;
+                        else {
+                            const data = dataVote(result.rows,dataUser , dataSchedule);
+                            res.status(201).send({data,dataSchedule,dataUser})
+                        }
+                    })
+                }
+            })
+    
+        }
+    })
 }
-// const dataUser = (poll_id) => {
-//     let schedule = new Array(0);
-//     pool.query('select users.* from users, poll_user where poll_id=$1 and users.users_id=poll_user.users_id;', [poll_id], (error, result) => {
-//         if (error)
-//             throw error
-//         else {
-//             //    console.log ("--------------------------Console.log---------------------")
-//             //     console.log(result);
-//                 schedule.push(JSON.parse(result))
-//             // return JSON.parse( result);
-//         }
-//     })
-//     return schedule;
-//     // console.log("---------------------Schedule---------------------------")
-//     // console.log(schedule)
-//     // console.log("------------------------------------------------")
-//     // return schedule;
-
-
-// }
-// const voting = (req, res) => {
-//     const { poll_id } = req.body;
-//     console.log(poll_id)
-//     pool.query('select * from schedule where poll_id=$1', [poll_id], (error, result) => {
-//         if (error)
-//             throw error
-//         else {
-//             voteLength = result.rowCount;
-//             // console.log("----------------voteLength----------------")
-//             // console.log(voteLength)
-//             var vote = new Array(voteLength);
-
-//             pool.query('select vote.*,users_name  from users, vote,schedule where poll_id=$1 and schedule.schedule_id=vote.schedule_id and users.users_id=vote.users_id order by vote.users_id,schedule.schedule_id',
-//                 [poll_id],
-//                 (error, result) => {
-//                     const result1 = processData(result, vote);
-//                     res.status(201).send(result1)
-
-
-//                 })
-
-//         }
-//     })
-// }
+const dataVote = (result, dataUser, dataSchedule) => {
+    let dataVote1 = new Array();
+    for (let i = 0; i < dataUser.rowCount; i++) {
+        dataVote1[i]=new Array()
+        for (let j = 0; j < dataSchedule.rowCount; j++) {
+            console.log(dataSchedule.rows[j].schedule_id + "-------------------------" + dataUser.rows[i].users_id + "---------------------------")
+            const data=vote(dataSchedule.rows[j].schedule_id, dataUser.rows[i].users_id , result)
+            dataVote1[i][j]=data
+        }
+    }
+    return dataVote1;
+}
+const vote = (schedule_id, users_id, result) => {
+    schedule_id = schedule_id.toString()
+    users_id=users_id.toString()
+    let data= new Array()
+    result.forEach(element => {
+        const users1=element.users_id
+        const schedule1=element.schedule_id
+        if ( schedule1=== schedule_id && users1===users_id) {
+            data={
+                vote_id:element.vote_id,
+                vote_status:element.vote_status
+            }
+        }
+    })
+    return data;
+}
 // const processData = (result, vote) => {
 //     let user = new Array();
 //     let voteReal = vote;
@@ -92,16 +85,16 @@ function dataSchedule(poll_id,callback) {
 //     }
 //     return user;
 // }
-// const voteSchedule = (req, res) => {
-//     const { poll_id } = req.body;
-//     console.log(poll_id)
-//     pool.query('Select * from schedule where poll_id=$1 order by schedule_id ASC ', [poll_id], (error, result) => {
-//         if (error)
-//             throw error;
-//         console.log(result);
-//         res.status(201).send(result);
-//     })
-// }
+const voteSchedule = (req, res) => {
+    const { poll_id } = req.body;
+    console.log(poll_id)
+    pool.query('Select * from schedule where poll_id=$1 order by schedule_id ASC ', [poll_id], (error, result) => {
+        if (error)
+            throw error;
+        console.log(result);
+        res.status(201).send(result);
+    })
+}
 const submitVote = (req, res) => {
     const user = req.body;
     // let user1=JSON.parse(user)
@@ -119,4 +112,4 @@ const submitVote = (req, res) => {
     //     console.log(element)
     // })
 }
-module.exports = { voting, submitVote };
+module.exports = { voting,voteSchedule, submitVote };
