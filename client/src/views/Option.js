@@ -12,9 +12,9 @@ export default class Example extends React.Component {
       selectedDays: [],
       schedule: [],
       data: props.data,
-      title:"" ,
+      title: "",
       location: "",
-      note:"",
+      note: "",
       endTime: '',
       beginTime: ''
     };
@@ -63,14 +63,14 @@ export default class Example extends React.Component {
     newSchedule[i].endTime = value;
     this.setState({ schedule: newSchedule })
   }
-  ClickContinue=(e)=> {
+  ClickContinue = (e) => {
     e.preventDefault();
-    const  addSchedule = {
-      users_id:sessionStorage["users_id"],
+    const addSchedule = {
+      users_id: sessionStorage["users_id"],
       title: this.state.title,
-      location:this.state.location,
-      note:this.state.note,
-      schedule:this.state.schedule
+      location: this.state.location,
+      note: this.state.note,
+      schedule: this.state.schedule
     };
     fetch('http://localhost:3001/schedule', {
       method: "POST",
@@ -82,8 +82,8 @@ export default class Example extends React.Component {
     })
       .then(res => res.text())
       .then(result => {
-            window.location = "/schedule/vote";
-            sessionStorage.setItem("poll_id", result);
+        window.location = "/schedule/vote";
+        sessionStorage.setItem("poll_id", result);
       })
   }
   render() {
@@ -94,10 +94,14 @@ export default class Example extends React.Component {
     console.log(sessionStorage["users_id"])
     let viewSchedule = this.state.schedule.map((schedule, i) => {
       return (
-        <li key={i}>
-          <label>Day:{schedule.date}</label>
-          <span className="ml-4"> Begin </span>
-          <select className="col-sm-2" id="exampleFormControlSelect1" name="Begin" style={{ width: "100px" }} onChange={(event) => this.ChangeTimeBegin(event.target.value, i)}>
+        <tr>
+          <th scope="row">{i + 1}</th>
+          <td>{schedule.date}</td>
+          <td><select className="col-sm-2 "
+            // id="exampleFormControlSelect1"
+            name="Begin"
+            style={{ width: "100px" }}
+            onChange={(event) => this.ChangeTimeBegin(event.target.value, i)}>
             <option value="07:00">7:00 </option>
             <option value="07:30">7:30 </option>
             <option value="08:00">8:00 </option>
@@ -120,31 +124,94 @@ export default class Example extends React.Component {
             <option value="16:30">16:30 </option>
             <option value="17:00">17:00 </option>
           </select>
-          <span className="ml-4"> End </span>
-          <select className="col-sm-2" id="exampleFormControlSelect1" name="End" style={{ width: "100px" }} onChange={(event) => { this.ChangeTimeEnd(event.target.value, i) }}>
-            <option value="07:00">7:00 </option>
-            <option value="07:30">7:30 </option>
-            <option value="08:00">8:00 </option>
-            <option value="08:30">8:30 </option>
-            <option value="09:00">9:00 </option>
-            <option value="09:30">9:30 </option>
-            <option value="10:00">10:00 </option>
-            <option value="10:30">10:30 </option>
-            <option value="11:00">11:00 </option>
-            <option value="11:30">11:30 </option>
-            <option value="12:00">12:00 </option>
-            <option value="12:30">12:30 </option>
-            <option value="13:00">13:00 </option>
-            <option value="13:30">13:30 </option>
-            <option value="14:00">14:00 </option>
-            <option value="14:30">14:30 </option>
-            <option value="15:00">15:00 </option>
-            <option value="15:30">15:30 </option>
-            <option value="16:00">16:00 </option>
-            <option value="16:30">16:30 </option>
-            <option value="17:00">17:00 </option>
-          </select>
-        </li>
+          </td>
+          <td>
+            <select className="col-sm-2"
+              id="exampleFormControlSelect1"
+              name="End"
+              style={{ width: "100px" }}
+              onChange={(event) => { this.ChangeTimeEnd(event.target.value, i) }}>
+              <option value="07:00">7:00 </option>
+              <option value="07:30">7:30 </option>
+              <option value="08:00">8:00 </option>
+              <option value="08:30">8:30 </option>
+              <option value="09:00">9:00 </option>
+              <option value="09:30">9:30 </option>
+              <option value="10:00">10:00 </option>
+              <option value="10:30">10:30 </option>
+              <option value="11:00">11:00 </option>
+              <option value="11:30">11:30 </option>
+              <option value="12:00">12:00 </option>
+              <option value="12:30">12:30 </option>
+              <option value="13:00">13:00 </option>
+              <option value="13:30">13:30 </option>
+              <option value="14:00">14:00 </option>
+              <option value="14:30">14:30 </option>
+              <option value="15:00">15:00 </option>
+              <option value="15:30">15:30 </option>
+              <option value="16:00">16:00 </option>
+              <option value="16:30">16:30 </option>
+              <option value="17:00">17:00 </option>
+            </select></td>
+        </tr>
+        // <li key={i}>
+        //   <div className="col-md-7">
+        //     <select className="col-sm-2 mt-4"
+        //       id="exampleFormControlSelect1"
+        //       name="Begin"
+        //       style={{ width: "100px" }}
+        //       onChange={(event) => this.ChangeTimeBegin(event.target.value, i)}>
+        //       <option value="07:00">7:00 </option>
+        //       <option value="07:30">7:30 </option>
+        //       <option value="08:00">8:00 </option>
+        //       <option value="08:30">8:30 </option>
+        //       <option value="09:00">9:00 </option>
+        //       <option value="09:30">9:30 </option>
+        //       <option value="10:00">10:00 </option>
+        //       <option value="10:30">10:30 </option>
+        //       <option value="11:00">11:00 </option>
+        //       <option value="11:30">11:30 </option>
+        //       <option value="12:00">12:00 </option>
+        //       <option value="12:30">12:30 </option>
+        //       <option value="13:00">13:00 </option>
+        //       <option value="13:30">13:30 </option>
+        //       <option value="14:00">14:00 </option>
+        //       <option value="14:30">14:30 </option>
+        //       <option value="15:00">15:00 </option>
+        //       <option value="15:30">15:30 </option>
+        //       <option value="16:00">16:00 </option>
+        //       <option value="16:30">16:30 </option>
+        //       <option value="17:00">17:00 </option>
+        //     </select>
+        //     <select className="col-sm-2"
+        //       id="exampleFormControlSelect1"
+        //       name="End"
+        //       style={{ width: "100px" }}
+        //       onChange={(event) => { this.ChangeTimeEnd(event.target.value, i) }}>
+        //       <option value="07:00">7:00 </option>
+        //       <option value="07:30">7:30 </option>
+        //       <option value="08:00">8:00 </option>
+        //       <option value="08:30">8:30 </option>
+        //       <option value="09:00">9:00 </option>
+        //       <option value="09:30">9:30 </option>
+        //       <option value="10:00">10:00 </option>
+        //       <option value="10:30">10:30 </option>
+        //       <option value="11:00">11:00 </option>
+        //       <option value="11:30">11:30 </option>
+        //       <option value="12:00">12:00 </option>
+        //       <option value="12:30">12:30 </option>
+        //       <option value="13:00">13:00 </option>
+        //       <option value="13:30">13:30 </option>
+        //       <option value="14:00">14:00 </option>
+        //       <option value="14:30">14:30 </option>
+        //       <option value="15:00">15:00 </option>
+        //       <option value="15:30">15:30 </option>
+        //       <option value="16:00">16:00 </option>
+        //       <option value="16:30">16:30 </option>
+        //       <option value="17:00">17:00 </option>
+        //     </select>
+        //   </div>
+        // </li>
       )
     })
     return (
@@ -180,21 +247,21 @@ export default class Example extends React.Component {
             </div>
           </div>
         </nav>
-
         <div className="container-xl pt-5 pb-5">
           <div className="row">
             <div className="col-md-5">
-
-           
-            <DayPicker
-              selectedDays={this.state.selectedDays}
-              onDayClick={this.handleDayClick}
-            />
-            <div style={{ width: "663px", float: "right", marginTop: "80px" }}>
-              {viewSchedule}
+              <DayPicker
+                selectedDays={this.state.selectedDays}
+                onDayClick={this.handleDayClick}
+              />
+              <div >
+                {/* {viewSchedule} */}
+              </div>
             </div>
-            {/* <span className="ml-4"> Begin </span>
-            <select className="col-sm-2" id="exampleFormControlSelect1" name="Begin" onChange={this.handleBegin}>
+          </div>
+          <div className="col-md-7">
+            {/* <span className="ml-4"> Begin </span> */}
+            {/* <select className="col-sm-2 mt-4" id="exampleFormControlSelect1" name="Begin" onChange={this.handleBegin}>
               <option value="07:00">7:00 </option>
               <option value="07:30">7:30 </option>
               <option value="08:00">8:00 </option>
@@ -216,19 +283,6 @@ export default class Example extends React.Component {
               <option value="16:00">16:00 </option>
               <option value="16:30">16:30 </option>
               <option value="17:00">17:00 </option>
-              <option value="17:30">17:30 </option>
-              <option value="18:00">18:00 </option>
-              <option value="18:30">18:30 </option>
-              <option value="19:00">19:00 </option>
-              <option value="19:30">19:30 </option>
-              <option value="20:00">20:00 </option>
-              <option value="20:30">20:30 </option>
-              <option value="21:00">21:00 </option>
-              <option value="21:30">21:30 </option>
-              <option value="22:00">22:00 </option>
-              <option value="22:30">22:30 </option>
-              <option value="23:00">23:00 </option>
-              <option value="23:30">23:30 </option>
             </select>
             <span className="ml-4"> End </span>
             <select className="col-sm-2" id="exampleFormControlSelect1" name="End" onChange={this.handleEnd}>
@@ -253,145 +307,52 @@ export default class Example extends React.Component {
               <option value="16:00">16:00 </option>
               <option value="16:30">16:30 </option>
               <option value="17:00">17:00 </option>
-               <option value="17:30">17:30 </option>
-              <option value="18:00">18:00 </option>
-              <option value="18:30">18:30 </option>
-              <option value="19:00">19:00 </option>
-              <option value="19:30">19:30 </option>
-              <option value="20:00">20:00 </option>
-              <option value="20:30">20:30 </option>
-              <option value="21:00">21:00 </option>
-              <option value="21:30">21:30 </option>
-              <option value="22:00">22:00 </option>
-              <option value="22:30">22:30 </option>
-              <option value="23:00">23:00 </option>
-              <option value="23:30">23:30 </option> 
             </select> */}
-
-                </div>
-                {/* selectedDays={this.state.selectedDays}
-                onDayClick={this.handleDayClick}
-              /> */}
-            </div>
-            <div className="col-md-7">
-              <span className="ml-4"> Begin </span>
-              <select className="col-sm-2 mt-4" id="exampleFormControlSelect1" name="Begin" onChange={this.handleBegin}>
-                <option value="07:00">7:00 </option>
-                <option value="07:30">7:30 </option>
-                <option value="08:00">8:00 </option>
-                <option value="08:30">8:30 </option>
-                <option value="09:00">9:00 </option>
-                <option value="09:30">9:30 </option>
-                <option value="10:00">10:00 </option>
-                <option value="10:30">10:30 </option>
-                <option value="11:00">11:00 </option>
-                <option value="11:30">11:30 </option>
-                <option value="12:00">12:00 </option>
-                <option value="12:30">12:30 </option>
-                <option value="13:00">13:00 </option>
-                <option value="13:30">13:30 </option>
-                <option value="14:00">14:00 </option>
-                <option value="14:30">14:30 </option>
-                <option value="15:00">15:00 </option>
-                <option value="15:30">15:30 </option>
-                <option value="16:00">16:00 </option>
-                <option value="16:30">16:30 </option>
-                <option value="17:00">17:00 </option>
-                {/* <option value="17:30">17:30 </option>
-  <option value="18:00">18:00 </option>
-  <option value="18:30">18:30 </option>
-  <option value="19:00">19:00 </option>
-  <option value="19:30">19:30 </option>
-  <option value="20:00">20:00 </option>
-  <option value="20:30">20:30 </option>
-  <option value="21:00">21:00 </option>
-  <option value="21:30">21:30 </option>
-  <option value="22:00">22:00 </option>
-  <option value="22:30">22:30 </option>
-  <option value="23:00">23:00 </option>
-  <option value="23:30">23:30 </option> */}
-              </select>
-              <span className="ml-4"> End </span>
-              <select className="col-sm-2" id="exampleFormControlSelect1" name="End" onChange={this.handleEnd}>
-                <option value="07:00">7:00 </option>
-                <option value="07:30">7:30 </option>
-                <option value="08:00">8:00 </option>
-                <option value="08:30">8:30 </option>
-                <option value="09:00">9:00 </option>
-                <option value="09:30">9:30 </option>
-                <option value="10:00">10:00 </option>
-                <option value="10:30">10:30 </option>
-                <option value="11:00">11:00 </option>
-                <option value="11:30">11:30 </option>
-                <option value="12:00">12:00 </option>
-                <option value="12:30">12:30 </option>
-                <option value="13:00">13:00 </option>
-                <option value="13:30">13:30 </option>
-                <option value="14:00">14:00 </option>
-                <option value="14:30">14:30 </option>
-                <option value="15:00">15:00 </option>
-                <option value="15:30">15:30 </option>
-                <option value="16:00">16:00 </option>
-                <option value="16:30">16:30 </option>
-                <option value="17:00">17:00 </option>
-                {/* <option value="17:30">17:30 </option>
-  <option value="18:00">18:00 </option>
-  <option value="18:30">18:30 </option>
-  <option value="19:00">19:00 </option>
-  <option value="19:30">19:30 </option>
-  <option value="20:00">20:00 </option>
-  <option value="20:30">20:30 </option>
-  <option value="21:00">21:00 </option>
-  <option value="21:30">21:30 </option>
-  <option value="22:00">22:00 </option>
-  <option value="22:30">22:30 </option>
-  <option value="23:00">23:00 </option>
-  <option value="23:30">23:30 </option> */}
-              </select>
-              <div className="col-md-12 mt-4">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Option</th>
-                      <th scope="col">Date</th>
-                      <th scope="col">Begin</th>
-                      <th scope="col">End</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>13/11/2020</td>
-                      <td>7:00</td>
-                      <td>9:00</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>14/11/2020</td>
-                      <td>13:00</td>
-                      <td>15:00</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>15/11/2020</td>
-                      <td>15:00</td>
-                      <td>17:00</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div className="col-md-12 mt-4">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Option</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Begin</th>
+                    <th scope="col">End</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {viewSchedule}
+                  {/*<tr>
+                    <th scope="row">1</th>
+                    <td>13/11/2020</td>
+                    <td>7:00</td>
+                    <td>9:00</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>14/11/2020</td>
+                    <td>13:00</td>
+                    <td>15:00</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>15/11/2020</td>
+                    <td>15:00</td>
+                    <td>17:00</td>
+                  </tr> */}
+                </tbody>
+              </table>
             </div>
           </div>
+        </div>
 
-          <div style={{ margin: '0 auto' }} className="row">
-            <div className="col-sm-6 text-right mt-3 button1 ">
-              <a style={{ margin: '0 auto' }} className="btn btn-primary" href="#" role="button">Add option</a>
-            </div>
-            <div className="col-sm-6 text-right mt-3 button1">
-              <a name="" id="" className="btn btn-primary" href="#" role="button">Continue</a>
-            </div>
-            <div className="col-sm-2 button1">
-              <a style={{ float: 'right' }} name="" id="" className="btn btn-primary" href="#" role="button" onClick={this.ClickContinue}>Continue</a>
+        <div style={{ margin: '0 auto' }} className="row">
+          <div className="col-sm-6 text-right mt-3 button1 ">
+            <a style={{ margin: '0 auto' }} className="btn btn-primary" href="#" role="button">Add option</a>
+          </div>
+          <div className="col-sm-6 text-right mt-3 button1">
+            <a name="" id="" className="btn btn-primary" href="#" role="button">Continue</a>
+          </div>
+          <div className="col-sm-2 button1">
+            <a style={{ float: 'right' }} name="" id="" className="btn btn-primary" href="#" role="button" onClick={this.ClickContinue}>Continue</a>
 
           </div>
         </div>
