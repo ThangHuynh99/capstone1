@@ -81,22 +81,13 @@ export default class Example extends React.Component {
     })
       .then(res => res.text())
       .then(result => {
-        // console.log(result)
-        // var  poll_id=JSON.parse(result)
-        // console.log(result)
             window.location = "/schedule/vote";
             sessionStorage.setItem("poll_id", result);
       })
   }
   render() {
-    // console.log(this.state.selectedDays)
     console.log(this.state.schedule)
-    // // console.log(this.state.selectedDays);
-    // // // console.log(this.state.title)
-    // // // console.log(this.state.location)
-    // // // console.log(this.state.note)
-    // console.log(this.state.beginTime)
-    // console.log(this.state.endTime)
+
     const { selectedDay } = this.state;
     // console.log(selectedDay.toLocaleDateString())
     console.log(sessionStorage["users_id"])

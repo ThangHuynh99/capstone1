@@ -24,8 +24,9 @@ const voting = (req, res) => {
                         if (error)
                             throw error;
                         else {
-                            const data = dataVote(result.rows,dataUser , dataSchedule);
-                            res.status(201).send({data,dataSchedule,dataUser})
+                            const data = processData(result.rows,dataUser , dataSchedule);
+                            console.log(data)
+                            res.status(201).send({data,dataSchedule})
                         }
                     })
                 }
@@ -34,56 +35,52 @@ const voting = (req, res) => {
         }
     })
 }
-const dataVote = (result, dataUser, dataSchedule) => {
-    let dataVote1 = new Array();
+const processData = (result, dataUser,dataSchedule) => {
+    let user = new Array();
     for (let i = 0; i < dataUser.rowCount; i++) {
-        dataVote1[i]=new Array()
+        let id = dataUser.rows[i].users_id;
+        let name = dataUser.rows[i].users_name;
+        let votePro = new Array();
         for (let j = 0; j < dataSchedule.rowCount; j++) {
-            console.log(dataSchedule.rows[j].schedule_id + "-------------------------" + dataUser.rows[i].users_id + "---------------------------")
             const data=vote(dataSchedule.rows[j].schedule_id, dataUser.rows[i].users_id , result)
-            dataVote1[i][j]=data
+            votePro.push(data);
         }
+        let voting = ({
+            user_id: id,
+            user_name: name,
+            data1: votePro
+        });
+        user.push(voting);
     }
-    return dataVote1;
+    return user;
 }
 const vote = (schedule_id, users_id, result) => {
     schedule_id = schedule_id.toString()
     users_id=users_id.toString()
-    let data= new Array()
+    let data1= new Array()
     result.forEach(element => {
         const users1=element.users_id
         const schedule1=element.schedule_id
         if ( schedule1=== schedule_id && users1===users_id) {
-            data={
+            data1={
                 vote_id:element.vote_id,
                 vote_status:element.vote_status
             }
         }
     })
-    return data;
+    return data1;
 }
-// const processData = (result, vote) => {
-//     let user = new Array();
-//     let voteReal = vote;
-//     for (let i = 0; i < voteReal.length; i++) {
-//         let id = result.rows[i * voteReal.length].users_id;
-//         let name = result.rows[i * voteReal.length].users_name;
-//         let votePro = new Array();
-//         for (let j = 0; j < voteReal.length; j++) {
-//             let info = ({
-//                 vote_id: result.rows[i * voteReal.length + j].vote_id,
-//                 vote_status: result.rows[i * voteReal.length + j].vote_status
-//             });
-//             votePro.push(info);
+// const dataVote = (result, dataUser, dataSchedule) => {
+//     let dataVote1 = new Array();
+//     for (let i = 0; i < dataUser.rowCount; i++) {
+//         dataVote1[i]=new Array()
+//         for (let j = 0; j < dataSchedule.rowCount; j++) {
+//             console.log(dataSchedule.rows[j].schedule_id + "-------------------------" + dataUser.rows[i].users_id + "---------------------------")
+//             const data=vote(dataSchedule.rows[j].schedule_id, dataUser.rows[i].users_id , result)
+//             dataVote1[i][j]=data
 //         }
-//         let voting = ({
-//             user_id: id,
-//             user_name: name,
-//             vote1: votePro
-//         });
-//         user.push(voting);
 //     }
-//     return user;
+//     return dataVote1;
 // }
 const voteSchedule = (req, res) => {
     const { poll_id } = req.body;

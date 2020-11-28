@@ -17,6 +17,7 @@ class Dashboard extends React.Component {
         }
     }
     componentDidMount() {
+        sessionStorage.removeItem("poll_id");
         const users_id = this.state.users_id;
         console.log(users_id);
         fetch('http://localhost:3001/dashboard', {

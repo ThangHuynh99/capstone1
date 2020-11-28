@@ -17,6 +17,9 @@ class UIweb extends React.Component {
       user: []
     }
   }
+  componentDidMount() {
+    sessionStorage.removeItem("poll_id");
+  }
   Login1 = (e) => {
     e.preventDefault();
     var message = document.getElementById('error');

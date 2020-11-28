@@ -9,17 +9,15 @@ class Vote extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            poll_id:sessionStorage["poll_id"],
-            user: [],
+            poll_id: sessionStorage["poll_id"],
             schedule: [],
-            data:[],
+            data: [],
             email: ""
         }
         this.submitVote = this.submitVote.bind(this)
     }
     componentDidMount() {
         const poll_id = this.state.poll_id;
-        // console.log(poll_id);
         fetch('http://localhost:3001/vote/user', {
             method: "POST",
             headers: {
@@ -30,35 +28,12 @@ class Vote extends React.Component {
         })
             .then(response => response.json())
             .then(result => {
-                const {data,dataSchedule,dataUser}=result
+                const { data, dataSchedule } = result
                 this.setState({
-                    data:data,
-                    schedule:dataSchedule.rows,
-                    user:dataUser.rows
+                    data: data,
+                    schedule: dataSchedule.rows,
                 })
-            //     console.log("-------------------------------------------------------------------------------")
-            //    console.log(this.state.data)
-            //    console.log("-------------------------------------------------------------------------------")
-            //    console.log(this.state.schedule)
-            //    console.log("-------------------------------------------------------------------------------")
-            //    console.log(this.state.user)
             })
-        // fetch('http://localhost:3001/vote/schedule', {
-        //     method: "POST",
-        //     headers: {
-        //         "Accept": "application/json",
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({ poll_id })
-        // })
-        //     .then(response => response.json())
-        //     .then(result => {
-        //         this.setState({ schedule: result.rows });
-
-        //         console.log("-------------------------------------------------------------------------------")
-        //         console.log(this.state.schedule)
-        //     })
-
     }
     handleEmail = (e) => {
         this.setState({ email: e.target.value })
@@ -83,25 +58,25 @@ class Vote extends React.Component {
             })
     }
     vote(i, j) {
-        let newUser = [...this.state.user];
-        if (newUser[i].vote1[j].vote_status === 1)
-            newUser[i].vote1[j].vote_status = 0
+        let newData = [...this.state.data];
+        if (newData[i].data1[j].vote_status === 1)
+            newData[i].data1[j].vote_status = 0
         else
-            newUser[i].vote1[j].vote_status = 1
-        this.setState({ user: newUser });
+            newData[i].data1[j].vote_status = 1
+        this.setState({ data: newData });
 
     }
     submitVote() {
-        var user = [...this.state.user];
-        user.forEach(element => {
-            if (element.user_id === sessionStorage["users_id"]) {
+        var data = [...this.state.data];
+        data.forEach(element => {
+            if (element.user_id.toString() === sessionStorage["users_id"]) {
                 fetch('http://localhost:3001/vote/submit', {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(element.vote1 )
+                    body: JSON.stringify(element.data1)
                 })
                     .then(res => res.text())
                     .then(result => {
@@ -113,39 +88,30 @@ class Vote extends React.Component {
 
     }
     render() {
-        // console.log("-------------------poll_id------------------------")
-        // console.log(this.state.poll_id)
+        console.log(this.state.data)
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} />
         })
-
-
-        // let users = this.state.user.map((user, i) => {
-
-        //     let vote = user.vote1.map((vote, j) => {
-
-        //         return (<td key={j} className="value" width="72px">
-        //             {/* <p>{vote.vote_status}</p> */}
-        //             <input disabled={user.user_id === sessionStorage["users_id"] ? null : 'disabled'} onClick={this.vote.bind(this, i, j)} name="chkVote" type="checkbox" checked={vote.vote_status === 1 ? true : false} ></input>
-        //         </td>)
-        //     })
-        //     return (
-        //         <>
-        //             <tr key={i}>
-        //                 <td>{user.user_name} <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
-        //                 {vote}
-
-        //             </tr>
-
-        //         </>
-        //     )
-
-        // })
+        let users = this.state.data.map((data, i) => {
+            let data1 = data.data1.map((element, j) => {
+                return (<td key={j} className="value" width="72px">
+                    <input disabled={data.user_id.toString() === sessionStorage["users_id"] ? null : 'disabled'} onClick={this.vote.bind(this, i, j)} name="chkVote" type="checkbox" checked={element.vote_status === 1 ? true : false} ></input>
+                </td>)
+            })
+            return (
+                <tr key={i}>
+                    <td>{data.user_name} <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
+                    {data1}
+                </tr>
+            )
+        })
         return (
             <div style={{ padding: 0, boxShadow: '0px 5px 5px 1px silver' }} className="container mt-4 mb-4">
                 <nav className="navbar navbar-expand-lg navbar-light">
                     <a className="navbar-brand" href="#">
+                        <Link  to='/'>
                         <h4 style={{ fontWeight: 700, color: 'lightskyblue' }}>Planing Meeting</h4>
+                        </Link>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon" />
@@ -240,12 +206,12 @@ class Vote extends React.Component {
                             </td> */}
                         </tr>
                         <tr>
-                            <td>0 participants <i style={{ float: 'right' }} className="fas fa-plus pr-2" /></td>
+                            <td>{this.state.data.length} participants <i style={{ float: 'right' }} className="fas fa-plus pr-2" /></td>
                             <td style={{ textAlign: 'center' }}>
                                 <p>0/1</p>
                             </td>
                         </tr>
-                        {/* {users} */}
+                        {users}
                         {/* <tr>
                             <td>Thang Huynh<i style={{ float: 'right' }} className="fas fa-pen pr-2" /></td>
                             <td>
@@ -254,7 +220,7 @@ class Vote extends React.Component {
                         </tr> */}
                     </tbody>
                 </table>
-                <button onClick={this.submitVote} style={{marginLeft:"570px"}}>submit</button>
+                <button onClick={this.submitVote} style={{ marginLeft: "570px" }}>submit</button>
                 <div className="footer pt-3 pb-3">
                     <nav className="nav justify-content-center">
                         <a className="nav-link active" href="#">Team</a>
