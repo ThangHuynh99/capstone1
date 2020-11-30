@@ -17,7 +17,7 @@ class Schedule extends React.Component {
     // const[date, setDate] = useState(new Date());
     return (
       <td style={{ width: '72px', height: '130px', textAlign: 'center' }} className="date">
-        {this.state.schedule.schedule_date.substring(0, 10)}
+        {this.state.schedule.schedule_date.substring(0, 10)}{this.state.schedule.schedule_starttime.substring(0,5)}{this.state.schedule.schedule_endtime.substring(0,5)}
       </td>
     );
   }
