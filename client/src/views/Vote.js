@@ -15,6 +15,8 @@ class Vote extends React.Component {
             email: ""
         }
         this.submitVote = this.submitVote.bind(this)
+        this.invite=this.invite.bind(this)
+        this.componentDidMount=this.componentDidMount(this)
     }
     componentDidMount() {
         const poll_id = this.state.poll_id;
@@ -41,8 +43,10 @@ class Vote extends React.Component {
     invite() {
         const invite = ({
             user_email: this.state.email,
-            poll_id: this.state.poll_id
+            poll_id: this.state.poll_id,
+            schedule:this.state.schedule
         })
+        console.log(invite)
         fetch('http://localhost:3001/invite', {
             method: "POST",
             headers: {
@@ -53,8 +57,10 @@ class Vote extends React.Component {
         })
             .then(res => res.text())
             .then(result => {
-                if (result === "Complete")
-                    console.log("")
+                if (result === "Complete"){
+                    console.log(" Thành công ")
+                    this.componentDidMount();
+                }
             })
     }
     vote(i, j) {
@@ -89,6 +95,7 @@ class Vote extends React.Component {
     }
     render() {
         console.log(this.state.data)
+        console.log(this.state.schedule)
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} />
         })
@@ -179,7 +186,7 @@ class Vote extends React.Component {
                         <div style={{ margin: '0 auto' }} className="col-md-8 mb-3">
                             <div className="form-group">
                                 <label htmlFor="exampleFormControlTextarea1" onChange={this.handleEmail}>Enter Email</label>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
+                                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} onChange={this.handleEmail} />
                             </div>
                         </div>
                         <div style={{ margin: '0 auto' }} className="col-md-8">
@@ -190,7 +197,7 @@ class Vote extends React.Component {
                         </div>
                     </form>
                     <div style={{ margin: '0 auto' }} className="col-md-8 mb-4">
-                        <button type="submit" className="btn btn-primary" >Send</button>
+                        <button type="submit" className="btn btn-primary" onClick={this.invite} >Send</button>
                     </div>
                 </div>
                 <table style={{ margin: '0 auto' }} className="i-square i-full i-border mb-5">
