@@ -97,7 +97,7 @@ export default class Example extends React.Component {
         <tr>
           <th scope="row">{i + 1}</th>
           <td>{schedule.date}</td>
-          <td><select className="col-sm-2 "
+          <td><select className="col-sm-8 "
             // id="exampleFormControlSelect1"
             name="Begin"
             style={{ width: "100px" }}
@@ -126,7 +126,7 @@ export default class Example extends React.Component {
           </select>
           </td>
           <td>
-            <select className="col-sm-2"
+            <select className="col-sm-8"
               id="exampleFormControlSelect1"
               name="End"
               style={{ width: "100px" }}
@@ -258,10 +258,10 @@ export default class Example extends React.Component {
                 {/* {viewSchedule} */}
               </div>
             </div>
-          </div>
-          <div className="col-md-7">
-            {/* <span className="ml-4"> Begin </span> */}
-            {/* <select className="col-sm-2 mt-4" id="exampleFormControlSelect1" name="Begin" onChange={this.handleBegin}>
+
+            <div style={{height: '300px',  overflow: 'auto'}} className="col-md-7 mt-4">
+              {/* <span className="ml-4"> Begin </span> */}
+              {/* <select className="col-sm-2 mt-4" id="exampleFormControlSelect1" name="Begin" onChange={this.handleBegin}>
               <option value="07:00">7:00 </option>
               <option value="07:30">7:30 </option>
               <option value="08:00">8:00 </option>
@@ -308,7 +308,6 @@ export default class Example extends React.Component {
               <option value="16:30">16:30 </option>
               <option value="17:00">17:00 </option>
             </select> */}
-            <div className="col-md-12 mt-4">
               <table class="table table-striped">
                 <thead>
                   <tr>
@@ -342,20 +341,14 @@ export default class Example extends React.Component {
               </table>
             </div>
           </div>
-        </div>
-
-        <div style={{ margin: '0 auto' }} className="row">
-          <div className="col-sm-6 text-right mt-3 button1 ">
-            <a style={{ margin: '0 auto' }} className="btn btn-primary" href="#" role="button">Add option</a>
-          </div>
-          <div className="col-sm-6 text-right mt-3 button1">
-            <a name="" id="" className="btn btn-primary" href="#" role="button">Continue</a>
-          </div>
-          <div className="col-sm-2 button1">
-            <a style={{ float: 'right' }} name="" id="" className="btn btn-primary" href="#" role="button" onClick={this.ClickContinue}>Continue</a>
-
+          <div style={{ margin: '0 auto' }} className="row text-right">        
+          <div className="col-sm-12 button1">
+            <a style={{ float: 'right ', fontSize:'23px' }} name="" id="" className="btn btn-primary" href="#" role="button" onClick={this.ClickContinue}>Continue</a>
           </div>
         </div>
+        </div>
+
+        
       </div>
     );
   }
