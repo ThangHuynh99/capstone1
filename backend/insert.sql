@@ -164,17 +164,19 @@ values ('phuochao@gmail.com','Phuoc Hao','123','VietNam','22/05/1999','Viet Nam'
 Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
 values ('dinhloi@gmail.com','Dinh Loi','123','VietNam','12/11/1999','Viet Nam');
 
+
 -----------------------------------insert table group_user(update) tùy theo số lượng user mà tự tăng userID vào.
-Insert into Group_User (group_id,users_id) values(2,);
-Insert into Group_User (group_id,users_id) values(2,);
-Insert into Group_User (group_id,users_id) values(2,);
-Insert into Group_User (group_id,users_id) values(2,);
-Insert into Group_User (group_id,users_id) values(2,);
-Insert into Group_User (group_id,users_id) values(2,);
-Insert into Group_User (group_id,users_id) values(2,);
-Insert into Group_User (group_id,users_id) values(1,);
-Insert into Group_User (group_id,users_id) values(1,);
-Insert into Group_User (group_id,users_id) values(2,);
+Insert into Group_User (group_id,users_id) values(2,10);
+Insert into Group_User (group_id,users_id) values(2,9);
+Insert into Group_User (group_id,users_id) values(2,8);
+Insert into Group_User (group_id,users_id) values(2,7);
+Insert into Group_User (group_id,users_id) values(2,6);
+Insert into Group_User (group_id,users_id) values(2,5);
+Insert into Group_User (group_id,users_id) values(2,4);
+Insert into Group_User (group_id,users_id) values(1,1);
+Insert into Group_User (group_id,users_id) values(1,2);
+Insert into Group_User (group_id,users_id) values(2,3);
+
 
 ------------------------------------insert table poll(update) cái poll_date dùng getdate nghe.
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
@@ -227,3 +229,95 @@ Insert into Vote (schedule_id,users_id,vote_status) values('10','11',1);
 Insert into Vote (schedule_id,users_id,vote_status) values('11','11',0);
 Insert into Vote (schedule_id,users_id,vote_status) values('12','11',0);
 Insert into Vote (schedule_id,users_id,vote_status) values('13','11',1);
+
+
+-------------------------------------------new data database 
+
+--- user table
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('haole@gmail.com','Hao Le','123','VietNam','12/11/1989','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('tuyetnhi@gmail.com','Tuyet Nhi','123','VietNam','01/05/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('hanhi@gmail.com','Ha Nhi','123','VietNam','10/11/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('quang@gmail.com','Nguyen Quang','123','VietNam','02/01/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('vannhi@gmail.com','Van Nhi','123','VietNam','08/10/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('trungkien@gmail.com','Trung Kien','123','VietNam','12/07/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('minhhoang@gmail.com','Minh Hoang','123','VietNam','24/11/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('@gmail.com','Dinh Loi','123','VietNam','12/11/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('congtri@gmail.com','Cong Tri','123','VietNam','05/12/1990','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('vanminh@gmail.com','Van Minh','123','VietNam','09/09/1986','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('kimngan@gmail.com','Kim Ngan','123','VietNam','16/08/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('nhauyen@gmail.com','Nha Uyen','123','VietNam','19/10/1988','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('kimthinh@gmail.com','Kim Thinh','123','VietNam','10/09/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('giahuy@gmail.com','Dinh Loi','123','VietNam','12/11/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('hongduyen@gmail.com','Hong Duyen','123','VietNam','07/03/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('thanhhai@gmail.com','Thanh Hai','123','VietNam','02/12/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('quynhnhu@gmail.com','Quynh Nhu','123','VietNam','22/04/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('phuonganhh@gmail.com','Phuong Anh','123','VietNam','22/04/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('duytu@gmail.com','Duy Tu','123','VietNam','22/01/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('hoanglong@gmail.com','Hoang Long','123','VietNam','30/10/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('uyenmy@gmail.com','Uyen My','123','VietNam','12/11/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('vannghia@gmail.com','Van Nghia','123','VietNam','12/11/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('hoangduy@gmail.com','Hoang Duy','123','VietNam','12/11/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('dinhphuc@gmail.com','Dinh Phuc','123','VietNam','12/12/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('giavu@gmail.com','Gia Vu','123','VietNam','11/11/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('phutai@gmail.com','Phu Tai','123','VietNam','12/07/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('duyphucc@gmail.com','Duy Phuc','123','VietNam','22/09/1999','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('vankhoa@gmail.com','Van Khoa','123','VietNam','12/11/1996','Viet Nam');
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('duymanh@gmail.com','Duy Manh','123','VietNam','07/11/1995','Viet Nam');
+
+
+-------------- poll table
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('ZTjDhggXqJTMnh11','Đi du lịch Nha Trang','01/12/2020','Nha Trang','10/12/2020','05/12/2020','07/12/2020',0,'Rất vui vẻ');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('ZTjDhggXqJTMnh12','Khai trương chi nhánh mới','01/12/2020','','11/12/2020','06/12/2020','08/12/2020',0,'khai trương chi nhánh thứ 10');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('ZTjDhggXqJTMnh13','Liên hoan cuối năm','01/12/2020',' ','30/12/2020','25/12/2020','28/12/2020',0,'Rất vui vẻ và này nọ');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('ZTjDhggXqJTMnh14','Du lịch cuối năm','01/12/2020',' ','29/12/2020','23/12/2020','25/12/2020',0,'Rất vui vẻ và này nọ');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('ZTjDhggXqJTMnh15','Liên hoan đầu năm','01/12/2020',' ','02/01/2021','25/12/2020','27/12/2020',0,'Rất vui vẻ và này nọ');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('ZTjDhggXqJTMnh16','Party giáng sinh','01/12/2020',' ','25/12/2020','20/12/2020','22/12/2020',0,'Rất vui vẻ và này nọ');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
+values('ZTjDhggXqJTMnh17','Phát thưởng cuối năm','01/12/2020',' ','30/12/2020','23/12/2020','25/12/2020',0,'Rất vui vẻ và này nọ');
+
+-------------- poll-user table (id_user dựa theo 7 đứa đầu tiên sẽ làm host.)
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh11',11,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh12',11,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh13',11,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh14',11,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh15',11,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh16',11,'invitee');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh17',11,'invitee');
+
+----------- Schedule table
+
