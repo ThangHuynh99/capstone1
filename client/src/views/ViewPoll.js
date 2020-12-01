@@ -11,8 +11,11 @@ class ViewPoll extends React.Component {
         }
         ClickNext(){
                 var poll_id= this.state.view.poll_id
+                var role=this.state.view.pu_role
+                console.log(role)
                 console.log(poll_id)
                 sessionStorage.setItem("poll_id", poll_id);
+                sessionStorage.setItem("pu_role", role);
                 window.location = "/schedule/vote";
         }
         render() {

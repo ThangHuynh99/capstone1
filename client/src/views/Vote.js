@@ -10,11 +10,15 @@ class Vote extends React.Component {
         super(props)
         this.state = {
             poll_id: sessionStorage["poll_id"],
+            pu_role: sessionStorage["pu_role"],
             schedule: [],
             data: [],
             email: ""
         }
         this.submitVote = this.submitVote.bind(this)
+        this.invite = this.invite.bind(this)
+        this.componentDidMount = this.componentDidMount(this)
+        // this.deleteUser=this.deleteUser.bind(this)
     }
     componentDidMount() {
         const poll_id = this.state.poll_id;
@@ -38,11 +42,38 @@ class Vote extends React.Component {
     handleEmail = (e) => {
         this.setState({ email: e.target.value })
     }
+    deleteUser(i) {
+        const dataUsers = [...this.state.data]
+        console.log(dataUsers[i])
+        const data = {
+            user: dataUsers[i],
+            poll_id: this.state.poll_id
+        }
+        fetch('http://localhost:3001/deleteuser', {
+            method: "DELETE",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.text())
+            .then(result => {
+                if (result === "complete") {
+                    console.log(result)
+                    console.log("Xóa thành công")
+                    window.location.reload(false);
+                    // this.componentDidMount();
+                }
+            })
+    }
     invite() {
         const invite = ({
             user_email: this.state.email,
-            poll_id: this.state.poll_id
+            poll_id: this.state.poll_id,
+            schedule: this.state.schedule
         })
+        console.log(invite)
         fetch('http://localhost:3001/invite', {
             method: "POST",
             headers: {
@@ -53,8 +84,11 @@ class Vote extends React.Component {
         })
             .then(res => res.text())
             .then(result => {
-                if (result === "Complete")
-                    console.log("")
+                if (result === "Complete") {
+                    console.log(" Thành công ")
+                    window.location.reload(false);
+                    // this.componentDidMount();
+                }
             })
     }
     vote(i, j) {
@@ -89,6 +123,8 @@ class Vote extends React.Component {
     }
     render() {
         console.log(this.state.data)
+        console.log(this.state.schedule)
+        console.log(this.state.pu_role)
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} />
         })
@@ -100,7 +136,7 @@ class Vote extends React.Component {
             })
             return (
                 <tr key={i}>
-                    <td>{data.user_name} <i style={{ float: 'right' }} className="fas fa-trash pr-2" /></td>
+                    <td>{data.user_name} {this.state.pu_role === 'host' ? <i style={{ float: 'right' }} className="fas fa-trash pr-2" onClick={this.deleteUser.bind(this, i)} /> : null} </td>
                     {data1}
                 </tr>
             )
@@ -109,8 +145,8 @@ class Vote extends React.Component {
             <div style={{ padding: 0, boxShadow: '0px 5px 5px 1px silver' }} className="container mt-4 mb-4">
                 <nav className="navbar navbar-expand-lg navbar-light">
                     <a className="navbar-brand" href="#">
-                        <Link  to='/'>
-                        <h4 style={{ fontWeight: 700, color: 'lightskyblue' }}>Planing Meeting</h4>
+                        <Link to='/'>
+                            <h4 style={{ fontWeight: 700, color: 'lightskyblue' }}>Planing Meeting</h4>
                         </Link>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -173,13 +209,19 @@ class Vote extends React.Component {
                         <a className="dropdown-item" href="#">Delete poll</a>
                     </div>
                 </nav>
-                <h3 className="text-center mt-3">Quang</h3>
+                <h3 className="text-center mt-3">
+                    {this.state.data.map(element => {
+                        if (element.user_id.toString() === sessionStorage["users_id"]) {
+                            return (<td style={{textAlign:"center"}}>{element.user_name}</td>)
+                        }
+                    })}
+                </h3>
                 <div style={{ border: 'solid 1px', backgroundColor: '#f5fbff' }} className="m-5 p-3">
                     <form className="mb-4 ">
                         <div style={{ margin: '0 auto' }} className="col-md-8 mb-3">
                             <div className="form-group">
                                 <label htmlFor="exampleFormControlTextarea1" onChange={this.handleEmail}>Enter Email</label>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} />
+                                <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} onChange={this.handleEmail} />
                             </div>
                         </div>
                         <div style={{ margin: '0 auto' }} className="col-md-8">
@@ -190,7 +232,7 @@ class Vote extends React.Component {
                         </div>
                     </form>
                     <div style={{ margin: '0 auto' }} className="col-md-8 mb-4">
-                        <button type="submit" className="btn btn-primary" >Send</button>
+                        <button type="submit" className="btn btn-primary" onClick={this.invite} >Send</button>
                     </div>
                 </div>
                 <table style={{ margin: '0 auto' }} className="i-square i-full i-border mb-5">

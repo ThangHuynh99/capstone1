@@ -24,25 +24,25 @@ const voting = (req, res) => {
                         if (error)
                             throw error;
                         else {
-                            const data = processData(result.rows,dataUser , dataSchedule);
+                            const data = processData(result.rows, dataUser, dataSchedule);
                             console.log(data)
-                            res.status(201).send({data,dataSchedule})
+                            res.status(201).send({ data, dataSchedule })
                         }
                     })
                 }
             })
-    
+
         }
     })
 }
-const processData = (result, dataUser,dataSchedule) => {
+const processData = (result, dataUser, dataSchedule) => {
     let user = new Array();
     for (let i = 0; i < dataUser.rowCount; i++) {
         let id = dataUser.rows[i].users_id;
         let name = dataUser.rows[i].users_name;
         let votePro = new Array();
         for (let j = 0; j < dataSchedule.rowCount; j++) {
-            const data=vote(dataSchedule.rows[j].schedule_id, dataUser.rows[i].users_id , result)
+            const data = vote(dataSchedule.rows[j].schedule_id, dataUser.rows[i].users_id, result)
             votePro.push(data);
         }
         let voting = ({
@@ -56,42 +56,31 @@ const processData = (result, dataUser,dataSchedule) => {
 }
 const vote = (schedule_id, users_id, result) => {
     schedule_id = schedule_id.toString()
-    users_id=users_id.toString()
-    let data1= new Array()
+    users_id = users_id.toString()
+    let data1 = new Array()
     result.forEach(element => {
-        const users1=element.users_id
-        const schedule1=element.schedule_id
-        if ( schedule1=== schedule_id && users1===users_id) {
-            data1={
-                vote_id:element.vote_id,
-                vote_status:element.vote_status
+        const users1 = element.users_id
+        const schedule1 = element.schedule_id
+        if (schedule1 === schedule_id && users1 === users_id) {
+            data1 = {
+                vote_id: element.vote_id,
+                vote_status: element.vote_status
             }
         }
     })
     return data1;
 }
-// const dataVote = (result, dataUser, dataSchedule) => {
-//     let dataVote1 = new Array();
-//     for (let i = 0; i < dataUser.rowCount; i++) {
-//         dataVote1[i]=new Array()
-//         for (let j = 0; j < dataSchedule.rowCount; j++) {
-//             console.log(dataSchedule.rows[j].schedule_id + "-------------------------" + dataUser.rows[i].users_id + "---------------------------")
-//             const data=vote(dataSchedule.rows[j].schedule_id, dataUser.rows[i].users_id , result)
-//             dataVote1[i][j]=data
-//         }
-//     }
-//     return dataVote1;
+
+// const voteSchedule = (req, res) => {
+//     const { poll_id } = req.body;
+//     console.log(poll_id)
+//     pool.query('Select * from schedule where poll_id=$1 order by schedule_id ASC ', [poll_id], (error, result) => {
+//         if (error)
+//             throw error;
+//         console.log(result);
+//         res.status(201).send(result);
+//     })
 // }
-const voteSchedule = (req, res) => {
-    const { poll_id } = req.body;
-    console.log(poll_id)
-    pool.query('Select * from schedule where poll_id=$1 order by schedule_id ASC ', [poll_id], (error, result) => {
-        if (error)
-            throw error;
-        console.log(result);
-        res.status(201).send(result);
-    })
-}
 const submitVote = (req, res) => {
     const user = req.body;
     // let user1=JSON.parse(user)
@@ -109,4 +98,54 @@ const submitVote = (req, res) => {
     //     console.log(element)
     // })
 }
-module.exports = { voting,voteSchedule, submitVote };
+const deleteUser = (req, res) => {
+    const { user, poll_id } = req.body;
+    const user_id = user.user_id
+    // console.log(poll_id)
+    user.data1.forEach(element => {
+        pool.query('delete from vote where vote_id=$1',
+            [element.vote_id],
+            (error, result) => {
+                if (error)
+                    throw error;
+                else {
+                    console.log(result)
+                }
+            })
+    })
+    pool.query('delete from poll_user where poll_id=$1 and users_id=$2',
+        [poll_id, user_id],
+        (error, result1) => {
+            if (error)
+                throw error;
+            else {
+                console.log(result1)
+            }
+        })
+    res.status(400).send("complete")
+}
+// const deletePU = (poll_id, user_id) => {
+//     pool.query('delete from poll_user where poll_id=$1 and users_id=$2',
+//         [poll_id, user_id],
+//         (error, result) => {
+//             if (error)
+//                 throw error;
+//             else {
+//                 console.log(result)
+//                 return true;
+//             }
+//         })
+// }
+// const deleteVote = (poll_id, user_id) => {
+//     pool.query('delete from vote,schedule where poll_id=$1 and schedule.schedule_id=vote.schedule_id and vote.users_id=$2',
+//         [poll_id, user_id],
+//         (error, result) => {
+//             if (error)
+//                 throw error;
+//             else {
+//                 console.log(result)
+//                 return true;
+//             }
+//         })
+// }
+module.exports = { voting, submitVote, deleteUser };

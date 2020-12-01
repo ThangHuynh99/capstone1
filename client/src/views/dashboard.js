@@ -14,6 +14,7 @@ class Dashboard extends React.Component {
         this.state = {
             users_id: sessionStorage["users_id"],
             ViewPoll: [],
+            role:''
         }
     }
     componentDidMount() {
@@ -45,7 +46,9 @@ class Dashboard extends React.Component {
                 <div className="container-xl" style={{ width: '970px' }} >
                     <nav className="navbar navbar-light">
                         <div className="text-right">
-                            <h3 style={{ color: 'lightskyblue' }}>Meeting Planner</h3>
+                            <Link to='/'>
+                            <h3 style={{ color: 'lightskyblue' }} >Meeting Planner</h3>
+                            </Link>
                         </div>
                        
                         
