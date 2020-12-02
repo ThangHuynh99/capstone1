@@ -76,10 +76,10 @@ class UIweb extends React.Component {
         <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
           <a className="navbar-brand" style={{ fontWeight: 700, color: 'lightskyblue' }} >
             <Link to='/' >
-            <h4>Meeting Planner</h4>
+              <h4>Meeting Planner</h4>
             </Link>
-            </a>
-            
+          </a>
+
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
                 navigation">
             <span className="navbar-toggler-icon" />
@@ -97,8 +97,8 @@ class UIweb extends React.Component {
               </li>
             </ul>
             <>
-                {sessionStorage["users_email"] ?<UserInfo/>:
-                 <Authentication/> }
+              {sessionStorage["users_email"] ? <UserInfo /> :
+                <Authentication />}
             </>
             {/* <div className="item-auth">
               <Link to="/register">
