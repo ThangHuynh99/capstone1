@@ -231,7 +231,7 @@ Insert into Vote (schedule_id,users_id,vote_status) values('12','11',0);
 Insert into Vote (schedule_id,users_id,vote_status) values('13','11',1);
 
 
--------------------------------------------new data database 
+-----------------------------------------NEW DATA DATABASE--------------------------- 
 
 --- user table
 Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
@@ -296,13 +296,13 @@ values ('duymanh@gmail.com','Duy Manh','123','VietNam','07/11/1995','Viet Nam');
 
 -------------- poll table
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
-values('ZTjDhggXqJTMnh11','Đi du lịch Nha Trang','01/12/2020','Nha Trang','10/12/2020','05/12/2020','07/12/2020',0,'Rất vui vẻ');
+values('ZTjDhggXqJTMnh11','Team building','01/12/2020','Nha Trang','10/12/2020','05/12/2020','07/12/2020',0,'Rất vui vẻ');
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
 values('ZTjDhggXqJTMnh12','Khai trương chi nhánh mới','01/12/2020','','11/12/2020','06/12/2020','08/12/2020',0,'khai trương chi nhánh thứ 10');
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
 values('ZTjDhggXqJTMnh13','Liên hoan cuối năm','01/12/2020',' ','30/12/2020','25/12/2020','28/12/2020',0,'Rất vui vẻ và này nọ');
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
-values('ZTjDhggXqJTMnh14','Du lịch cuối năm','01/12/2020',' ','29/12/2020','23/12/2020','25/12/2020',0,'Rất vui vẻ và này nọ');
+values('ZTjDhggXqJTMnh14','Sinh nhật Đức Bo','01/12/2020',' ','29/12/2020','23/12/2020','25/12/2020',0,'Rất vui vẻ và này nọ');
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
 values('ZTjDhggXqJTMnh15','Liên hoan đầu năm','01/12/2020',' ','02/01/2021','25/12/2020','27/12/2020',0,'Rất vui vẻ và này nọ');
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
@@ -310,7 +310,7 @@ values('ZTjDhggXqJTMnh16','Party giáng sinh','01/12/2020',' ','25/12/2020','20/
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
 values('ZTjDhggXqJTMnh17','Phát thưởng cuối năm','01/12/2020',' ','30/12/2020','23/12/2020','25/12/2020',0,'Rất vui vẻ và này nọ');
 
--------------- poll-user table (id_user dựa theo 7 đứa đầu tiên sẽ làm host.)
+-------------- poll-user table (id_user dựa theo 7 đứa đầu tiên sẽ làm host, m ngó vô database coi thêm bn user r.)
 Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh11',11,'invitee');
 Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh12',11,'invitee');
 Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh13',11,'invitee');
@@ -319,5 +319,72 @@ Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh15',11,'i
 Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh16',11,'invitee');
 Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnh17',11,'invitee');
 
------------ Schedule table
+------------- Schedule table
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('08/12/2020','5:00','8:00','ZTjDhggXqJTMnh11');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('08/12/2020','15:00','18:00','ZTjDhggXqJTMnh11');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('09/12/2020','5:00','8:00','ZTjDhggXqJTMnh11');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('09/12/2020','15:00','18:00','ZTjDhggXqJTMnh11');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('10/12/2020','5:00','8:00','ZTjDhggXqJTMnh11');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('10/12/2020','15:00','18:00','ZTjDhggXqJTMnh11');
 
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('09/12/2020','7:00','9:00','ZTjDhggXqJTMnh12');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('10/12/2020','7:00','9:00','ZTjDhggXqJTMnh12');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('11/12/2020','15:00','17:00','ZTjDhggXqJTMnh12');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('12/12/2020','15:00','17:00','ZTjDhggXqJTMnh12');
+
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('29/12/2020','17:00','20:00','ZTjDhggXqJTMnh13');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('29/12/2020','19:00','22:00','ZTjDhggXqJTMnh13');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('30/12/2020','17:00','20:00','ZTjDhggXqJTMnh13');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('30/12/2020','19:00','22:00','ZTjDhggXqJTMnh13');
+
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('27/12/2020','17:00','20:00','ZTjDhggXqJTMnh14');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('27/12/2020','19:00','22:00','ZTjDhggXqJTMnh14');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('28/12/2020','13:00','17:00','ZTjDhggXqJTMnh14');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('28/12/2020','18:00','21:00','ZTjDhggXqJTMnh14');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('28/12/2020','19:00','22:00','ZTjDhggXqJTMnh14');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('29/12/2020','17:00','21:00','ZTjDhggXqJTMnh14');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('29/12/2020','19:00','23:00','ZTjDhggXqJTMnh14');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('30/12/2020','19:00','23:00','ZTjDhggXqJTMnh14');
+
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('29/12/2020','17:00','20:00','ZTjDhggXqJTMnh15');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('29/12/2020','19:00','23:00','ZTjDhggXqJTMnh15');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('30/12/2020','18:00','21:00','ZTjDhggXqJTMnh15');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('02/01/2021','18:00','21:00','ZTjDhggXqJTMnh15');
+
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('24/12/2020','17:00','21:00','ZTjDhggXqJTMnh16');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('25/12/2020','18:00','22:00','ZTjDhggXqJTMnh16');
+
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('28/12/2020','17:00','19:00','ZTjDhggXqJTMnh17');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('29/12/2020','17:00','19:00','ZTjDhggXqJTMnh17');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('30/12/2020','16:00','18:00','ZTjDhggXqJTMnh17');
