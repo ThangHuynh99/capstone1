@@ -221,6 +221,7 @@ export default class Example extends React.Component {
       )
     })
     return (
+      <>
       <div className="justify-center">
         <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
           <Link to='/'>
@@ -287,6 +288,7 @@ export default class Example extends React.Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

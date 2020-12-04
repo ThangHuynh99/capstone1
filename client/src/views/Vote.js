@@ -288,6 +288,7 @@ class Vote extends React.Component {
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             This is an alert box.
           </div>
+          <ChatRoom></ChatRoom>
             </>
 
         );
