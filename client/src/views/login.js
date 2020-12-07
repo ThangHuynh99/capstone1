@@ -15,6 +15,7 @@ class Login extends Component {
   }
   Login1 = (e) => {
     e.preventDefault();
+    if(this.myFunction()==true){
     var message = document.getElementById('error');
     const users = {
       user_email: this.state.email,
@@ -57,6 +58,7 @@ class Login extends Component {
       .catch(error => {
         console.log(error)
       })
+    }
   }
   handleEmail = (e) => {
     this.setState({ email: e.target.value })
@@ -64,6 +66,33 @@ class Login extends Component {
   handlePassword = (e) => {
     this.setState({ password: e.target.value })
   }
+  // myFunction = () => {
+  //   var username = document.getElementById("inputEmail4").value;
+  //   var password = document.getElementById("inputPassword4").value;
+  //   var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   // Tối thiểu tám ký tự, ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt
+  //   var pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  //   var thongbao = document.getElementById("thongbao");
+  //   var saimatkhau = document.getElementById("saimatkhau");
+  //   var saimk = document.getElementById("saimk");
+  //   if (username == null || username == "") {
+  //     thongbao.style.display = "block";
+  //     return false;
+  //   }
+  //   if (!filter.test(username)) {
+  //     thongbao.style.display = "block";
+  //     return false;
+  //   }
+  //   if (password == null || password == "") {
+  //     saimatkhau.style.display = "block";
+  //     return false;
+  //   }
+  //   if (!pass.test(password)) {
+  //     saimk.style.display = "block";
+  //     return false;
+  //   }
+  //   return true;
+  // }
   render() {
     return (
       <div className="bgr">
@@ -115,7 +144,13 @@ class Login extends Component {
               <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
                 <input type="email" className="form-control mt-4 mb-5
                         text-center" id="inputEmail4" placeholder="Email" onChange={this.handleEmail} />
+                {/* <small id="thongbao" class="pb-3" style="display: none; color: #db3329d1;">
+                  Email trống hoặc không hợp lệ vui lòng nhập lại Email </small> */}
                 <input type="password" className="form-control text-center" id="inputPassword4" placeholder="Password" onChange={this.handlePassword} />
+                {/* <small id="saimatkhau" class="pb-3"
+                  style="display: none; color: #db3329d1;"> mật khẩu trống vui lòng nhập lại mật khẩu </small>
+                <small id="saimk" class="pb-3" style="display: none; color: #db3329d1;"> mật
+                khẩu không hợp lệ vui lòng nhập lại mật khẩu (Mật khẩu bao gồm 8 kí tự có chữ in hoa số và kí tự đặt biệt) </small> */}
                 <div className="error-group">
                   <span htmlFor="error" id="error" className="error"></span>
                 </div>

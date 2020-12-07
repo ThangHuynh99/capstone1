@@ -10,31 +10,45 @@ const pool = new Pool({
 const voting = (req, res) => {
     const { poll_id } = req.body;
     console.log(poll_id)
-    pool.query('select * from schedule where poll_id=$1', [poll_id], (error, result) => {
+    pool.query("select * from poll where poll_id=$1", [poll_id], (error, result) => {
         if (error)
-            throw error;
+            throw error
         else {
-            const dataSchedule = result;
-            pool.query('select users.* from users, poll_user where poll_id=$1 and users.users_id=poll_user.users_id', [poll_id], (error, result) => {
+            const dataPoll=result.rows
+            pool.query('select * from schedule where poll_id=$1', [poll_id], (error, result) => {
                 if (error)
-                    throw error
+                    throw error;
                 else {
-                    const dataUser = result;
-                    pool.query('Select Vote.* from Vote,Schedule where poll_id=$1 and Vote.schedule_id=Schedule.schedule_id', [poll_id], (error, result) => {
+                    const dataSchedule = result;
+                    pool.query('select users.* from users, poll_user where poll_id=$1 and users.users_id=poll_user.users_id', [poll_id], (error, result) => {
                         if (error)
-                            throw error;
+                            throw error
                         else {
-                            const data = processData(result.rows, dataUser, dataSchedule);
-                            console.log(data)
-                            res.status(201).send({ data, dataSchedule })
+                            const dataUser = result;
+                            pool.query('Select Vote.* from Vote,Schedule where poll_id=$1 and Vote.schedule_id=Schedule.schedule_id', [poll_id], (error, result) => {
+                                if (error)
+                                    throw error;
+                                else {
+                                    const data = processData(result.rows, dataUser, dataSchedule);
+                                    console.log(data)
+                                    res.status(201).send({ data, dataSchedule,dataPoll })
+                                }
+                            })
                         }
                     })
+
                 }
             })
-
         }
     })
 }
+// const pollData =(poll_id)=>{
+//     pool.query('Select * from poll where poll_id=$1',[poll_id],(error,result)=>{
+//         if(error)
+//         throw error;
+
+//     })
+// }
 const processData = (result, dataUser, dataSchedule) => {
     let user = new Array();
     for (let i = 0; i < dataUser.rowCount; i++) {
@@ -124,28 +138,18 @@ const deleteUser = (req, res) => {
         })
     res.status(400).send("complete")
 }
-// const deletePU = (poll_id, user_id) => {
-//     pool.query('delete from poll_user where poll_id=$1 and users_id=$2',
-//         [poll_id, user_id],
-//         (error, result) => {
-//             if (error)
-//                 throw error;
-//             else {
-//                 console.log(result)
-//                 return true;
-//             }
-//         })
-// }
-// const deleteVote = (poll_id, user_id) => {
-//     pool.query('delete from vote,schedule where poll_id=$1 and schedule.schedule_id=vote.schedule_id and vote.users_id=$2',
-//         [poll_id, user_id],
-//         (error, result) => {
-//             if (error)
-//                 throw error;
-//             else {
-//                 console.log(result)
-//                 return true;
-//             }
-//         })
-// }
-module.exports = { voting, submitVote, deleteUser };
+const FinalOption = (req, res) => {
+    const { poll_id } = req.body
+    console.log(poll_id)
+    const poll_status = 0
+    pool.query('Update poll set poll_status = $1 where poll_id=$2 ',
+        [poll_status, poll_id],
+        (error, result) => {
+            if (error)
+                throw error;
+            else if (result.rowCount >= 1) {
+                res.status(201).send("Complete")
+            }
+        })
+}
+module.exports = { voting, submitVote, deleteUser, FinalOption };

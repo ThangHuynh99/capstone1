@@ -56,6 +56,7 @@ app.post('/invite',invite.invite)
 app.get('/viewuser',view.ViewUser)
 app.get('/viewpoll',view.ViewPoll)
 app.post('/schedule',schedule.Schedule)
+app.post('/vote/finaloption',voting.FinalOption)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });

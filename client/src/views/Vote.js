@@ -13,12 +13,15 @@ class Vote extends React.Component {
             pu_role: sessionStorage["pu_role"],
             schedule: [],
             data: [],
-            email: ""
+            poll:[],
+            email: "",
+            poll_status:""
         }
         this.submitVote = this.submitVote.bind(this)
         this.invite = this.invite.bind(this)
         this.componentDidMount = this.componentDidMount(this)
         // this.deleteUser=this.deleteUser.bind(this)
+        this.finalOption = this.finalOption.bind(this)
     }
     componentDidMount() {
         const poll_id = this.state.poll_id;
@@ -32,10 +35,11 @@ class Vote extends React.Component {
         })
             .then(response => response.json())
             .then(result => {
-                const { data, dataSchedule } = result
+                const { data, dataSchedule,dataPoll } = result
                 this.setState({
                     data: data,
                     schedule: dataSchedule.rows,
+                    poll:dataPoll,
                 })
             })
     }
@@ -116,15 +120,40 @@ class Vote extends React.Component {
                     .then(result => {
                         if (result === "complete")
                             console.log("Xong rồi nha")
+                        window.location.reload(false);
                     })
             }
         })
 
     }
+    finalOption() {
+        const poll_id = this.state.poll_id;
+        // console.log(poll_id)
+        fetch('http://localhost:3001/vote/finaloption', {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ poll_id })
+        })
+            .then(res => res.text())
+            .then(result => {
+                if (result === "Complete"){
+                    // console.log("Xong rồi nha")
+                window.location.reload(false);
+                }
+            })
+    }
+
     render() {
-        console.log(this.state.data)
-        console.log(this.state.schedule)
-        console.log(this.state.pu_role)
+        console.log(this.state.poll)
+        // const data=this.state.poll
+        // console.log(data.poll_status)
+        // console.log(this.state.data)
+        // console.log(this.state.schedule)
+        // console.log(this.state.data.length)
+        // console.log(this.state.pu_role)
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} />
         })
@@ -196,6 +225,7 @@ class Vote extends React.Component {
                             </div>
                         </div></nav>
                     <nav style={{ backgroundColor: '#45505e' }} className="nav justify-content-center">
+                        <button id='bntFinal' type='button'  onClick={this.finalOption}> <a style={{ color: 'green' }} className="nav-link active">Choose final option</a></button>
                         <a style={{ color: 'white' }} className="nav-link active" href="#">Edit</a>
                         <a style={{ color: 'white' }} className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             More
@@ -236,34 +266,52 @@ class Vote extends React.Component {
                             <button type="submit" className="btn btn-primary" onClick={this.invite} >Send</button>
                         </div>
                     </div>
-                    <table style={{ margin: '0 auto' }} className="i-square i-full i-border mb-5">
-                        <tbody>
-                            <tr>
-                                <td style={{ width: '200px', height: '130px' }} />
-                                {schedule1}
-                                {/* <td style={{ width: '72px', height: '130px', textAlign: 'center' }} className="date">Nov
+                    <div className="scroll">
+                        <table style={{ margin: '0 auto' }} className="i-square i-full i-border mb-5">
+                            <tbody>
+                                <tr>
+                                    <td style={{ width: '200px', height: '130px' }} />
+                                    {schedule1}
+                                    {/* <td style={{ width: '72px', height: '130px', textAlign: 'center' }} className="date">Nov
                             5
                             THU
                             8:00 AM
                             8:30 AM
                             </td> */}
-                            </tr>
-                            <tr>
-                                <td>{this.state.data.length} participants <i style={{ float: 'right' }} className="fas fa-plus pr-2" /></td>
-                                <td style={{ textAlign: 'center' }}>
-                                    <p>0/1</p>
-                                </td>
-                            </tr>
-                            {users}
-                            {/* <tr>
+                                </tr>
+                                <tr>
+                                    <td>{this.state.data.length} participants <i style={{ float: 'right' }} className="fas fa-plus pr-2" /></td>
+                                    <td style={{ textAlign: 'center' }}>
+                                        <p>0/1</p>
+                                        {/* {this.state.data.map(element => {
+                                            
+                                            element.data1(element1=>{
+
+                                            })
+                                            return (
+                                                
+                                             ) }
+                                        )} */}
+                                    </td>
+                                </tr>
+                                {users}
+                                {/* <tr>
                             <td>Thang Huynh<i style={{ float: 'right' }} className="fas fa-pen pr-2" /></td>
                             <td>
                                 <p>0/1</p>
                             </td>
                         </tr> */}
-                        </tbody>
-                    </table>
-                    <button onClick={this.submitVote} style={{ marginLeft: "570px" }}>submit</button>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12 text-right mb-3 ">
+                                <button className="btn btn-primary  p-2" onClick={this.submitVote}>submit</button>
+
+                            </div>
+                        </div>
+                    </div>
                     <div className="footer pt-3 pb-3">
                         <nav className="nav justify-content-center">
                             <a className="nav-link active" href="#">Team</a>
@@ -284,11 +332,7 @@ class Vote extends React.Component {
                         </nav>
                     </div>
                 </div>
-                <div class="alert">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            This is an alert box.
-          </div>
-          <ChatRoom></ChatRoom>
+                <ChatRoom></ChatRoom>
             </>
 
         );

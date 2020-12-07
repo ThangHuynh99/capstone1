@@ -18,3 +18,9 @@ table.i-border, table.i-border th, table.i-border td {
     text-align: center;
     font-weight: 700;
 }
+
+.scroll {
+   
+    overflow-x: scroll;
+    margin: 0 auto;
+  }

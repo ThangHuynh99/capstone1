@@ -1,145 +1,6 @@
-.Container {
-    display: flex;
-    padding: 10px;
-  }
-    
-  .UsersCard {
-    margin: 5px 20px;
-  }
-    
-  footer.StickyFooter {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    background-color: #ffffff;
-    border-top: solid 1px #efefef;
-  }
-    
-  .MessageForm {
-    margin-left: 10px;
-  }
-    
-  .MessageBox {
-    float: left;
-    width: 98%;
-    margin: 5px 0 0 2%;
-  }
-    
-  .MessageBox .ChatMessage {
-    width: 80%;
-    min-height: 40px;
-  }
-    
-  .MessageBox .ChatMessage .RightBubble {
-    position: relative;
-    background: #dcf8c6;
-    border-top-left-radius: .4em;
-    border-bottom-left-radius: .4em;
-    border-bottom-right-radius: .4em;
-    padding: 5px 10px 10px;
-    left: 15%;
-  }
-    
-  .MessageBox .ChatMessage .RightBubble span.MsgName {
-    font-size: 12px;
-    font-weight: bold;
-    color: green;
-  }
-  .MessageBox .ChatMessage .RightBubble span.MsgDate {
-    font-size: 10px;
-  }
-    
-  .MessageBox .ChatMessage .RightBubble:after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 13px;
-    width: 0;
-    height: 0;
-    border: 27px solid transparent;
-    border-left-color: #dcf8c6;
-    border-right: 0;
-    border-top: 0;
-    margin-top: -13.5px;
-    margin-right: -27px;
-  }
-  .MessageBox .ChatMessage .LeftBubble {
-    position: relative;
-    background: lightblue;
-    border-top-right-radius: .4em;
-    border-bottom-left-radius: .4em;
-    border-bottom-right-radius: .4em;
-    padding: 5px 10px 10px;
-    left: 5%;
-  }
-  .MessageBox .ChatMessage .LeftBubble span.MsgName {
-    font-size: 12px;
-    font-weight: bold;
-    color: blue;
-  }
-  .MessageBox .ChatMessage .LeftBubble span.MsgDate {
-    font-size: 10px;
-  }
-  .MessageBox .ChatMessage .LeftBubble:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 13px;
-    width: 0;
-    height: 0;
-    border: 27px solid transparent;
-    border-right-color: lightblue;
-    border-left: 0;
-    border-top: 0;
-    margin-top: -13.5px;
-    margin-left: -27px;
-  }
-    
-  .MessageBox .ChatStatus {
-    min-height: 49px;
-  }
+/* 
   
-  .MessageBox .ChatStatus .ChatDate {
-    display: block;
-    font-size: 10px;
-    font-style: italic;
-    color: #777;
-    height: 15px;
-    left: 10%;
-    right:10%;
-  }
-    
-  .MessageBox .ChatStatus .ChatContentCenter {
-    padding: 5px 10px;
-    background-color: #e1e1f7;
-    border-radius: 6px;
-    font-size: 12px;
-    color: #555;
-    height: 34px;
-    left: 10%;
-    right:10%;
-  }
-  
-  .ChatContent {
-    overflow-y: scroll;
-    height: 600px;
-  }
-  .open-button {
-    background-color: #555;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    position: fixed;
-    bottom: 23px;
-    right: 28px;
-    width: 280px;
-  }
-  
-  /* The popup chat - hidden by default */
+  The popup chat - hidden by default
   .chat-popup {
     display: none;
     position: fixed;
@@ -149,14 +10,14 @@
     z-index: 9;
   }
   
-  /* Add styles to the form container */
+  Add styles to the form container
   .form-container {
     max-width: 300px;
     padding: 10px;
     background-color: white;
   }
   
-  /* Full-width textarea */
+  Full-width textarea
   .form-container textarea {
     width: 100%;
     padding: 15px;
@@ -167,13 +28,13 @@
     min-height: 200px;
   }
   
-  /* When the textarea gets focus, do something */
+  When the textarea gets focus, do something
   .form-container textarea:focus {
     background-color: #ddd;
     outline: none;
   }
   
-  /* Set a style for the submit/send button */
+  Set a style for the submit/send button
   .form-container .btn {
     background-color: #4CAF50;
     color: white;
@@ -185,12 +46,519 @@
     opacity: 0.8;
   }
   
-  /* Add a red background color to the cancel button */
+  Add a red background color to the cancel button
   .form-container .cancel {
     background-color: red;
   }
   
-  /* Add some hover effects to buttons */
+  Add some hover effects to buttons
   .form-container .btn:hover, .open-button:hover {
     opacity: 1;
+  }*/ 
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    
   }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    max-width: 314px;
+    right: -35%;
+  }
+  button#myBtn {
+    border: none;
+    background: transparent;
+    font-size: 40px;
+    box-shadow: none;
+    color: green;
+    outline: none;
+    position: fixed;
+    top: 90%;
+    right:5%;
+}
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    background-color: red;
+    opacity: 1;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 2;
+    background-color: red;
+
+  }
+  .scroll {
+    height: 400px;
+    overflow-x: auto;
+    margin: 0 auto;
+    padding: 10px;
+}
+  @import url(https://fonts.googleapis.com/css?family=Oswald:400,300);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body
+{
+    font-family: 'Open Sans', sans-serif;
+    }
+.popup-box {
+   background-color: #ffffff;
+    border: 1px solid #b0b0b0;
+    bottom: 0;
+    /* display: none; */
+    height: 415px;
+    position: fixed;
+    right: 70px;
+    width: 300px;
+    font-family: 'Open Sans', sans-serif;
+}
+.round.hollow {
+    margin: 40px 0 0;
+}
+.round.hollow a {
+    border: 2px solid #ff6701;
+    border-radius: 35px;
+    color: red;
+    color: #ff6701;
+    font-size: 23px;
+    padding: 10px 21px;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+.round.hollow a:hover {
+    border: 2px solid #000;
+    border-radius: 35px;
+    color: red;
+    color: #000;
+    font-size: 23px;
+    padding: 10px 21px;
+    text-decoration: none;
+}
+/* .popup-box-on {
+    display: block !important;
+} */
+.popup-box .popup-head {
+    background-color: #fff;
+    clear: both;
+    color: #7b7b7b;
+    display: inline-table;
+    font-size: 21px;
+    padding: 7px 10px;
+    width: 100%;
+     font-family: Oswald;
+}
+.bg_none i {
+    border: 1px solid #ff6701;
+    border-radius: 25px;
+    color: #ff6701;
+    font-size: 17px;
+    height: 33px;
+    line-height: 30px;
+    width: 33px;
+}
+.bg_none:hover i {
+    border: 1px solid #000;
+    border-radius: 25px;
+    color: #000;
+    font-size: 17px;
+    height: 33px;
+    line-height: 30px;
+    width: 33px;
+}
+.bg_none {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+}
+.popup-box .popup-head .popup-head-right {
+    margin: 11px 7px 0;
+}
+.popup-head{
+
+    background-color: red;
+    margin: 0px;
+
+
+}
+.modal-content{
+    padding: 0;
+}
+.popup-head-left.pull-left.text-left {
+    padding: 10px;
+}
+.popup-head-left img {
+    border: 1px solid #7b7b7b;
+    border-radius: 50%;
+    width: 44px;
+}
+.popup-messages-footer > textarea {
+    border-bottom: 1px solid #b2b2b2 !important;
+    height: 34px !important;
+    margin: 7px;
+    padding: 5px !important;
+     border: medium none;
+    width: 95% !important;
+}
+.popup-messages-footer {
+    background: #fff none repeat scroll 0 0;
+    bottom: 0;
+  
+    margin: 0;
+    width: 100%;
+    padding: 0;
+}
+.popup-messages-footer .btn-footer {
+    overflow: hidden;
+    padding: 2px 5px 10px 6px;
+    width: 100%;
+}
+.simple_round {
+    background: #d1d1d1 none repeat scroll 0 0;
+    border-radius: 50%;
+    color: #4b4b4b !important;
+    height: 21px;
+    padding: 0 0 0 1px;
+    width: 21px;
+}
+.popup-box .popup-messages {
+    background: #3f9684 none repeat scroll 0 0;
+    height: 275px;
+    overflow: auto;
+}
+.direct-chat-messages {
+    overflow: auto;
+
+    transform: translate(0px, 0px);
+    
+}
+.popup-messages .chat-box-single-line {
+    border-bottom: 1px solid #a4c6b5;
+    height: 12px;
+    margin: 7px 0 20px;
+    position: relative;
+    text-align: center;
+}
+.popup-messages abbr.timestamp {
+    background: #3f9684 none repeat scroll 0 0;
+    color: #fff;
+    padding: 0 11px;
+}
+
+.popup-head-right .btn-group {
+    display: inline-flex;
+	margin: 0 8px 0 0;
+	vertical-align: top !important;
+}
+.chat-header-button {
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #636364;
+    border-radius: 50%;
+    font-size: 14px;
+    height: 30px;
+    width: 30px;
+}
+.popup-head-right .btn-group .dropdown-menu {
+    border: medium none;
+    min-width: 122px;
+	padding: 0;
+}
+.popup-head-right .btn-group .dropdown-menu li a {
+    font-size: 12px;
+    padding: 3px 10px;
+	color: #303030;
+}
+
+.popup-messages abbr.timestamp {
+    background: #3f9684  none repeat scroll 0 0;
+    color: #fff;
+    padding: 0 11px;
+}
+.popup-messages .chat-box-single-line {
+    border-bottom: 1px solid #a4c6b5;
+    height: 12px;
+    margin: 7px 0 20px;
+    position: relative;
+    text-align: center;
+}
+.popup-messages .direct-chat-messages {
+    height: auto;
+}
+.popup-messages .direct-chat-text {
+    background: #dfece7 none repeat scroll 0 0;
+    border: 1px solid #dfece7;
+    border-radius: 2px;
+    color: #1f2121;
+}
+
+.popup-messages .direct-chat-timestamp {
+    color: #fff;
+    opacity: 0.6;
+}
+
+.popup-messages .direct-chat-name {
+	font-size: 15px;
+	font-weight: 600;
+	margin: 0 0 0 49px !important;
+	color: #fff;
+	opacity: 0.9;
+}
+.popup-messages .direct-chat-info {
+    /* display: block; */
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.popup-messages  .big-round {
+    margin: -9px 0 0 !important;
+}
+.popup-messages  .direct-chat-img {
+    border: 1px solid #fff;
+	background: #3f9684  none repeat scroll 0 0;
+    border-radius: 50%;
+    float: left;
+    height: 40px;
+    margin: -21px 0 0;
+    width: 40px;
+}
+.direct-chat-reply-name {
+    color: #fff;
+    font-size: 15px;
+    margin: 0 0 0 10px;
+    opacity: 0.9;
+}
+
+.direct-chat-img-reply-small
+{
+    border: 1px solid #fff;
+    border-radius: 50%;
+    float: left;
+    height: 20px;
+    margin: 0 8px;
+    width: 20px;
+	background:#3f9684;
+}
+
+.popup-messages .direct-chat-msg {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.popup-messages .doted-border::after {
+	background: transparent none repeat scroll 0 0 !important;
+    border-right: 2px dotted #fff !important;
+	bottom: 0;
+    content: "";
+    left: 17px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 2px;
+	 display: inline;
+	  z-index: -2;
+}
+
+.popup-messages .direct-chat-msg::after {
+    background: #fff none repeat scroll 0 0;
+    border-right: medium none;
+    bottom: 0;
+    content: "";
+    left: 17px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    width: 2px;
+	 display: inline;
+	  z-index: -2;
+}
+.direct-chat-text::after, .direct-chat-text::before {
+   
+    border-color: transparent #dfece7 transparent transparent;
+    
+}
+.direct-chat-text::after, .direct-chat-text::before {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: transparent #d2d6de transparent transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: medium;
+    content: " ";
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 100%;
+    top: 15px;
+    width: 0;
+}
+.direct-chat-text::after {
+    border-width: 5px;
+    margin-top: -5px;
+}
+.popup-messages .direct-chat-text {
+    background: #dfece7 none repeat scroll 0 0;
+    border: 1px solid #dfece7;
+    border-radius: 2px;
+    color: #1f2121;
+}
+.direct-chat-text {
+    background: #d2d6de none repeat scroll 0 0;
+    border: 1px solid #d2d6de;
+    border-radius: 5px;
+    color: #444;
+    margin: 5px 0 0 50px;
+    padding: 5px 10px;
+    position: relative;
+}
+.MessageBox .ChatMessage .RightBubble span.MsgName {
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+}
+.MessageBox .ChatMessage .RightBubble span.MsgDate {
+  font-size: 10px;
+}
+.Container {
+  display: flex;
+  padding: 10px;
+}
+  
+.UsersCard {
+  margin: 5px 20px;
+}
+  
+footer.StickyFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  border-top: solid 1px #efefef;
+}
+  
+.MessageForm {
+  margin-left: 10px;
+}
+  
+.MessageBox {
+  float: left;
+  width: 98%;
+  margin: 5px 0 0 2%;
+}
+  
+.MessageBox .ChatMessage {
+  width: 80%;
+  min-height: 40px;
+}
+  
+.MessageBox .ChatMessage .RightBubble {
+  position: relative;
+  background: #dcf8c6;
+  border-top-left-radius: .4em;
+  border-bottom-left-radius: .4em;
+  border-bottom-right-radius: .4em;
+  padding: 5px 10px 10px;
+  left: 15%;
+}
+  
+.MessageBox .ChatMessage .RightBubble span.MsgName {
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+}
+.MessageBox .ChatMessage .RightBubble span.MsgDate {
+  font-size: 10px;
+}
+  
+.MessageBox .ChatMessage .RightBubble:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 13px;
+  width: 0;
+  height: 0;
+  border: 27px solid transparent;
+  border-left-color: #dcf8c6;
+  border-right: 0;
+  border-top: 0;
+  margin-top: -13.5px;
+  margin-right: -27px;
+}
+.MessageBox .ChatMessage .LeftBubble {
+  position: relative;
+  background: lightblue;
+  border-top-right-radius: .4em;
+  border-bottom-left-radius: .4em;
+  border-bottom-right-radius: .4em;
+  padding: 5px 10px 10px;
+  left: 5%;
+}
+.MessageBox .ChatMessage .LeftBubble span.MsgName {
+  font-size: 12px;
+  font-weight: bold;
+  color: blue;
+}
+.MessageBox .ChatMessage .LeftBubble span.MsgDate {
+  font-size: 10px;
+}
+.MessageBox .ChatMessage .LeftBubble:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 0;
+  height: 0;
+  border: 27px solid transparent;
+  border-right-color: lightblue;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -13.5px;
+  margin-left: -27px;
+}
+
+.MessageBox .ChatStatus {
+  min-height: 49px;
+}
+
+.MessageBox .ChatStatus .ChatDate {
+  display: block;
+  font-size: 10px;
+  font-style: italic;
+  color: #777;
+  height: 15px;
+  left: 10%;
+  right:10%;
+}
+  
+.MessageBox .ChatStatus .ChatContentCenter {
+  padding: 5px 10px;
+  background-color: #e1e1f7;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #555;
+  height: 34px;
+  left: 10%;
+  right:10%;
+}
+
+.ChatContent {
+  overflow-y: scroll;
+  height: 600px;
+}

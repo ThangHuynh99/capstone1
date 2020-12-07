@@ -36,7 +36,7 @@ export default class Example extends React.Component {
   //     title: title,
   //     location: location,
   //     note: note
-  //   })s
+  //   })
   // }
   save = (poll_id) => {
     // e.preventDefault();
@@ -288,6 +288,7 @@ export default class Example extends React.Component {
           </div>
         </div>
       </div>
+      
       </>
     );
   }

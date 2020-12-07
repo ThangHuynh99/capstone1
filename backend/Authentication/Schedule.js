@@ -10,7 +10,8 @@ const pool = new Pool({
 const Schedule = (req, res) => {
     const { users_id, title, location, note, schedule } = req.body;
     const poll_id = ramdom.generate(4) + ramdom.generate(4) + ramdom.generate(4) + ramdom.generate(4);
-    pool.query('Insert into poll (poll_id,poll_title,poll_location,poll_note) values  ($1,$2,$3,$4)', [poll_id, title, location, note],
+    const poll_status=1
+    pool.query('Insert into poll (poll_id,poll_title,poll_location,poll_note,poll_status) values  ($1,$2,$3,$4,$5)', [poll_id, title, location, note,poll_status],
         (error, result) => {
             if (error) {
                 console.log("Error : ", error);
