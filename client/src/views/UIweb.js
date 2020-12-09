@@ -152,7 +152,7 @@ class UIweb extends React.Component {
                   Tạo cuộc họp</a></button> */}
 
               <Link to={sessionStorage["users_email"] ? '/create' : '/login'}>
-                <button className="meeting">
+                <button className="meeting pl-2 pr-2">
                   <h5 style={{ color: 'white' }}>+ Create a poll </h5>
                 </button>
               </Link>
@@ -177,7 +177,7 @@ class UIweb extends React.Component {
                 <br />
                 <div className="text-center">
                   <Link to={sessionStorage["email"] ? '/create' : '/login'}>
-                    <button className="meeting">
+                    <button className="meeting pl-2 pr-2 ">
                       <h5 style={{ color: 'white' }}>+ Create a poll </h5>
                     </button>
                   </Link>

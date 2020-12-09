@@ -5,6 +5,7 @@ import Schedule from './Schedule'
 // import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import ChatRoom from './ChatRoom';
+import UserInfo from './UserInfo'
 class Vote extends React.Component {
     constructor(props) {
         super(props)
@@ -13,9 +14,12 @@ class Vote extends React.Component {
             pu_role: sessionStorage["pu_role"],
             schedule: [],
             data: [],
-            poll:[],
+            poll: [],
+            vote: [],
+            date: [],
             email: "",
-            poll_status:""
+            poll_status: "",
+            schedule_finish: ""
         }
         this.submitVote = this.submitVote.bind(this)
         this.invite = this.invite.bind(this)
@@ -35,12 +39,42 @@ class Vote extends React.Component {
         })
             .then(response => response.json())
             .then(result => {
-                const { data, dataSchedule,dataPoll } = result
+                const { data, dataSchedule, dataPoll, dataDate } = result
+                console.log(dataDate)
                 this.setState({
                     data: data,
                     schedule: dataSchedule.rows,
-                    poll:dataPoll,
+                    poll: dataPoll,
+                    date: dataDate
                 })
+                let max = 0;
+                let index = 0;
+                const dataVote = new Array()
+                for (let i = 0; i < data[0].data1.length; i++) {
+                    let count = 0
+                    for (let j = 0; j < data.length; j++) {
+                        // console.log("------------------" + i + "------------------" + j + "---------")
+                        // console.log(data[j].data1[i])
+                        if (data[j].data1[i].vote_status.toString() === '1')
+                            count++;
+                    }
+                    if (max < count) {
+                        // console.log("------"+i+"------------")
+                        index = i;
+                        max = count
+                    }
+                    // console.log(count)
+                    dataVote.push(count)
+                }
+                this.setState({ vote: dataVote, schedule_finish: index })
+                if (this.state.poll.poll_status.toString() === '0') {
+                    document.getElementById("bntFinal").disabled = 'disabled'
+                    document.getElementById("bntSubmit").disabled = 'disabled'
+                    if (this.state.pu_role === 'host') {
+                        document.getElementById("bntSend").disabled = 'disabled'
+                    }
+                }
+                // console.log(dataVote)
             })
     }
     handleEmail = (e) => {
@@ -53,23 +87,24 @@ class Vote extends React.Component {
             user: dataUsers[i],
             poll_id: this.state.poll_id
         }
-        fetch('http://localhost:3001/deleteuser', {
-            method: "DELETE",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.text())
-            .then(result => {
-                if (result === "complete") {
-                    console.log(result)
-                    console.log("Xóa thành công")
-                    window.location.reload(false);
-                    // this.componentDidMount();
-                }
+        if (window.confirm('Do you want to delete ' + dataUsers[i].user_name + ' ?')) {
+            fetch('http://localhost:3001/deleteuser', {
+                method: "DELETE",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
             })
+                .then(res => res.text())
+                .then(result => {
+                    if (result === "complete") {
+                        console.log(result)
+                        console.log("Xóa thành công")
+                        window.location.reload(false);
+                    }
+                })
+        }
     }
     invite() {
         const invite = ({
@@ -89,7 +124,7 @@ class Vote extends React.Component {
             .then(res => res.text())
             .then(result => {
                 if (result === "Complete") {
-                    console.log(" Thành công ")
+                    // console.log(" Thành công ")
                     window.location.reload(false);
                     // this.componentDidMount();
                 }
@@ -139,28 +174,27 @@ class Vote extends React.Component {
         })
             .then(res => res.text())
             .then(result => {
-                if (result === "Complete"){
+                if (result === "Complete") {
                     // console.log("Xong rồi nha")
-                window.location.reload(false);
+                    window.location.reload(false);
                 }
             })
     }
 
     render() {
-        console.log(this.state.poll)
-        // const data=this.state.poll
-        // console.log(data.poll_status)
-        // console.log(this.state.data)
-        // console.log(this.state.schedule)
-        // console.log(this.state.data.length)
-        // console.log(this.state.pu_role)
+        // console.log(this.state.poll.poll_option)
         let schedule1 = this.state.schedule.map((schedule, i) => {
-            return <Schedule key={i} schedule={schedule} />
+            return <Schedule key={i} schedule={schedule} date={this.state.date[i]} />
         })
         let users = this.state.data.map((data, i) => {
             let data1 = data.data1.map((element, j) => {
                 return (<td key={j} className="value" width="72px">
-                    <input disabled={data.user_id.toString() === sessionStorage["users_id"] ? null : 'disabled'} onClick={this.vote.bind(this, i, j)} name="chkVote" type="checkbox" checked={element.vote_status === 1 ? true : false} ></input>
+                    <input disabled={this.state.poll.poll_status.toString() === '0' ? 'disabled' : data.user_id.toString() === sessionStorage["users_id"] ? null : 'disabled'}
+                        onClick={this.vote.bind(this, i, j)}
+                        name="chkVote"
+                        type="checkbox"
+                        checked={element.vote_status === 1 ? true : false} >
+                    </input>
                 </td>)
             })
             return (
@@ -169,6 +203,26 @@ class Vote extends React.Component {
                     {data1}
                 </tr>
             )
+        })
+        let users2 = this.state.data.map((data, i) => {
+            if (data.user_id.toString() === sessionStorage["users_id"]) {
+                let data1 = data.data1.map((element, j) => {
+                    return (<td key={j} className="value" width="72px">
+                        <input disabled={this.state.poll.poll_status.toString() === '0' ? 'disabled' : data.user_id.toString() === sessionStorage["users_id"] ? null : 'disabled'}
+                            onClick={this.vote.bind(this, i, j)}
+                            name="chkVote"
+                            type="checkbox"
+                            checked={element.vote_status === 1 ? true : false} >
+                        </input>
+                    </td>)
+                })
+                return (
+                    <tr key={i}>
+                        <td>{data.user_name} {this.state.pu_role === 'host' ? <i style={{ float: 'right' }} className="fas fa-trash pr-2" onClick={this.deleteUser.bind(this, i)} /> : null} </td>
+                        {data1}
+                    </tr>
+                )
+            }
         })
         return (
             <>
@@ -194,28 +248,9 @@ class Vote extends React.Component {
                                     <a className="nav-link" href="#">Pricing</a>
                                 </li>
                             </ul>
-                            <a className="navbar-brand ml-auto" href="#">
-                                <img src={require("../images/avt1.JPG")} width={50} height={50} style={{ borderRadius: '50%' }} className="d-inline-block
-                      align-top" alt="" loading="lazy" />
-                            </a>
-                            <li style={{ listStyle: 'none' }} className="nav-item dropdown">
-                                <div className="d-flex">
-                                    <div className="dropdown mr-1">
-                                        <button type="button" className="btn
-                              dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                                        </button>
-                                        <div className="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuOffset">
-                                            <a className="dropdown-item" href="#">Dashboard</a>
-                                            <a className="dropdown-item" href="#">Acount
-                Setting</a>
-                                            <a className="dropdown-item" href="#">Contact
-                Support</a>
-                                            <a className="dropdown-item" href="#">Log out</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            {/* Example single danger button */}
+                            <div>
+                                <UserInfo></UserInfo>
+                            </div>
                             <div className="btn-group">
                                 <Link to="/create">
                                     <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
@@ -224,90 +259,84 @@ class Vote extends React.Component {
                                 </Link>
                             </div>
                         </div></nav>
-                    <nav style={{ backgroundColor: '#45505e' }} className="nav justify-content-center">
-                        <button id='bntFinal' type='button'  onClick={this.finalOption}> <a style={{ color: 'green' }} className="nav-link active">Choose final option</a></button>
-                        <a style={{ color: 'white' }} className="nav-link active" href="#">Edit</a>
-                        <a style={{ color: 'white' }} className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More
+                    
+                        <nav style={{ backgroundColor: '#45505e' }} className="nav justify-content-center">
+                        {this.state.pu_role === 'host' ?
+                        <>
+                            <button id='bntFinal' type='button' onClick={this.finalOption}> <a style={{ color: 'green' }} className="nav-link active">Choose final option</a></button>
+                            <a style={{ color: 'white' }} className="nav-link active" href="#">Edit</a>
+                            <a style={{ color: 'white' }} className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                More
     </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a className="dropdown-item" href="#">Choose final option</a>
-                            <a className="dropdown-item" href="#">Export to PDF</a>
-                            <a className="dropdown-item" href="#">Export to Excel</a>
-                            <a className="dropdown-item" href="#">Print</a>
-                            <a className="dropdown-item" href="#">Duplicate poll</a>
-                            <a className="dropdown-item" href="#">Delete all participants</a>
-                            <a className="dropdown-item" href="#">Delete poll</a>
-                        </div>
-                    </nav>
-                    <h3 className="text-center mt-3">
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a className="dropdown-item" href="#">Choose final option</a>
+                                <a className="dropdown-item" href="#">Export to PDF</a>
+                                <a className="dropdown-item" href="#">Export to Excel</a>
+                                <a className="dropdown-item" href="#">Print</a>
+                                <a className="dropdown-item" href="#">Duplicate poll</a>
+                                <a className="dropdown-item" href="#">Delete all participants</a>
+                                <a className="dropdown-item" href="#">Delete poll</a>
+                            </div>
+                            </>
+                             : null}
+                        </nav>
+                       
+                    <h3 className="text-center mt-3" style={{textAlign:'center'}}>
                         {this.state.data.map(element => {
                             if (element.user_id.toString() === sessionStorage["users_id"]) {
                                 return (<td style={{ textAlign: "center" }}>{element.user_name}</td>)
                             }
                         })}
                     </h3>
-                    <div style={{ border: 'solid 1px', backgroundColor: '#f5fbff' }} className="m-5 p-3">
-                        <form className="mb-4 ">
-                            <div style={{ margin: '0 auto' }} className="col-md-8 mb-3">
-                                <div className="form-group">
-                                    <label htmlFor="exampleFormControlTextarea1" onChange={this.handleEmail}>Enter Email</label>
-                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} onChange={this.handleEmail} />
+                    {this.state.pu_role === 'host' ?
+                        <div style={{ border: 'solid 1px', backgroundColor: '#f5fbff' }} className="m-5 p-3">
+                            <form className="mb-4 ">
+                                <div style={{ margin: '0 auto' }} className="col-md-8 mb-3">
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlTextarea1" onChange={this.handleEmail}>Enter Email</label>
+                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows={3} defaultValue={""} onChange={this.handleEmail} />
+                                    </div>
                                 </div>
-                            </div>
-                            <div style={{ margin: '0 auto' }} className="col-md-8">
-                                <div className="form-group">
-                                    <label htmlFor="exampleFormControlTextarea1">Messenger</label>
-                                    <textarea className="form-control" id="exampleFormControlTextarea1 1" rows={3} defaultValue={""} />
+                                <div style={{ margin: '0 auto' }} className="col-md-8">
+                                    <div className="form-group">
+                                        <label htmlFor="exampleFormControlTextarea1">Messenger</label>
+                                        <textarea className="form-control" id="exampleFormControlTextarea1 1" rows={3} defaultValue={""} />
+                                    </div>
                                 </div>
+                            </form>
+                            <div style={{ margin: '0 auto' }} className="col-md-8 mb-4">
+                                <button id="bntSend" disabled="" type="submit" className="btn btn-primary" onClick={this.invite} >Send</button>
                             </div>
-                        </form>
-                        <div style={{ margin: '0 auto' }} className="col-md-8 mb-4">
-                            <button type="submit" className="btn btn-primary" onClick={this.invite} >Send</button>
                         </div>
-                    </div>
+                        : null}
                     <div className="scroll">
                         <table style={{ margin: '0 auto' }} className="i-square i-full i-border mb-5">
                             <tbody>
                                 <tr>
                                     <td style={{ width: '200px', height: '130px' }} />
                                     {schedule1}
-                                    {/* <td style={{ width: '72px', height: '130px', textAlign: 'center' }} className="date">Nov
-                            5
-                            THU
-                            8:00 AM
-                            8:30 AM
-                            </td> */}
                                 </tr>
                                 <tr>
                                     <td>{this.state.data.length} participants <i style={{ float: 'right' }} className="fas fa-plus pr-2" /></td>
-                                    <td style={{ textAlign: 'center' }}>
-                                        <p>0/1</p>
-                                        {/* {this.state.data.map(element => {
-                                            
-                                            element.data1(element1=>{
-
-                                            })
+                                    {
+                                        this.state.vote.map(element => {
                                             return (
-                                                
-                                             ) }
-                                        )} */}
-                                    </td>
+                                                <td style={{ textAlign: 'center' }}>
+                                                    <p>{element}/{this.state.data.length}</p>
+                                                </td>
+                                            )
+                                        })
+                                    }
                                 </tr>
-                                {users}
-                                {/* <tr>
-                            <td>Thang Huynh<i style={{ float: 'right' }} className="fas fa-pen pr-2" /></td>
-                            <td>
-                                <p>0/1</p>
-                            </td>
-                        </tr> */}
+                                {/* {users2} */}
+                                {this.state.pu_role === 'host' || this.state.poll.poll_option === 'public' ? users : users2}
                             </tbody>
                         </table>
                     </div>
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 text-right mb-3 ">
-                                <button className="btn btn-primary  p-2" onClick={this.submitVote}>submit</button>
+                                <button className="btn btn-primary  p-2" id="bntSubmit" disabled='' onClick={this.submitVote}>submit</button>
 
                             </div>
                         </div>

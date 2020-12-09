@@ -1,4 +1,5 @@
 const Pool = require('pg').Pool;
+var moment = require('moment');
 const ramdomString = require('randomstring')
 const pool = new Pool({
     user: 'postgres',
@@ -14,12 +15,22 @@ const voting = (req, res) => {
         if (error)
             throw error
         else {
-            const dataPoll=result.rows
+            const dataPoll = result.rows[0]
             pool.query('select * from schedule where poll_id=$1', [poll_id], (error, result) => {
                 if (error)
                     throw error;
                 else {
                     const dataSchedule = result;
+                    let dataDate = new Array()
+                    result.rows.forEach(element => {
+                        // console.log(element.schedule_date)
+                        let moment1 = moment(element.schedule_date.toString()).utcOffset(element.schedule_date.toString())
+                        console.log(moment1.format('DD/MM/YYYY'))
+                        const date1=({date:moment1.format('DD/MM/YYYY')})
+                        dataDate.push(date1)
+                        
+                    })
+                    console.log(dataDate)
                     pool.query('select users.* from users, poll_user where poll_id=$1 and users.users_id=poll_user.users_id', [poll_id], (error, result) => {
                         if (error)
                             throw error
@@ -31,7 +42,7 @@ const voting = (req, res) => {
                                 else {
                                     const data = processData(result.rows, dataUser, dataSchedule);
                                     console.log(data)
-                                    res.status(201).send({ data, dataSchedule,dataPoll })
+                                    res.status(201).send({ data, dataSchedule, dataPoll,dataDate })
                                 }
                             })
                         }

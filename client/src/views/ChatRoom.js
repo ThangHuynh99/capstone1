@@ -31,7 +31,8 @@ class ChatRoom extends React.Component {
             // newchat: [{ roomname: '', nickname: '', message: '', data: '', type: '' }],
             roomname: '',
             room: '',
-            message: ''
+            message: '',
+            inputVal_1:''
         }
         this.closeForm = this.closeForm.bind(this)
         this.openForm = this.openForm.bind(this)
@@ -115,7 +116,8 @@ class ChatRoom extends React.Component {
         const newMessage = firebase.database().ref('chats/').push();
         newMessage.set(chat);
 
-        this.setState({ message: '' })
+        this.setState({ message: ''})
+        e.target.reset();
     };
 
     onChange = (e) => {
@@ -160,7 +162,7 @@ class ChatRoom extends React.Component {
                     {/* <!-- Modal content --> */}
                     <div className="modal-content">
                         <span className="close text-right p-3 " onClick={this.closeForm}>&times;</span>
-                        <div className="scroll">
+                        <div className="scroll_mess">
                             <div className="popup-head">
                             </div>
                             {this.state.chats.map((item, idx) => (
@@ -172,9 +174,9 @@ class ChatRoom extends React.Component {
                                         {/* <!-- Message. Default to the left --> */}
                                         <div className="direct-chat-msg doted-border">
                                                                                        {/* <!-- /.direct-chat-info --> */}
-                                            <img alt="message user image"
+                                            {/* <img alt="message user image"
                                                 src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
-                                                class="direct-chat-img" />
+                                                class="direct-chat-img" /> */}
                                             {/* <!-- /.direct-chat-img --> */}
                                             {/* <div className="direct-chat-text">
                                         {item.message}
@@ -183,11 +185,7 @@ class ChatRoom extends React.Component {
                                                 {item.nickname === sessionStorage["users_name"] ?
                                                     <span className="MsgName">Me</span> : <span className="MsgName">{item.nickname}</span>
                                                 }
-                                                <span className="MsgDate"> at {item.date}</span>
                                                 <p>{item.message}</p>
-                                            </div>
-                                            <div className="direct-chat-info clearfix">
-                                                <span className="direct-chat-timestamp pull-right">3.36 PM</span>
                                             </div>
                                             
                                             {/* <!-- /.direct-chat-text --> */}
@@ -195,10 +193,12 @@ class ChatRoom extends React.Component {
                                     </div>
                                 </div>
                             ))}
-                            <div className="popup-messages-footer">
+                            
+                        </div>
+                        <div style ={{"position":"sticky"}} className="popup-messages-footer">
                                 <Form className="MessageForm" onSubmit={this.submitMessage}>
                                     <InputGroup>
-                                        <Input type="text" name="message" id="message" placeholder="Enter message here" onChange={this.onChange} />
+                                        <Input type="text" name="message"  id="message" placeholder="Enter message here" onChange={this.onChange} />
                                         <InputGroupAddon addonType="append">
                                             <Button variant="primary" type="submit">Send</Button>
                                        </InputGroupAddon>
@@ -206,100 +206,10 @@ class ChatRoom extends React.Component {
                                 </Form>
 
                             </div>
-                        </div>
                     </div>
 
                 </div>
-                {/* <button class="open-button" onclick={this.openForm}>Chat</button>
-                <div class="chat-popup" id="myForm">
-                    <form  class="form-container">
-                    {this.state.chats.map((item, idx) => (
-                                        <div key={idx} className="MessageBox">
-                                            {item.type === 'join' || item.type === 'exit' ?
-                                                <div className="ChatStatus">
-                                                    <span className="ChatDate">{item.date}</span>
-                                                    <span className="ChatContentCenter">{item.message}</span>
-                                                </div> :
-                                                <div className="ChatMessage">
-                                                    <div className={`${item.nickname === sessionStorage["users_name"] ? "RightBubble" : "LeftBubble"}`}>
-                                                        {item.nickname === sessionStorage["users_name"] ?
-                                                            <span className="MsgName">Me</span> : <span className="MsgName">{item.nickname}</span>
-                                                        }
-                                                        <span className="MsgDate"> at {item.date}</span>
-                                                        <p>{item.message}</p>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    ))}
-
-                        <button type="submit" class="btn"onClick={this.submitMessage} >Send</button>
-                        <button type="button" class="btn cancel" onclick={this.closeForm}>Close</button>
-                    </form>
-                </div>
-                <button className="open-button" onClick={this.openForm}>Chat</button>
-                <div className="Container" id="myForm">
-                    <Container>
-                        <Row>
-                            <Col xs="4">
-                            <div>
-                                    <Card className="UsersCard">
-                                        <CardBody>
-                                            <CardSubtitle>
-                            onClick={() => { exitChat() }}
-                            <Button variant="primary" type="button" >
-                                                    Exit Chat
-                                    </Button>
-                            </CardSubtitle>
-                                        </CardBody>
-                                    </Card>
-                            {users.map((item, idx) => (
-                                        <Card key={idx} className="UsersCard">
-                                            <CardBody>
-                                                <CardSubtitle>{item.nickname}</CardSubtitle>
-                                            </CardBody>
-                                        </Card>
-                                    ))}
-                             </div> 
-                             </Col> 
-                            <Col xs="8">
-                                <ScrollToBottom className="ChatContent">
-                                    {this.state.chats.map((item, idx) => (
-                                        <div key={idx} className="MessageBox">
-                                            {item.type === 'join' || item.type === 'exit' ?
-                                                <div className="ChatStatus">
-                                                    <span className="ChatDate">{item.date}</span>
-                                                    <span className="ChatContentCenter">{item.message}</span>
-                                                </div> :
-                                                <div className="ChatMessage">
-                                                    <div className={`${item.nickname === sessionStorage["users_name"] ? "RightBubble" : "LeftBubble"}`}>
-                                                        {item.nickname === sessionStorage["users_name"] ?
-                                                            <span className="MsgName">Me</span> : <span className="MsgName">{item.nickname}</span>
-                                                        }
-                                                        <span className="MsgDate"> at {item.date}</span>
-                                                        <p>{item.message}</p>
-                                                    </div>
-                                                </div>
-                                            }
-                                        </div>
-                                    ))}
-                                </ScrollToBottom>
-                                <footer className="StickyFooter">
-                                    <Form className="MessageForm" onSubmit={this.submitMessage}>
-                                        <InputGroup>
-                                            <Input type="text" name="message" id="message" placeholder="Enter message here" onChange={this.onChange} />
-                                            <InputGroupAddon addonType="append">
-                                                <Button variant="primary" type="submit">Send</Button>
-                                                <Button onClick={this.closeForm}>Close</Button>
-                                            </InputGroupAddon>
-                                        </InputGroup>
-                                    </Form>
-                                </footer>
-                            </Col>
-                        </Row>
-                    </Container>
-                    
-                </div> */}
+             
             </>
         );
     }

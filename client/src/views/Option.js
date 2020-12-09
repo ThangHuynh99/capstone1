@@ -19,6 +19,7 @@ export default class Example extends React.Component {
       title: "",
       location: "",
       note: "",
+      poll_option:'private',
       endTime: '',
       beginTime: '',
       room: [{ 'roomname': '' }]
@@ -49,32 +50,13 @@ export default class Example extends React.Component {
     this.setState({ room: user })
     const newRoom = firebase.database().ref('rooms/').push();
     newRoom.set(user[0]);
-    const newroomuser = { roomname: '', users_id:'', nickname: '', status: '' };
+    const newroomuser = { roomname: '', users_id: '', nickname: '', status: '' };
     newroomuser.roomname = user[0].roomname;
     newroomuser.nickname = sessionStorage["users_name"];
     newroomuser.users_id = sessionStorage["users_id"]
     newroomuser.status = 'online';
     const newRoomUser = firebase.database().ref('roomusers/').push();
     newRoomUser.set(newroomuser);
-    // alert(this.state.user[0].roomname)
-    // const ref = firebase.database().ref('rooms/');
-    // ref.orderByChild('roomname').equalTo(user[0].roomname).once('value', snapshot => {
-    //   // alert(poll_id)
-    //   // if (snapshot.exists()) {
-    //   //   return (
-    //   //     <div>
-    //   //       <td>
-    //   //         Room name already exist!
-    //   //               </td>
-    //   //     </div>
-    //   //   );
-    //   // } else {
-    //     const newRoom = firebase.database().ref('rooms/').push();
-    //     newRoom.set(user[0]);
-    //     // history.goBack();
-    //     // showLoading="false"
-    //   // }
-    // });
   };
   handleDayClick(day, { selected }) {
     const { selectedDays, schedule } = this.state;
@@ -114,7 +96,8 @@ export default class Example extends React.Component {
       title: this.state.title,
       location: this.state.location,
       note: this.state.note,
-      schedule: this.state.schedule
+      schedule: this.state.schedule,
+      poll_option:this.state.poll_option
     };
     fetch('http://localhost:3001/schedule', {
       method: "POST",
@@ -222,73 +205,73 @@ export default class Example extends React.Component {
     })
     return (
       <>
-      <div className="justify-center">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-          <Link to='/'>
-            <h3 className="navbar-brand" href="#" style={{ color: '#98cdfb' }}>Meeting planner</h3>
-          </Link>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
+        <div className="justify-center">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+            <Link to='/'>
+              <h3 className="navbar-brand" href="#" style={{ color: '#98cdfb' }}>Meeting planner</h3>
+            </Link>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
       navigation">
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Features</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Pricing</a>
-              </li>
-            </ul>
-            <>
-              <UserInfo />
-            </>
-            <div className="btn-group">
-              <Link to="/create">
-                <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
-                  <h5>+ Create</h5>
-                </button>
-              </Link>
-            </div>
-          </div>
-        </nav>
-        <div className="container-xl pt-5 pb-5">
-          <div className="row">
-            <div className="col-md-5">
-              <DayPicker
-                selectedDays={this.state.selectedDays}
-                onDayClick={this.handleDayClick}
-              />
-              <div >
+              <span className="navbar-toggler-icon" />
+            </button>
+            <div className="collapse navbar-collapse" id="navbarText">
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item active">
+                  <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">Features</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">Pricing</a>
+                </li>
+              </ul>
+              <>
+                <UserInfo />
+              </>
+              <div className="btn-group">
+                <Link to="/create">
+                  <button type="button" className="btn btn-danger" style={{ borderRadius: '4px' }}>
+                    <h5>+ Create</h5>
+                  </button>
+                </Link>
               </div>
             </div>
-            <div style={{ height: '300px', overflow: 'auto' }} className="col-md-7 mt-4">
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Option</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Begin</th>
-                    <th scope="col">End</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {viewSchedule}
-                </tbody>
-              </table>
+          </nav>
+          <div className="container-xl pt-5 pb-5">
+            <div className="row">
+              <div className="col-md-5">
+                <DayPicker
+                  selectedDays={this.state.selectedDays}
+                  onDayClick={this.handleDayClick}
+                />
+                <div >
+                </div>
+              </div>
+                <div style={{ height: '300px', overflow: 'auto' }} className="col-md-7 mt-4">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Option</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Begin</th>
+                        <th scope="col">End</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {viewSchedule}
+                    </tbody>
+                  </table>
+                </div>
             </div>
-          </div>
-          <div style={{ margin: '0 auto' }} className="row text-right">
-            <div className="col-sm-12 button1">
-              <a style={{ float: 'right ', fontSize: '23px' }} name="" id="" className="btn btn-primary" href="#" role="button" onClick={this.ClickContinue}>Continue</a>
+            <div style={{ margin: '0 auto' }} className="row text-right">
+              <div className="col-sm-12 button1">
+                <a style={{ float: 'right ', fontSize: '23px' }} name="" id="" className="btn btn-primary" href="#" role="button" onClick={this.ClickContinue}>Continue</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      
+
       </>
     );
   }

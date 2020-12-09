@@ -15,7 +15,7 @@ class Login extends Component {
   }
   Login1 = (e) => {
     e.preventDefault();
-    if(this.myFunction()==true){
+    // if(this.myFunction()==true){
     var message = document.getElementById('error');
     const users = {
       user_email: this.state.email,
@@ -58,7 +58,7 @@ class Login extends Component {
       .catch(error => {
         console.log(error)
       })
-    }
+    // }
   }
   handleEmail = (e) => {
     this.setState({ email: e.target.value })
@@ -66,7 +66,7 @@ class Login extends Component {
   handlePassword = (e) => {
     this.setState({ password: e.target.value })
   }
-  // myFunction = () => {
+  // Function (Login1) {
   //   var username = document.getElementById("inputEmail4").value;
   //   var password = document.getElementById("inputPassword4").value;
   //   var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -114,48 +114,48 @@ class Login extends Component {
             </ul>
           </div>
         </nav>
-        <div style={{ maxWidth: '890px' }} className="container pt-5">
+        <div style={{ maxWidth: '890px' }} className="container ">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-5">
               <img style={{ width: '100%' }} src={require("../images/login21.jpg")} alt="" />
             </div>
-            <div className="col-md-4">
+            <div className="col-md-7">
               <div className="mt-3">
                 <NavLink
                   exact activeStyle={{
                     fontWeight: 600,
                     color: "black"
                   }}
-                  activeClassName="pt-5"
+                  activeClassName="pr-1 pt-5"
                   to='/login'>
                   Login
                 </NavLink>
-
+                  <i className="pr-1">/</i>
                 <NavLink
                   exact activeStyle={{
                     fontWeight: 600,
                     color: "black"
                   }}
-                  activeClassName="pt-5"
+                  activeClassName=" pt-5"
                   to='/register'>
                   Sign up
                 </NavLink>
               </div>
-              <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
+              <div className="pr-3" >
                 <input type="email" className="form-control mt-4 mb-5
                         text-center" id="inputEmail4" placeholder="Email" onChange={this.handleEmail} />
-                {/* <small id="thongbao" class="pb-3" style="display: none; color: #db3329d1;">
-                  Email trống hoặc không hợp lệ vui lòng nhập lại Email </small> */}
+                <small id="thongbao" class="pb-3" style="display: none; color: #db3329d1;">
+                  Email trống hoặc không hợp lệ vui lòng nhập lại Email </small>
                 <input type="password" className="form-control text-center" id="inputPassword4" placeholder="Password" onChange={this.handlePassword} />
-                {/* <small id="saimatkhau" class="pb-3"
-                  style="display: none; color: #db3329d1;"> mật khẩu trống vui lòng nhập lại mật khẩu </small>
+                <small id="saimatkhau" class="pb-3"
+                  style="display: none; color: #db3329d1;"> mật khẩu trống vui lòng nhập lại mật ghats </small>
                 <small id="saimk" class="pb-3" style="display: none; color: #db3329d1;"> mật
-                khẩu không hợp lệ vui lòng nhập lại mật khẩu (Mật khẩu bao gồm 8 kí tự có chữ in hoa số và kí tự đặt biệt) </small> */}
+                khẩu không hợp lệ vui lòng nhập lại mật khẩu (Mật khẩu bao gồm 8 kí tự có chữ in hoa số và kí tự đặt biệt) </small>
                 <div className="error-group">
                   <span htmlFor="error" id="error" className="error"></span>
                 </div>
                 <div style={{ border: 'transparent' }} className="text-center">
-                  <button className="button mt-4" onClick={this.Login1}>
+                  <button className="button mt-4 mb-4" onClick={this.Login1}>
                     <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
                   </button>
                 </div>

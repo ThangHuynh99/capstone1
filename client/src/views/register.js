@@ -73,39 +73,39 @@ class Register extends React.Component {
             </ul>
           </div>
         </nav>
-        <div style={{ maxWidth: '890px' }} className="container pt-5">
+        <div className="container ">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-5">
               <img style={{ width: '100%' }} src={require("../images/login21.jpg")} alt="" />
             </div>
-            <div className="col-md-4">
+            <div className="col-md-7">
               <div className="mt-3">
-                <NavLink
+              <NavLink
                   exact activeStyle={{
                     fontWeight: 600,
                     color: "red"
                   }}
-                  activeClassName='pt-5'
+                  activeClassName= 'pr-1 pt-5'
                   to='/login'>
-                  Login
+                   Log in 
                 </NavLink>
-
+                  <i>/</i>
                 <NavLink
                   exact activeStyle={{
                     fontWeight: 600,
                     color: "black"
                   }}
-                  activeClassName='pt-5'
+                  activeClassName= 'pl-1 pt-5'
                   to='/register'>
-                  Sign up
+                      Sign up
                 </NavLink>
               </div>
-              <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
+              <div className="pr-3 mt-5" >
                 <input type="email" className="form-control mt-4 mb-3" id="inputEmail4" placeholder="Email" onChange={this.handleUsernameChange} />
                 <input type="password" className="form-control " id="inputPassword4" placeholder="Password" onChange={this.handlePasswordChange} />
                 <input type="password" className="form-control mt-3 " id="inputPassword4" placeholder="Repassword" onChange={this.handleRePasswordChange} />
                 <div style={{ border: 'transparent' }} className="text-center">
-                  <button className="button mt-4" title="register" onClick={this.register}>
+                  <button className="button mt-4 mb-5" title="register" onClick={this.register}>
                     <span><h5 className="pt-1 pb-1 pl-4 pr-4">Sign up</h5></span>
                   </button>
                   <div className="error-group">

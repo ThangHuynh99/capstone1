@@ -10,6 +10,13 @@
     background-size: cover;
 
 }
+/* .container{
+    box-shadow: 1px 5px 11px 7px silver;
+} */
+
+.container {
+    box-shadow:   4px 2px 7px 4px  #8888886e;
+}
 .nav-item{
     font-weight: 600;
 }
@@ -20,10 +27,12 @@
 input#inputEmail4{
     border: none;
     border-bottom: solid 1px silver;
+    box-shadow: none;
 }
 input#inputPassword4{
     border: none;
     border-bottom: solid 1px silver;
+    box-shadow: none;
 }
 .button{
     color: white;
@@ -66,5 +75,8 @@ input#inputPassword4{
         margin:0px;
         margin-top:0 ;
 
+    }
+    .container{
+        box-shadow: none;
     }
  }
