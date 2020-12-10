@@ -23,7 +23,7 @@ const checkLogin = (req, res) => {
                             }
                             else if(result.rowCount === 0){
                                 console.log("Failed");
-                                res.status(201).send(null);
+                                res.status(201).send("null");
                             }
                             else{
                                 console.log("Success");

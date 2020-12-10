@@ -10,8 +10,25 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      user: []
+      user: [],
+      emailError:'',
+      passwordError:''
     }
+  }
+  validate() {
+    let passwordError = "";
+    let emailError = "";
+    if (!this.state.email.includes("@")) {
+      emailError="Invalid email "
+    }
+    if (this.state.password.length > 8 && this.state.password.length < 16) {
+      passwordError= "Password length should be more than 8 and less than 16" 
+    }
+    if (emailError || passwordError) {
+      this.setState({ emailError, passwordError });
+      return false;
+    }
+    return true;
   }
   Login1 = (e) => {
     e.preventDefault();
@@ -21,6 +38,8 @@ class Login extends Component {
       user_email: this.state.email,
       user_password: this.state.password
     };
+    const isValid = this.validate()
+    if (isValid) {
     fetch('http://localhost:3001/checklogin', {
       method: "POST",
       headers: {
@@ -32,18 +51,13 @@ class Login extends Component {
       .then(response => response.text())
       .then(result => {
         // chua on sai pass
-        if (result === null) {
+        if (result === "null") {
           alert("Account don't exist")
           message.innerHTML = "Account don't exist!!!";
         }
         else {
           console.log(result);
           var user = JSON.parse(result);
-          console.log(user.users_id)
-          console.log(user.users_email)
-          // this.setState({user:result})
-          // console.log(this.state.user);
-          // console.log(this.state.user[0].users_id);
           sessionStorage.setItem("users_id", user.users_id);
           sessionStorage.setItem("users_email", user.users_email);
           sessionStorage.setItem("users_name", user.users_name);
@@ -58,7 +72,7 @@ class Login extends Component {
       .catch(error => {
         console.log(error)
       })
-    // }
+    }
   }
   handleEmail = (e) => {
     this.setState({ email: e.target.value })
@@ -66,33 +80,6 @@ class Login extends Component {
   handlePassword = (e) => {
     this.setState({ password: e.target.value })
   }
-  // Function (Login1) {
-  //   var username = document.getElementById("inputEmail4").value;
-  //   var password = document.getElementById("inputPassword4").value;
-  //   var filter = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  //   // Tối thiểu tám ký tự, ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt
-  //   var pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  //   var thongbao = document.getElementById("thongbao");
-  //   var saimatkhau = document.getElementById("saimatkhau");
-  //   var saimk = document.getElementById("saimk");
-  //   if (username == null || username == "") {
-  //     thongbao.style.display = "block";
-  //     return false;
-  //   }
-  //   if (!filter.test(username)) {
-  //     thongbao.style.display = "block";
-  //     return false;
-  //   }
-  //   if (password == null || password == "") {
-  //     saimatkhau.style.display = "block";
-  //     return false;
-  //   }
-  //   if (!pass.test(password)) {
-  //     saimk.style.display = "block";
-  //     return false;
-  //   }
-  //   return true;
-  // }
   render() {
     return (
       <div className="bgr">
@@ -130,7 +117,7 @@ class Login extends Component {
                   to='/login'>
                   Login
                 </NavLink>
-                  <i className="pr-1">/</i>
+                <i className="pr-1">/</i>
                 <NavLink
                   exact activeStyle={{
                     fontWeight: 600,
@@ -142,15 +129,18 @@ class Login extends Component {
                 </NavLink>
               </div>
               <div className="pr-3" >
-                <input type="email" className="form-control mt-4 mb-5
-                        text-center" id="inputEmail4" placeholder="Email" onChange={this.handleEmail} />
-                <small id="thongbao" class="pb-3" style="display: none; color: #db3329d1;">
-                  Email trống hoặc không hợp lệ vui lòng nhập lại Email </small>
-                <input type="password" className="form-control text-center" id="inputPassword4" placeholder="Password" onChange={this.handlePassword} />
-                <small id="saimatkhau" class="pb-3"
-                  style="display: none; color: #db3329d1;"> mật khẩu trống vui lòng nhập lại mật ghats </small>
-                <small id="saimk" class="pb-3" style="display: none; color: #db3329d1;"> mật
-                khẩu không hợp lệ vui lòng nhập lại mật khẩu (Mật khẩu bao gồm 8 kí tự có chữ in hoa số và kí tự đặt biệt) </small>
+                <input type="email"
+                  className="form-control mt-4 mb-5 text-center"
+                  id="inputEmail4"
+                  placeholder="Email"
+                  onChange={this.handleEmail} />
+                <div style={{ fontSize: 12, color: "red" }}>{this.state.emailError}</div>
+                <input type="password"
+                  className="form-control text-center"
+                  id="inputPassword4"
+                  placeholder="Password"
+                  onChange={this.handlePassword} />
+                <div style={{ fontSize: 12, color: "red" }}>{this.state.passwordError}</div>
                 <div className="error-group">
                   <span htmlFor="error" id="error" className="error"></span>
                 </div>

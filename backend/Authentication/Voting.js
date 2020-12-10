@@ -28,7 +28,6 @@ const voting = (req, res) => {
                         console.log(moment1.format('DD/MM/YYYY'))
                         const date1=({date:moment1.format('DD/MM/YYYY')})
                         dataDate.push(date1)
-                        
                     })
                     console.log(dataDate)
                     pool.query('select users.* from users, poll_user where poll_id=$1 and users.users_id=poll_user.users_id', [poll_id], (error, result) => {
@@ -96,21 +95,8 @@ const vote = (schedule_id, users_id, result) => {
     return data1;
 }
 
-// const voteSchedule = (req, res) => {
-//     const { poll_id } = req.body;
-//     console.log(poll_id)
-//     pool.query('Select * from schedule where poll_id=$1 order by schedule_id ASC ', [poll_id], (error, result) => {
-//         if (error)
-//             throw error;
-//         console.log(result);
-//         res.status(201).send(result);
-//     })
-// }
 const submitVote = (req, res) => {
     const user = req.body;
-    // let user1=JSON.parse(user)
-    // console.log("---------------------------------------------")
-    // console.log(user)
     user.forEach(element => {
         pool.query('Update vote set vote_status =$1 where vote_id=$2 ', [element.vote_status, element.vote_id], (error, result) => {
             if (error)

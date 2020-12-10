@@ -14,11 +14,28 @@ class UIweb extends React.Component {
     this.state = {
       email: '',
       password: '',
-      user: []
+      user: [],
+      emailError:'',
+      passwordError:''
     }
   }
   componentDidMount() {
     sessionStorage.removeItem("poll_id");
+  }
+  validate() {
+    let passwordError = "";
+    let emailError = "";
+    if (!this.state.email.includes("@")) {
+      emailError="Invalid email "
+    }
+    if (this.state.password.length < 8 && this.state.password.length > 16) {
+      passwordError= "Password length should be more than 8 and less than 16" 
+    }
+    if (emailError || passwordError) {
+      this.setState({ emailError, passwordError });
+      return false;
+    }
+    return true;
   }
   Login1 = (e) => {
     e.preventDefault();
@@ -27,41 +44,42 @@ class UIweb extends React.Component {
       user_email: this.state.email,
       user_password: this.state.password
     };
-    fetch('http://localhost:3001/checklogin', {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(users)
-    })
-      .then(response => response.text())
-      .then(result => {
-        // chua on sai pass
-        if (result === "null") {
-          alert("Account don't exist")
-          message.innerHTML = "Account don't exist!!!";
-        }
-        else {
-          var user = JSON.parse(result);
-          console.log(user.users_id)
-          console.log(user.users_email)
-          // this.setState({user:result})
-          // console.log(this.state.user);
-          // console.log(this.state.user[0].users_id);
-          sessionStorage.setItem("users_id", user.users_id);
-          sessionStorage.setItem("users_email", user.users_email);
-          //console.log(sessionStorage["users_email"],sessionStorage["users_id"])
-
-          setTimeout(() => {
-            window.location = "/";
-          }, 1500);
-        }
-
+    const isValid = this.validate()
+    if (isValid) {
+      fetch('http://localhost:3001/checklogin', {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(users)
       })
-      .catch(error => {
-        console.log(error)
-      })
+        .then(response => response.text())
+        .then(result => {
+          // chua on sai pass
+          if (result === "null") {
+            alert("Account don't exist")
+            message.innerHTML = "Account don't exist!!!";
+          }
+          else {
+            var user = JSON.parse(result);
+            console.log(user.users_id)
+            console.log(user.users_email)
+            // this.setState({user:result})
+            // console.log(this.state.user);
+            // console.log(this.state.user[0].users_id);
+            sessionStorage.setItem("users_id", user.users_id);
+            sessionStorage.setItem("users_email", user.users_email);
+            //console.log(sessionStorage["users_email"],sessionStorage["users_id"])
+            setTimeout(() => {
+              window.location = "/";
+            }, 1500);
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
   }
   handleEmail = (e) => {
     this.setState({ email: e.target.value })
