@@ -18,6 +18,9 @@ import Example from './views/Option';
 import Vote from './views/Vote';
 import MenuAdmin from './views/menuAdmin';
 import TablePoll from './views/tableDataUser';
+import SendEmail from './views/forgot pw/sendEmail';
+import Otp from './views/forgot pw/otp';
+import NewPass from './views/forgot pw/newPass';
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -40,6 +43,9 @@ const routing = (
       <Route path="/option" exact component={Example}/>
       <Route path="/schedule/vote" exact component={Vote}/>
       <Route path="/admin" exact component={MenuAdmin}/>
+      <Route path="/forgot" exact component={SendEmail}/>
+      <Route path="/forgot/auth" exact component={Otp}/>
+      <Route path="/forgot/auth/reset" exact component={NewPass}/>
       {/* <Route  exact={true} component={NotFound} /> */}
     </div>
   </Router>
