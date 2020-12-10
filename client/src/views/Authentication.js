@@ -6,9 +6,26 @@ class Authentication extends React.Component {
                 this.state = {
                         email: '',
                         password: '',
-                        user: []
+                        user: [],
+                        emailError:'',
+                        passwordError:''
                 }
         }
+        validate() {
+                let passwordError = "";
+                let emailError = "";
+                if (!this.state.email.includes("@")) {
+                  emailError="Invalid email "
+                }
+                if (this.state.password.length > 8 && this.state.password.length < 16) {
+                  passwordError= "Password length should be more than 8 and less than 16" 
+                }
+                if (emailError || passwordError) {
+                  this.setState({ emailError, passwordError });
+                  return false;
+                }
+                return true;
+              }
         Login1 = (e) => {
                 e.preventDefault();
                 var message = document.getElementById('error');
@@ -16,6 +33,8 @@ class Authentication extends React.Component {
                         user_email: this.state.email,
                         user_password: this.state.password
                 };
+                const isValid=this.validate()
+                if(isValid){
                 fetch('http://localhost:3001/checklogin', {
                         method: "POST",
                         headers: {
@@ -48,6 +67,7 @@ class Authentication extends React.Component {
                         .catch(error => {
                                 console.log(error)
                         })
+                }
         }
         handleEmail = (e) => {
                 this.setState({ email: e.target.value })
@@ -86,7 +106,9 @@ class Authentication extends React.Component {
                                                                                         </div>
                                                                                         <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
                                                                                                 <input type="email" className="form-control mt-4 mb-5 text-center" id="inputEmail4" placeholder="Email" onChange={this.handleEmail} />
+                                                                                                <div style={{ fontSize: 12, color: "red" }}>{this.state.passwordError}</div>
                                                                                                 <input type="password" className="form-control text-center" id="inputPassword4" placeholder="Password" onChange={this.handlePassword} />
+                                                                                                <div style={{ fontSize: 12, color: "red" }}>{this.state.passwordError}</div>
                                                                                                 <div style={{ border: 'transparent' }} className="text-center">
                                                                                                         <button className="button mt-4" onClick={this.Login1}>
                                                                                                                 <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
