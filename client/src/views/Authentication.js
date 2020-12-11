@@ -11,6 +11,7 @@ class Authentication extends React.Component {
                         passwordError:''
                 }
         }
+        //validation login
         validate() {
                 let passwordError = "";
                 let emailError = "";
