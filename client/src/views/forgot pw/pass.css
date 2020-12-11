@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.bgr{
+    background-image: url(https://www.iris.edu.vn/Libs/theme/wp-content/uploads/2018/07/Untitled-2.jpg);
+    height: 650px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+.nav-item{
+    font-weight: 600;
+}
+.container{
+    max-width: 825px;
+}
+.row{
+    background-color: white;
+    width: 820px;
+}
+.col-md-6 {
+    margin: 0 auto;
+    border: 1px solid #dbdbdb;
+    padding: 0;
+ }
+input#username{
+    border: 1px solid #dbdbdb;
+}
+button.button.mt-4.mb-4.w-100{
+    color: white;
+    background-color: black;
+    font-weight: 600; 
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 20px;
+    border:none;
+}
+.form-control{ 
+
+    outline:none !important; 
+} 
+.button.mt-4.mb-4.w-100:hover{
+    background-color: white;
+    color: #000;
+    border: 1px solid #dbdbdb;
+    transition: 2s;
+}
+.text-center.loginwith{
+    margin-top: 133px;
+}
+.or{
+    display: inline-block;
+    font-weight: 600; 
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #dbdbdb;
+    
+}
+a.nav-link {
+    color:rgba(var(--f52,142,142,142),1);
+}
+@media only screen and (max-width: 600px) {
+    .text-center.loginwith{
+        padding: 0px 20px 20px 30px;
+        margin:0px;
+        margin-top:0 ;
+
+    }
+ }
