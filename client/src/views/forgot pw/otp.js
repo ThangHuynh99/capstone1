@@ -4,7 +4,29 @@ import Nav from './nav';
 import './otp.css';
 import {NavLink} from 'react-router-dom';
 class Otp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            codeID:''
+        }
+        this.verification=this.verification.bind(this)
+    }
+    verification(){
+        if(this.state.codeID==sessionStorage["code"]){
+            alert("đúng data")
+            window.location='/forgot/auth/reset'
+        }
+        else{
+            alert("sai data")
+            document.getElementById("thongbao").style.display="block"
+            document.getElementById("thongbao").innerHTML="The OTP code is incorrect!!!";
+        }
+    }
+    handleOTP=(e)=>{
+        this.setState({codeID:e.target.value})
+    }
     render() {
+        console.log(sessionStorage["code"])
         return (
             <div>
                 <Nav></Nav>
@@ -15,16 +37,15 @@ class Otp extends React.Component {
                             <img src={require('./khoa.JPG')} />
                                 <p style={{ fontWeight: 600, fontSize: '1rem', lineHeight: '1.5' }}>Trouble Logging In?</p>
                                 <small style={{ color: 'rgba(var(--f52,142,142,142),1)', fontSize: '14px' }}>
-                                    Please enter the OTP sent to your Email.</small>
+                                    Please enter the OTP send to your Email.</small>
                             </div>
                             <div className="ml-4 mr-4 mb-3">
-                                <input type="number" className="form-control mt-4 mb-3" id="username" placeholder="OTP" />
-                                <small id="thongbao" className="pb-3" style={{ display: 'none', color: '#db3329d1' }}>
-                                    Mã otp không hợp lệ </small>
+                                <input type="number" className="form-control mt-4 mb-3" id="username" placeholder="OTP" onChange={this.handleOTP} />
+                                <small id="thongbao" className="pb-3" style={{ display: 'none', color: '#db3329d1' }}> </small>
                                 <div style={{ border: 'transparent' }} className="text-center">
-                                    <button onclick={this.myFunction} className="button mt-4 mb-4 w-100">
+                                    <button onClick={this.verification} className="button mt-4 mb-4 w-100">
                                         <span>
-                                            <h6 className="pt-1 pb-1 pl-4 pr-4">Sent otp</h6>
+                                            <h6 className="pt-1 pb-1 pl-4 pr-4">Send OTP</h6>
                                         </span>
                                     </button>
                                 </div>

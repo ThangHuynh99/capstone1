@@ -171,16 +171,9 @@ class ChatRoom extends React.Component {
                                         <div className="chat-box-single-line">
                                             <abbr className="timestamp">{item.date}</abbr>
                                         </div>
-                                        {/* <!-- Message. Default to the left --> */}
                                         <div className="direct-chat-msg doted-border">
-                                                                                       {/* <!-- /.direct-chat-info --> */}
-                                            {/* <img alt="message user image"
-                                                src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
-                                                class="direct-chat-img" /> */}
-                                            {/* <!-- /.direct-chat-img --> */}
-                                            {/* <div className="direct-chat-text">
-                                        {item.message}
-                                </div> */}
+                                                                           
+                                        
                                             <div className={`${item.nickname === sessionStorage["users_name"] ? "RightBubble" : "LeftBubble"}`}>
                                                 {item.nickname === sessionStorage["users_name"] ?
                                                     <span className="MsgName">Me</span> : <span className="MsgName">{item.nickname}</span>
@@ -188,7 +181,6 @@ class ChatRoom extends React.Component {
                                                 <p>{item.message}</p>
                                             </div>
                                             
-                                            {/* <!-- /.direct-chat-text --> */}
                                         </div>
                                     </div>
                                 </div>

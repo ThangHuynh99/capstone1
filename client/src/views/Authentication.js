@@ -7,26 +7,26 @@ class Authentication extends React.Component {
                         email: '',
                         password: '',
                         user: [],
-                        emailError:'',
-                        passwordError:''
+                        emailError: '',
+                        passwordError: ''
                 }
         }
         //validation login
-        validate() {
-                let passwordError = "";
-                let emailError = "";
-                if (!this.state.email.includes("@")) {
-                  emailError="Invalid email "
-                }
-                if (this.state.password.length > 8 && this.state.password.length < 16) {
-                  passwordError= "Password length should be more than 8 and less than 16" 
-                }
-                if (emailError || passwordError) {
-                  this.setState({ emailError, passwordError });
-                  return false;
-                }
-                return true;
-              }
+        // validate() {
+        //         let passwordError = "";
+        //         let emailError = "";
+        //         if (!this.state.email.includes("@")) {
+        //           emailError="Invalid email "
+        //         }
+        //         if (this.state.password.length > 8 && this.state.password.length < 16) {
+        //           passwordError= "Password length should be more than 8 and less than 16" 
+        //         }
+        //         if (emailError || passwordError) {
+        //           this.setState({ emailError, passwordError });
+        //           return false;
+        //         }
+        //         return true;
+        //       }
         Login1 = (e) => {
                 e.preventDefault();
                 var message = document.getElementById('error');
@@ -34,8 +34,8 @@ class Authentication extends React.Component {
                         user_email: this.state.email,
                         user_password: this.state.password
                 };
-                const isValid=this.validate()
-                if(isValid){
+                // const isValid=this.validate()
+                // if(isValid){
                 fetch('http://localhost:3001/checklogin', {
                         method: "POST",
                         headers: {
@@ -60,7 +60,7 @@ class Authentication extends React.Component {
                                         sessionStorage.setItem("users_name", user.users_name);
 
                                         setTimeout(() => {
-                                                window.location = "/";
+                                                window.location = "/dashboard";
                                         }, 1500);
                                 }
 
@@ -68,7 +68,7 @@ class Authentication extends React.Component {
                         .catch(error => {
                                 console.log(error)
                         })
-                }
+                // }
         }
         handleEmail = (e) => {
                 this.setState({ email: e.target.value })
@@ -89,7 +89,7 @@ class Authentication extends React.Component {
                                         <button className="login p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Đăng Nhập</button>
                                         <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div className="modal-dialog">
-                                                        <div className="modal-content">
+                                                        <div style={{ backgroundColor: ' #fefefe', margin: 'auto', maxWidth: '498px', right: '0' }} className="modal-content">
                                                                 <div className="modal-header">
                                                                         <h5 className="modal-title" id="exampleModalLabel">Sign in</h5>
                                                                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
@@ -98,26 +98,31 @@ class Authentication extends React.Component {
                                                                 </div>
                                                                 <div className="container">
                                                                         <div className="row">
-                                                                                <div className="col-md-4">
+                                                                                <div className="col-md-5">
                                                                                         <img style={{ width: '100%' }} src={require("../images/login21.jpg")} alt="" />
                                                                                 </div>
-                                                                                <div className="col-md-8">
+                                                                                <div className="col-md-7">
                                                                                         <div className="mt-3 text-center">
 
                                                                                         </div>
-                                                                                        <div className="pr-3" style={{ borderRight: 'solid  1px silver' }}>
+                                                                                        <div className="pr-3" >
                                                                                                 <input type="email" className="form-control mt-4 mb-5 text-center" id="inputEmail4" placeholder="Email" onChange={this.handleEmail} />
                                                                                                 <div style={{ fontSize: 12, color: "red" }}>{this.state.passwordError}</div>
                                                                                                 <input type="password" className="form-control text-center" id="inputPassword4" placeholder="Password" onChange={this.handlePassword} />
                                                                                                 <div style={{ fontSize: 12, color: "red" }}>{this.state.passwordError}</div>
+                                                                                                <div className=" text-center pt-4">
+                                                                                                        <a href='/forgot' style={{ color: 'silver' }} className=" Forgot text-center pt-4">Forgot password</a>
+                                                                                                </div>
                                                                                                 <div style={{ border: 'transparent' }} className="text-center">
-                                                                                                        <button className="button mt-4" onClick={this.Login1}>
+                                                                                                        <button className="button mt-4 mb-4 " onClick={this.Login1}>
                                                                                                                 <span className="pt-2 pb-2 pl-4 pr-4">Log in</span>
                                                                                                         </button>
                                                                                                 </div>
 
                                                                                         </div>
-                                                                                        {/* <h6 style={{ color: 'silver' }} className=" Forgot text-center pt-4"></h6> */}
+
+
+
                                                                                 </div>
 
                                                                         </div>

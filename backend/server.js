@@ -12,6 +12,7 @@ const voting = require('./Authentication/Voting')
 const invite = require('./Authentication/Invite')
 const view = require ('./Authentication/ViewAdmin')
 const schedule=require('./Authentication/Schedule')
+const sendE=require('./Authentication/SendEmail')
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({ 
@@ -57,6 +58,8 @@ app.get('/viewuser',view.ViewUser)
 app.get('/viewpoll',view.ViewPoll)
 app.post('/schedule',schedule.Schedule)
 app.post('/vote/finaloption',voting.FinalOption)
+app.post('/sendemail',sendE.SendEmail)
+app.post('/resetpassword',sendE.resetPassword)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });

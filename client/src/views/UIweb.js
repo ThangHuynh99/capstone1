@@ -72,7 +72,7 @@ class UIweb extends React.Component {
             sessionStorage.setItem("users_email", user.users_email);
             //console.log(sessionStorage["users_email"],sessionStorage["users_id"])
             setTimeout(() => {
-              window.location = "/";
+              window.location = "/dashboard";
             }, 1500);
           }
         })
@@ -115,8 +115,7 @@ class UIweb extends React.Component {
               </li>
             </ul>
             <>
-              {sessionStorage["users_email"] ? <UserInfo /> :
-                <Authentication />}
+              { <Authentication />}
             </>
             {/* <div className="item-auth">
               <Link to="/register">

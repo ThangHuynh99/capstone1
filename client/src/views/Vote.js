@@ -67,7 +67,7 @@ class Vote extends React.Component {
                     dataVote.push(count)
                 }
                 this.setState({ vote: dataVote, schedule_finish: index })
-                if (this.state.poll.poll_status.toString() === '0') {
+                if (this.state.poll.poll_status=== 0) {
                     document.getElementById("bntFinal").disabled = 'disabled'
                     document.getElementById("bntSubmit").disabled = 'disabled'
                     if (this.state.pu_role === 'host') {
@@ -182,7 +182,8 @@ class Vote extends React.Component {
     }
 
     render() {
-        // console.log(this.state.poll.poll_option)
+        console.log(this.state.poll_id)
+
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} date={this.state.date[i]} />
         })
@@ -267,7 +268,7 @@ class Vote extends React.Component {
                             <a style={{ color: 'white' }} className="nav-link active" href="#">Edit</a>
                             <a style={{ color: 'white' }} className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 More
-    </a>
+                            </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a className="dropdown-item" href="#">Choose final option</a>
                                 <a className="dropdown-item" href="#">Export to PDF</a>

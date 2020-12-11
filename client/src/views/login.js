@@ -21,7 +21,7 @@ class Login extends Component {
     if (!this.state.email.includes("@")) {
       emailError="Invalid email "
     }
-    if (this.state.password.length > 8 && this.state.password.length < 16) {
+    if (this.state.password.length < 8 || this.state.password.length > 16) {
       passwordError= "Password length should be more than 8 and less than 16" 
     }
     if (emailError || passwordError) {
@@ -64,7 +64,7 @@ class Login extends Component {
           //console.log(sessionStorage["users_email"],sessionStorage["users_id"])
 
           setTimeout(() => {
-            window.location = "/";
+            window.location = "/dashboard";
           }, 1500);
         }
 
