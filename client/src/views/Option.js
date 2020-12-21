@@ -100,18 +100,25 @@ export default class Example extends React.Component {
       .then(res => res.text())
       .then(result => {
         this.save(result)
-        window.location = "/schedule/vote";
+        setTimeout(()=>{
+          window.location = "/schedule/vote";
+        },530*this.state.schedule.length);
+        // window.location = "/schedule/vote";
         sessionStorage.setItem("poll_id", result);
         sessionStorage.setItem("pu_role", 'host');
 
       })
+  }
+  deletePoll(){
+    
   }
   handleOption=(e)=>{
     this.setState({poll_option:e.target.value})
   }
   render() {
     // console.log(this.state.schedule)
-    // console.log(this.state.poll_option)
+    console.log("Chieu dai cua mang")
+    console.log(this.state.schedule.length)
 
     const { selectedDay } = this.state;
     // console.log(selectedDay.toLocaleDateString())

@@ -208,7 +208,7 @@ class Vote extends React.Component {
         // console.log(this.state.poll_id)
         // console.log(this.state.data)
         // console.log(this.state.poll)
-        console.log(sessionStorage["poll_id"])
+        // console.log(sessionStorage["poll_id"])
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} date={this.state.date[i]} />
         })

@@ -8,10 +8,10 @@ const pool = new Pool({
     port: 5432
 })
 const Schedule = (req, res) => {
-    const { users_id, title, location, note, schedule,poll_option } = req.body;
+    const { users_id, title, location, note, schedule, poll_option } = req.body;
     const poll_id = ramdom.generate(4) + ramdom.generate(4) + ramdom.generate(4) + ramdom.generate(4);
-    const poll_status=1
-    pool.query('Insert into poll (poll_id,poll_title,poll_location,poll_note,poll_status,poll_option) values  ($1,$2,$3,$4,$5,$6)', [poll_id, title, location, note,poll_status,poll_option],
+    const poll_status = 1
+    pool.query('Insert into poll (poll_id,poll_title,poll_location,poll_note,poll_status,poll_option) values  ($1,$2,$3,$4,$5,$6)', [poll_id, title, location, note, poll_status, poll_option],
         (error, result) => {
             if (error) {
                 console.log("Error : ", error);
@@ -53,6 +53,7 @@ const Schedule = (req, res) => {
                                             }
                                         }
                                     })
+
                                 res.status(201).send(poll_id)
                             }
                         }
@@ -62,17 +63,30 @@ const Schedule = (req, res) => {
 }
 const InSchedule = (schedule, poll_id) => {
     schedule.forEach((element, i) => {
-        pool.query('Insert into Schedule(schedule_date,schedule_starttime,schedule_endtime,poll_id) values ($1,$2,$3,$4)',
-            [element.date, element.beginTime, element.endTime, poll_id],
-            (error, result2) => {
-                if (error)
-                    throw error;
-                else {
-                    console.log("---------------------Insert Schedule" + i + "-------------------------")
-                    console.log(result2)
-                }
-            })
-    });
+        setTimeout(() => {
+            pool.query('Insert into Schedule(schedule_date,schedule_starttime,schedule_endtime,poll_id) values ($1,$2,$3,$4)',
+                [element.date, element.beginTime, element.endTime, poll_id],
+                (error, result2) => {
+                    if (error)
+                        throw error;
+                    else {
+                        console.log("---------------------Insert Schedule" + i + "-------------------------")
+                        console.log(result2)
+                    }
+                })
+        },60*i);
+    })
+    //     pool.query('Insert into Schedule(schedule_date,schedule_starttime,schedule_endtime,poll_id) values ($1,$2,$3,$4)',
+    //         [element.date, element.beginTime, element.endTime, poll_id],
+    //         (error, result2) => {
+    //             if (error)
+    //                 throw error;
+    //             else {
+    //                 console.log("---------------------Insert Schedule" + i + "-------------------------")
+    //                 console.log(result2)
+    //             }
+    //         })
+    // });
 
     return true;
 }
