@@ -1,5 +1,6 @@
 const Pool = require('pg').Pool;
 var md5 = require('md5');
+const nodemailer = require('nodemailer');
 const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
@@ -7,6 +8,13 @@ const pool = new Pool({
     password: 'vinhtoan123',
     port: 5432
 })
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'meetingplanner1234@gmail.com',
+        pass: 'vinhtoan123'
+    }
+});
 const SendEmail = (req, res) => {
     const { sendEmail } = req.body;
     console.log(sendEmail)

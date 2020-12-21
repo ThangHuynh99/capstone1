@@ -16,10 +16,10 @@ export default class Example extends React.Component {
       selectedDays: [],
       schedule: [],
       data: props.data,
-      title: "",
-      location: "",
-      note: "",
-      poll_option:'private',
+      title: this.props.location.state.title,
+      location:  this.props.location.state.location,
+      note:  this.props.location.state.note,
+      poll_option: 'public',
       endTime: '',
       beginTime: '',
       room: [{ 'roomname': '' }]
@@ -28,17 +28,7 @@ export default class Example extends React.Component {
     this.handleDayClick = this.handleDayClick.bind(this);
     this.ChangeTimeBegin = this.ChangeTimeBegin.bind(this)
     this.ChangeTimeEnd = this.ChangeTimeEnd.bind(this)
-    // this.save = this.save.bind(this)
   }
-
-  // componentDidMount() {
-  //   const { title, location, note } = this.props.location.state
-  //   this.setState({
-  //     title: title,
-  //     location: location,
-  //     note: note
-  //   })
-  // }
   save = (poll_id) => {
     // e.preventDefault();
     alert(poll_id)
@@ -97,7 +87,7 @@ export default class Example extends React.Component {
       location: this.state.location,
       note: this.state.note,
       schedule: this.state.schedule,
-      poll_option:this.state.poll_option
+      poll_option: this.state.poll_option
     };
     fetch('http://localhost:3001/schedule', {
       method: "POST",
@@ -110,31 +100,18 @@ export default class Example extends React.Component {
       .then(res => res.text())
       .then(result => {
         this.save(result)
-        // const [showLoading, setShowLoading] = useState(false);
-        // const showLoading='true'
-        // const ref = firebase.database().ref('rooms/');
-        // ref.orderByChild('roomname').equalTo(result.toString()).once('value', snapshot => {
-        //   if (snapshot.exists()) {
-        //     return (
-        //       <div>
-        //         <td>
-        //           Room name already exist!
-        //             </td>
-        //       </div>
-        //     );
-        //   } else {
-        //     const newRoom = firebase.database().ref('rooms/').push();
-        //     newRoom.set(result.toString());
-        //     // history.goBack();
-        //     // showLoading='false'
-        //   }
-        // });
         window.location = "/schedule/vote";
         sessionStorage.setItem("poll_id", result);
+        sessionStorage.setItem("pu_role", 'host');
+
       })
   }
+  handleOption=(e)=>{
+    this.setState({poll_option:e.target.value})
+  }
   render() {
-    console.log(this.state.schedule)
+    // console.log(this.state.schedule)
+    // console.log(this.state.poll_option)
 
     const { selectedDay } = this.state;
     // console.log(selectedDay.toLocaleDateString())
@@ -248,21 +225,28 @@ export default class Example extends React.Component {
                 <div >
                 </div>
               </div>
-                <div style={{ height: '300px', overflow: 'auto' }} className="col-md-7 mt-4">
-                  <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">Option</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Begin</th>
-                        <th scope="col">End</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {viewSchedule}
-                    </tbody>
-                  </table>
-                </div>
+              
+              <div style={{ height: '300px', overflow: 'auto' }} className="col-md-7 mt-4">
+              <select class="form-select" aria-label="Default select example" onChange={this.handleOption}>
+                <option value="public" selected>Public</option>
+                <option value="private">Private</option>
+                {/* <option value="2">Two</option>
+                <option value="3">Three</option> */}
+              </select>
+                <table class=" mt-5 table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Option</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Begin</th>
+                      <th scope="col">End</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {viewSchedule}
+                  </tbody>
+                </table>
+              </div>
             </div>
             <div style={{ margin: '0 auto' }} className="row text-right">
               <div className="col-sm-12 button1">

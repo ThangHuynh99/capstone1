@@ -49,6 +49,9 @@ input#addnote{
     border-radius: 20px;
     border:none;
 }
+input.button.pt-2.pb-2.pl-3.pr-3.mt-4 {
+    border-radius: 37px;
+}
 .button:hover{
     background-color: white;
     color: #000;

@@ -39,6 +39,23 @@ button{
 .slide{
     background-color: #f6f6f6;
 }
+.row{
+    width: 100% !important;
+    margin-right: 0px; 
+    margin-left: 0px;
+    background-color: transparent !important;
+}
+.col-md-6{
+    border: none !important;
+}
+.col-md-4{
+    background-color: transparent !important;
+    border: none !important;
+}
+.col-md-4.p-5.border {
+    border-right: solid 1px silver !important;
+    border-left: solid 1px silver !important;
+}
 .avt{
     height: 70px;
     width: 70px;
@@ -53,4 +70,7 @@ button{
 .logo{
     display: inline-block;
     padding-right: 5px;
+}
+footer{
+    border-top: solid 1px silver !important;
 }

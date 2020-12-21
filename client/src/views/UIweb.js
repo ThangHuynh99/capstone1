@@ -1,7 +1,6 @@
 import React from 'react';
 import '../scss/bootstrap/css/bootstrap.css'
 import '../scss/2.css';
-import '../scss/login.css';
 import '../scss/fa/css/all.css';
 import Authentication from './Authentication'
 import { Link } from 'react-router-dom';
@@ -15,8 +14,8 @@ class UIweb extends React.Component {
       email: '',
       password: '',
       user: [],
-      emailError:'',
-      passwordError:''
+      emailError: '',
+      passwordError: ''
     }
   }
   componentDidMount() {
@@ -26,10 +25,10 @@ class UIweb extends React.Component {
     let passwordError = "";
     let emailError = "";
     if (!this.state.email.includes("@")) {
-      emailError="Invalid email "
+      emailError = "Invalid email "
     }
     if (this.state.password.length < 8 && this.state.password.length > 16) {
-      passwordError= "Password length should be more than 8 and less than 16" 
+      passwordError = "Password length should be more than 8 and less than 16"
     }
     if (emailError || passwordError) {
       this.setState({ emailError, passwordError });
@@ -115,7 +114,7 @@ class UIweb extends React.Component {
               </li>
             </ul>
             <>
-              { <Authentication />}
+              {<Authentication />}
             </>
             {/* <div className="item-auth">
               <Link to="/register">
@@ -177,7 +176,7 @@ class UIweb extends React.Component {
           </div>
         </nav>
         <section className="form1 pt-5 pb-5">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-6 pt-5 pb-5">
                 <img style={{ width: '100%' }} src={require("../images/anh16.jpg")} alt="" />
@@ -194,7 +193,7 @@ class UIweb extends React.Component {
                 <br />
                 <div className="text-center">
                   <Link to={sessionStorage["email"] ? '/create' : '/login'}>
-                    <button className="meeting pl-2 pr-2 ">
+                    <button className="meeting mt-4 pl-2 pr-2 ">
                       <h5 style={{ color: 'white' }}>+ Create a poll </h5>
                     </button>
                   </Link>
@@ -204,7 +203,7 @@ class UIweb extends React.Component {
           </div>
         </section>
         <section className="form2 pt-5 pb-5">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-6 p-5">
                 <h1 className="title">
@@ -221,7 +220,7 @@ class UIweb extends React.Component {
           </div>
         </section>
         <section className="form1 pt-5 pb-5">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-6 pt-5 pb-5">
                 <img style={{ width: '100%' }} src={require("../images/anh16.jpg")} alt="" />
@@ -236,7 +235,7 @@ class UIweb extends React.Component {
           </div>
         </section>
         <section className="form2 pt-5 pb-5">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-6 p-5">
                 <h1 className="title">
@@ -254,7 +253,7 @@ class UIweb extends React.Component {
           </div>
         </section>
         <section className="form1 pt-5 pb-5">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-6 pt-5 pb-5">
                 <img style={{ width: '100%' }} src={require("../images/anh16.jpg")} alt="" />
@@ -271,7 +270,7 @@ class UIweb extends React.Component {
           </div>
         </section>
         <section className="slide pt-5 pb-5">
-          <div className="container p-4 mt-4 mb-4">
+          <div className="container-fluid p-4 mt-4 mb-4">
             <h1 className="text-center title">Người dùng nói gì về Plan Meeting</h1>
             <div className="row pt-3">
               <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
@@ -283,10 +282,10 @@ class UIweb extends React.Component {
                     phân loại từng người để tìm ra thời điểm
                     thích hợp nhất.
                       "</p>
-                    <img className="avt ml-4" src={require("../images/avt1.JPG")} alt="" />
-                    <strong style={{ color: '#000000' }}>Huỳnh Bá Thắng</strong>
-                    <span style={{ color: '#000000' }}>SV Khoa Quốc Tế
-                      Ngành CNTT - HV khóa K23</span>
+                    <img className="avt mr-4" src={require("../images/avt1.JPG")} alt="" />
+                    <strong className=" mr-4" style={{ color: '#000000' }}>Huỳnh Bá Thắng</strong>
+                    <small style={{ color: '#000000' }}><i>"SV Khoa Quốc Tế
+                      Ngành CNTT - HV khóa K23"</i></small>
                   </div>
                   <div className="carousel-item">
                     <p className="comment p-4">"Tôi sử dụng nó để lập kế
@@ -294,10 +293,10 @@ class UIweb extends React.Component {
                     nhóm, cộng
                     tác viên dự án và các nhà cung cấp bên
                       ngoài. Đó là một khái niệm đơn giản!"</p>
-                    <img className="avt ml-4" src={require("../images/avt1.JPG")} alt="" />
-                    <strong style={{ color: '#000000' }}>Trần Tuấn Kiệt</strong>
-                    <span style={{ color: '#000000' }}>SV Ngành Kinh Doanh
-                      Quốc Tế - KT ĐN - HV khóa K45</span>
+                    <img className="avt mr-4" src={require("../images/avt1.JPG")} alt="" />
+                    <strong className=" mr-4" style={{ color: '#000000' }}>Trần Tuấn Kiệt</strong><br />
+                    <small style={{ color: '#000000' }}><i>"SV Ngành Kinh Doanh
+                      Quốc Tế - KT ĐN - HV khóa K45"</i></small>
                   </div>
                   <div className="carousel-item">
                     <p className="comment p-4">"Đã qua rồi cái thời mà
@@ -317,7 +316,7 @@ class UIweb extends React.Component {
           </div>
         </section>
         <section className="form1 pt-5 pb-5">
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-4 p-5">
                 <h4 style={{ fontSize: '20px' }}>Sắp xếp nhanh thời gian và
@@ -326,7 +325,7 @@ class UIweb extends React.Component {
                 chơi chính không bị bỏ sót trong các cuộc họp quan trọng
                 - và các dự án tiến triển nhanh hơn.
               </div>
-              <div className="col-md-4 p-5">
+              <div className="col-md-4 p-5 border">
                 <h4 style={{ fontSize: '20px' }}>Kết nối nhanh với nhiều máy
                   tính</h4>
                 Cung cấp giải pháp nhắn tin và hội nghị truyền hình cho
@@ -345,7 +344,7 @@ class UIweb extends React.Component {
         </section>
         <section className="form2 pt-5 pb-5">
           <h1 className="text-center title">Câu hỏi thường gặp về Plan Meeting</h1>
-          <div className="container">
+          <div className="container-fluid">
             <div className="row">
               <div className="col-md-4 p-5">
                 <h4 className="title" style={{ fontSize: '25px' }}>Người tham
@@ -356,7 +355,7 @@ class UIweb extends React.Component {
                 cuộc họp, giúp bạn mời tất cả những người bạn muốn tham
                 gia cuộc gọi.
               </div>
-              <div className="col-md-4 p-5">
+              <div className="col-md-4 p-5 border">
                 <h4 className="title" style={{ fontSize: '25px' }}>Tôi có cần
                 cài đặt gì
                   không?</h4>
@@ -381,33 +380,71 @@ class UIweb extends React.Component {
             </div>
           </div>
         </section>
-        <section className="form1 pt-5 pb-5">
-          <div className="container mt-3">
+        <section className="form1 pt-5 pb-5  ">
+          <div className="container-fluid mt-3">
             <h1 className="text-center title">Làm việc trong các công cụ hiện có
               của bạn</h1>
             <div className="row">
               <div className="col-md-4 p-5">
                 <h4 className="title">Đa nền tảng</h4>
                 <p>Lên lịch trên nhiều lịch</p>
-                <img className="logo" src={require("../images/anh9.jpg")} alt="" />
-                <img className="logo" src={require("../images/anh10.jpg")} alt="" />
+                <img className="logo mr-4" src={require("../images/anh9.jpg")} alt="" />
+                <img className="logo ml-4" src={require("../images/anh10.jpg")} alt="" />
               </div>
-              <div className="col-md-4 p-5">
+              <div className="col-md-4 p-5 border">
                 <h4 className="title">Trình cắm trực tiếp</h4>
                 <p>Hoàn thành công việc, nơi bạn đã làm việc</p>
-                <img className="logo pl-2" src={require("../images/anh11.jpg")} alt="" />
-                <img className="logo" src={require("../images/anh12.jpg")} alt="" />
+                <img className="logo mr-4" src={require("../images/anh11.jpg")} alt="" />
+                <img className="logo ml-4" src={require("../images/anh12.jpg")} alt="" />
               </div>
               <div className="col-md-4 p-5">
                 <h4 className="title">Tích hợp nâng cao</h4>
                 <p>Xây dựng tích hợp tùy chỉnh cho bất kỳ trường hợp sử
                   dụng nào</p>
-                <img className="logo pl-2" src={require("../images/anh14.jpg")} alt="" />
-                <img className="logo" src={require("../images/anh15.jpg")} alt="" />
+                <img className="logo mr-4" src={require("../images/anh14.jpg")} alt="" />
+                <img className="logo ml-4" src={require("../images/anh15.jpg")} alt="" />
               </div>
             </div>
           </div>
         </section>
+        <footer className=" pb-5 mb-5 mr-5 ml-5" >
+          <nav  class="navbar navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+            <a class="nav-link " aria-current="page" href="#">About Us</a>
+
+              {/* <a class="nav-link active" href="#"></a> */}
+              <div class=" navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="#">Team</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Career</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Press</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Ads on Planmeeting</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Help</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Contact Sales</a>
+                  </li>
+                </ul>
+                
+              </div>
+              <span class="navbar-text">
+                <i style={{fontSize:'25px'}} class="fab fa-instagram "></i>
+                <i style={{fontSize:'25px'}}  class="fab fa-twitter-square ml-3"></i>
+                <i style={{fontSize:'25px'}}  class="fab fa-facebook-square ml-3"></i>
+            </span>
+            </div>
+          
+          </nav>
+        </footer>
       </div>
     );
   }

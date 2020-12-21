@@ -1,5 +1,6 @@
 const Pool = require('pg').Pool;
 var moment = require('moment');
+const nodemailer = require('nodemailer');
 const ramdomString = require('randomstring')
 const pool = new Pool({
     user: 'postgres',
@@ -8,10 +9,17 @@ const pool = new Pool({
     password: 'vinhtoan123',
     port: 5432
 })
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'meetingplanner1234@gmail.com',
+        pass: 'vinhtoan123'
+    }
+});
 const voting = (req, res) => {
     const { poll_id } = req.body;
     console.log(poll_id)
-    pool.query("select * from poll where poll_id=$1", [poll_id], (error, result) => {
+    pool.query('select * from poll where poll_id=$1', [poll_id], (error, result) => {
         if (error)
             throw error
         else {
@@ -60,21 +68,21 @@ const voting = (req, res) => {
 //     })
 // }
 const processData = (result, dataUser, dataSchedule) => {
-    let user = new Array();
+    let user = new Array()
     for (let i = 0; i < dataUser.rowCount; i++) {
-        let id = dataUser.rows[i].users_id;
+        let id = dataUser.rows[i].users_id
         let name = dataUser.rows[i].users_name;
-        let votePro = new Array();
+        let votePro = new Array()
         for (let j = 0; j < dataSchedule.rowCount; j++) {
             const data = vote(dataSchedule.rows[j].schedule_id, dataUser.rows[i].users_id, result)
-            votePro.push(data);
+            votePro.push(data)
         }
         let voting = ({
             user_id: id,
             user_name: name,
             data1: votePro
-        });
-        user.push(voting);
+        })
+        user.push(voting)
     }
     return user;
 }
@@ -92,7 +100,7 @@ const vote = (schedule_id, users_id, result) => {
             }
         }
     })
-    return data1;
+    return data1
 }
 
 const submitVote = (req, res) => {
@@ -136,17 +144,50 @@ const deleteUser = (req, res) => {
     res.status(400).send("complete")
 }
 const FinalOption = (req, res) => {
-    const { poll_id } = req.body
+    const { poll_id,schedule_finish } = req.body
+    console.log("--------------------------------------------")
     console.log(poll_id)
+    console.log(schedule_finish)
+    console.log("--------------------------------------------")
     const poll_status = 0
+    // const code = rn(options)
     pool.query('Update poll set poll_status = $1 where poll_id=$2 ',
         [poll_status, poll_id],
         (error, result) => {
             if (error)
                 throw error;
             else if (result.rowCount >= 1) {
+                pool.query('Select Users.* from Users,poll_user where Users.users_id=poll_user.users_id and poll_id=$1',
+                [poll_id],
+                (error,result1)=>{
+                    if(error)
+                        throw error
+                    else{
+                        console.log(result1.rows)
+                        result1.rows.forEach(element=>{
+                            setTimeout(sendEmail,1000,element.users_email,schedule_finish)
+                        })
+                    }
+                })
                 res.status(201).send("Complete")
             }
         })
+}
+const sendEmail =(sendEmail,schedule_finish)=>{
+    console.log(schedule_finish)
+    let mailOptions = {
+        mail: 'meetingplanner1234@gmail.com',
+        to: sendEmail,
+        subject: 'Infomation Poll:',
+        text: 'Schedule: '+ schedule_finish.date+'\n Zoom:'
+    };
+    transporter.sendMail(mailOptions, (err, data) => {
+        if (err) {
+            console.log('Error occurs', err);
+        }
+        else {
+            console.log('Email sent!!!');
+        }
+    });
 }
 module.exports = { voting, submitVote, deleteUser, FinalOption };

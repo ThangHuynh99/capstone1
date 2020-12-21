@@ -1,7 +1,7 @@
 import React from 'react';
 import '../scss/bootstrap/css/bootstrap.css';
-import '../scss/2.css';
-import '../scss/login.css';
+// import '../scss/2.css';
+// import '../scss/login.css';
 import '../scss/fa/css/all.css';
 import '../scss/account.css';
 import { Link } from 'react-router-dom';
@@ -93,11 +93,11 @@ class Profile extends React.Component {
 
 
         <div style={{ backgroundColor: 'white' }}>
-          <div style={{ backgroundColor: 'darkgray' }} className="container-xl">
+          <div className="container">
             <div className="row">
               <div className="col-md-3 left">
                 <span className="d-block p-4">
-                  <h3>Setting</h3>
+                  <h3>SETTING</h3>
                 </span>
                 <span className="d-block p-3">Account</span>
                 <span className="d-block p-3">Notifications</span>
@@ -162,25 +162,21 @@ class Profile extends React.Component {
                       <div id="test1" className="modal fade" role="dialog" style={{ zIndex: 1400 }}>
                         <div className="modal-dialog">
                           <div className="modal-content">
-                            <div className="modal-header">
+                            <div  className="modal-header">
                               <h5 className="modal-title" id="exampleModalLabel">Change password</h5>
                               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                               </button>
                             </div>
-                            <div className="modal-body">
-                              <div className="container">
+                            <div style={{padding:'0'}} className="modal-body">
+                              <div  className="container model">
                                 <div className="row">
                                   <div className="col-md-12 mb-3">
                                     <form>
                                       <div className="pr-3">
-                                        <input type="password" className="form-control mt-4
-                                  mb-5
-                                  text-center" id="inputEmail4" placeholder="Your current password" onChange={this.handlePassword} required />
-                                        <input type="password" className="form-control mt-4
-                                  mb-5 text-center" id="inputPassword4" placeholder="New password" onChange={this.handleNewPassword} required />
-                                        <input type="password" className="form-control
-                                  text-center" id="inputPassword4" placeholder="Confirm new password" onChange={this.handleReNewPassword} required />
+                                        <input type="password" className="form-control mt-4 mb-5 " id="inputPassword4" placeholder="Your current password" onChange={this.handlePassword} required />
+                                        <input type="password" className="form-control mt-4 mb-5 " id="inputPassword4" placeholder="New password" onChange={this.handleNewPassword} required />
+                                        <input type="password" className="form-control" id="inputPassword4" placeholder="Confirm new password" onChange={this.handleReNewPassword} required />
                                       </div>
                                     </form>
                                   </div>

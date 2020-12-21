@@ -8,9 +8,12 @@ const pool = new Pool({
 })
 const ViewUser =(req,res)=>{
         pool.query('Select * from Users',(error,result)=>{
-                if(error)
+                if(error){
                         throw error;
+                }
+                else{
                 res.status(200).send(result.rows);
+                }
         })
 }
 const ViewPoll= (req,res)=>{

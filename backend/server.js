@@ -13,6 +13,7 @@ const invite = require('./Authentication/Invite')
 const view = require ('./Authentication/ViewAdmin')
 const schedule=require('./Authentication/Schedule')
 const sendE=require('./Authentication/SendEmail')
+const deletePoll=require('./Authentication/DeletePoll')
 app.use(bodyParser.json())
 app.use(
     bodyParser.urlencoded({ 
@@ -60,6 +61,7 @@ app.post('/schedule',schedule.Schedule)
 app.post('/vote/finaloption',voting.FinalOption)
 app.post('/sendemail',sendE.SendEmail)
 app.post('/resetpassword',sendE.resetPassword)
+app.delete('/deletepoll',deletePoll.deleteRoom)
 app.listen(port, () => {
   console.log(`Server started on port `, port);
 });

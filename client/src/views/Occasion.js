@@ -75,6 +75,7 @@ class Occasion extends React.Component {
 
     render() {
         const { title, location, note } = this.state;
+        console.log(sessionStorage["poll_id"])
         // let data={
         //     return( <Option   />)
         // }
@@ -128,7 +129,7 @@ class Occasion extends React.Component {
                                                 }
                                             }}>
                                             <input type="submit"
-                                                className="button mt-4"
+                                                className="button mt-button pt-2 pb-2 pl-3 pr-3 mt-4"
                                                 name="change"
                                                 value="Continue"
                                             // required = {true}

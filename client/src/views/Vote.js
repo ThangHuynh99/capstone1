@@ -23,7 +23,8 @@ class Vote extends React.Component {
         }
         this.submitVote = this.submitVote.bind(this)
         this.invite = this.invite.bind(this)
-        this.componentDidMount = this.componentDidMount(this)
+        this.deletePoll=this.deletePoll.bind(this)
+        // this.componentDidMount = this.componentDidMount(this)
         // this.deleteUser=this.deleteUser.bind(this)
         this.finalOption = this.finalOption.bind(this)
     }
@@ -55,7 +56,7 @@ class Vote extends React.Component {
                     for (let j = 0; j < data.length; j++) {
                         // console.log("------------------" + i + "------------------" + j + "---------")
                         // console.log(data[j].data1[i])
-                        if (data[j].data1[i].vote_status.toString() === '1')
+                        if (data[j].data1[i].vote_status === 1)
                             count++;
                     }
                     if (max < count) {
@@ -67,7 +68,7 @@ class Vote extends React.Component {
                     dataVote.push(count)
                 }
                 this.setState({ vote: dataVote, schedule_finish: index })
-                if (this.state.poll.poll_status=== 0) {
+                if (this.state.poll.poll_status === 0) {
                     document.getElementById("bntFinal").disabled = 'disabled'
                     document.getElementById("bntSubmit").disabled = 'disabled'
                     if (this.state.pu_role === 'host') {
@@ -163,6 +164,7 @@ class Vote extends React.Component {
     }
     finalOption() {
         const poll_id = this.state.poll_id;
+        const schedule_finish=this.state.date[this.state.schedule_finish]
         // console.log(poll_id)
         fetch('http://localhost:3001/vote/finaloption', {
             method: "POST",
@@ -170,7 +172,7 @@ class Vote extends React.Component {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ poll_id })
+            body: JSON.stringify({ poll_id,schedule_finish })
         })
             .then(res => res.text())
             .then(result => {
@@ -180,10 +182,33 @@ class Vote extends React.Component {
                 }
             })
     }
+    deletePoll() {
+        var data1 = ({
+            data: this.state.data,
+            dataSchedule: this.state.schedule,
+            dataPoll: this.state.poll,
+            dataDate: this.state.date
+        })
+        fetch('http://localhost:3001/deletepoll', {
+            method: "DELETE",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify( data1 )
+        }).then(res=>res.text())
+        .then(result =>{
+            if(result==='Complete')
+                alert(result)
+                window.location='/dashboard'
+        })
+    }
 
     render() {
-        console.log(this.state.poll_id)
-
+        // console.log(this.state.poll_id)
+        // console.log(this.state.data)
+        // console.log(this.state.poll)
+        console.log(sessionStorage["poll_id"])
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} date={this.state.date[i]} />
         })
@@ -260,35 +285,38 @@ class Vote extends React.Component {
                                 </Link>
                             </div>
                         </div></nav>
-                    
-                        <nav style={{ backgroundColor: '#45505e' }} className="nav justify-content-center">
+
+                    <nav style={{ backgroundColor: '#45505e' }} className="nav justify-content-center">
                         {this.state.pu_role === 'host' ?
-                        <>
-                            <button id='bntFinal' type='button' onClick={this.finalOption}> <a style={{ color: 'green' }} className="nav-link active">Choose final option</a></button>
-                            <a style={{ color: 'white' }} className="nav-link active" href="#">Edit</a>
-                            <a style={{ color: 'white' }} className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                More
+                            <>
+                                <button id='bntFinal' type='button' onClick={this.finalOption}> <a style={{ color: 'green' }} className="nav-link active">Choose final option</a></button>
+                                <a style={{ color: 'white' }} className="nav-link active" href="/create">Edit</a>
+                                <a style={{ color: 'white' }} className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    More
                             </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a className="dropdown-item" href="#">Choose final option</a>
-                                <a className="dropdown-item" href="#">Export to PDF</a>
-                                <a className="dropdown-item" href="#">Export to Excel</a>
-                                <a className="dropdown-item" href="#">Print</a>
-                                <a className="dropdown-item" href="#">Duplicate poll</a>
-                                <a className="dropdown-item" href="#">Delete all participants</a>
-                                <a className="dropdown-item" href="#">Delete poll</a>
-                            </div>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a className="dropdown-item" href="#">Choose final option</a>
+                                    <a className="dropdown-item" href="#">Export to PDF</a>
+                                    <a className="dropdown-item" href="#">Export to Excel</a>
+                                    <a className="dropdown-item" href="#">Print</a>
+                                    <a className="dropdown-item" href="#">Duplicate poll</a>
+                                    <a className="dropdown-item" href="#">Delete all participants</a>
+                                    <a className="dropdown-item" onClick={this.deletePoll} href="#">Delete poll</a>
+                                </div>
                             </>
-                             : null}
-                        </nav>
-                       
-                    <h3 className="text-center mt-3" style={{textAlign:'center'}}>
-                        {this.state.data.map(element => {
-                            if (element.user_id.toString() === sessionStorage["users_id"]) {
-                                return (<td style={{ textAlign: "center" }}>{element.user_name}</td>)
-                            }
-                        })}
-                    </h3>
+                            : null}
+                    </nav>
+                    <div className="text-center">
+                        <h3 className=" mt-3 text-center" >TÊN CUỘC HỌP</h3>
+                        <h3 className=" mt-3 text-center">
+                            {this.state.data.map(element => {
+                                if (element.user_id.toString() === sessionStorage["users_id"]) {
+                                    return (<small style={{ textAlign: "center" }}>{element.user_name}</small>)
+                                }
+                            })}
+                        </h3>
+                    </div>
+
                     {this.state.pu_role === 'host' ?
                         <div style={{ border: 'solid 1px', backgroundColor: '#f5fbff' }} className="m-5 p-3">
                             <form className="mb-4 ">
@@ -336,7 +364,7 @@ class Vote extends React.Component {
                     </div>
                     <div className="container">
                         <div className="row">
-                            <div className="col-md-12 text-right mb-3 ">
+                            <div className="col-md-12 text-right mb-3 mt-3 ">
                                 <button className="btn btn-primary  p-2" id="bntSubmit" disabled='' onClick={this.submitVote}>submit</button>
 
                             </div>

@@ -24,3 +24,6 @@ table.i-border, table.i-border th, table.i-border td {
     overflow-x: scroll;
     margin: 0 auto;
   }
+  h3.text-center.mt-3 {
+    font-weight: 700 !important;
+}

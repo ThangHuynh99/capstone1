@@ -3,27 +3,28 @@
     margin: 0;
     padding: 0;
 }
-
-
-
 .bgr{
-   
     background-color:#c0c0c017 ;
-
 }
-.col-md-3{
-   
-    border: solid 1px #ced4da;
+.col-md-3.left{
+   border: none;
+    border-right: solid 1px #ced4da !important;
     padding: 0;
     margin: 0;
+    background-color: #dee2e6 !important;
+}
+span.d-block.p-4 {
+    background-color: white !important;
+}
+h3 {
+    font-weight: 700;
 }
 .d-block.p-3:hover{
     background-color:#ced4da;
 }
 .col-md-8.right{
     margin-left: 3px;
-    border: solid 1px #ced4da;
-    
+    border:none;
 }
 .InputFeedback{
     color: var(--color-neutral-700);
@@ -31,8 +32,11 @@
     line-height: 1.4;
     opacity: .7;
 }
-.col-md-3{
-    border: solid 1px #ced4da;
+.container{
+    padding: 0;
+}
+.container .model{
+    box-shadow: none;
 }
 .inputfile{
     opacity: 0;
@@ -44,4 +48,14 @@ button.btn.pass{
     text-align: left;
     box-shadow: none;
     width: 100%;
+}
+.modal-header{
+    background-color: #0d6efd;
+    color: white;
+}
+.close{
+    color: white !important;
+}
+.close:hover{
+    background-color: transparent !important;
 }
