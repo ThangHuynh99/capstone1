@@ -8,37 +8,64 @@ class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
+      email: '',
       password: '',
-      repass: ''
+      repass: '',
+      emailError: '',
+      passwordError: ''
     }
+  }
+  validate() {
+    let passwordError = "";
+    let emailError = "";
+    if (!this.state.email.includes("@")) {
+      emailError = "Invalid email "
+    }
+    if (this.state.password.length < 8 || this.state.password.length > 16) {
+      passwordError = "Password length should be more than 8 and less than 16"
+    }
+    if (emailError || passwordError) {
+      this.setState({ emailError, passwordError });
+      return false;
+    }
+    return true;
   }
   register = (e) => {
     e.preventDefault();
     var message = document.getElementById('error')
-    if (this.state.password === this.state.repass) {
-      const user = ({
-        users_email: this.state.id,
-        users_password: this.state.password
-      });
-      fetch('http://localhost:3001/registers', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(user)
-      })
-        .then(response => { response.text() })
-        .then(result => {
-          if (result === 'Complete')
-            message.innerHTML = "Complete"
-          else
-            message.innerHTML = "Username invalid"
+    const isValid = this.validate()
+    if (isValid) {
+      if (this.state.password === this.state.repass) {
+        const user = ({
+          users_email: this.state.email,
+          users_password: this.state.password
+        });
+        fetch('http://localhost:3001/registers', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify(user)
         })
-    }
-    else {
-      alert("khac")
+          .then(response => response.text())
+          .then(result => {
+            console.log(result)
+            if (result === 'Complete') {
+              // message.innerHTML = "Complete"
+              alert("Register complete")
+              window.location = "/login"
+            }
+            else if (result === 'Exist') {
+              message.innerHTML = "Email invalid"
+            }
+            else
+              message.innerHTML = result
+          })
+      }
+      else {
+        message.innerHTML = "Password and repassword incorrect"
+      }
     }
   }
   handlePasswordChange = (e) => {
@@ -46,8 +73,8 @@ class Register extends React.Component {
     console.log(this.state.password)
   }
   handleUsernameChange = (e) => {
-    this.setState({ id: e.target.value })
-    console.log(this.state.id)
+    this.setState({ email: e.target.value })
+    console.log(this.state.email)
   }
   handleRePasswordChange = (e) => {
     this.setState({ repass: e.target.value })
@@ -80,24 +107,24 @@ class Register extends React.Component {
             </div>
             <div className="col-md-7">
               <div className="mt-3">
-              <NavLink
+                <NavLink
                   exact activeStyle={{
                     fontWeight: 600,
                     color: "red"
                   }}
-                  activeClassName= 'pr-1 pt-5'
+                  activeClassName='pr-1 pt-5'
                   to='/login'>
-                   Log in 
+                  Log in
                 </NavLink>
-                  <i>/</i>
+                <i>/</i>
                 <NavLink
                   exact activeStyle={{
                     fontWeight: 600,
                     color: "black"
                   }}
-                  activeClassName= 'pl-1 pt-5'
+                  activeClassName='pl-1 pt-5'
                   to='/register'>
-                      Sign up
+                  Sign up
                 </NavLink>
               </div>
               <div className="pr-3 mt-5" >

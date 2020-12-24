@@ -81,12 +81,12 @@ class Authentication extends React.Component {
                         <div className="item-auth">
                                 <Link to="/register">
                                         <span className="navbar-text pr-3">
-                                                <button className="register nav-link" style={{ color: 'black' }}>Đăng Ký</button>
+                                                <button className="register nav-link" style={{ color: 'black' }}>Register</button>
                                         </span>
                                 </Link>
 
                                 <span className="navbar-text pr-3">
-                                        <button className="login p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Đăng Nhập</button>
+                                        <button className="login p-2" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Sign in</button>
                                         <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div className="modal-dialog">
                                                         <div style={{ backgroundColor: ' #fefefe', margin: 'auto', maxWidth: '498px', right: '0' }} className="modal-content">
@@ -120,9 +120,6 @@ class Authentication extends React.Component {
                                                                                                 </div>
 
                                                                                         </div>
-
-
-
                                                                                 </div>
 
                                                                         </div>

@@ -63,7 +63,7 @@ const Schedule = (req, res) => {
 }
 const InSchedule = (schedule, poll_id) => {
     schedule.forEach((element, i) => {
-        setTimeout(() => {
+
             pool.query('Insert into Schedule(schedule_date,schedule_starttime,schedule_endtime,poll_id) values ($1,$2,$3,$4)',
                 [element.date, element.beginTime, element.endTime, poll_id],
                 (error, result2) => {
@@ -74,7 +74,6 @@ const InSchedule = (schedule, poll_id) => {
                         console.log(result2)
                     }
                 })
-        },60*i);
     })
     //     pool.query('Insert into Schedule(schedule_date,schedule_starttime,schedule_endtime,poll_id) values ($1,$2,$3,$4)',
     //         [element.date, element.beginTime, element.endTime, poll_id],

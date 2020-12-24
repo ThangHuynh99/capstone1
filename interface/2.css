@@ -53,3 +53,6 @@ button{
     display: inline-block;
     padding-right: 5px;
 }
+.container-fluid{
+    max-width: 1000px;
+}

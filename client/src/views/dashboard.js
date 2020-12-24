@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
         })
         return (
             <div className="bgr">
-                <div className="container-xl" style={{ width: '970px' }} >
+                <div className="container-fluid" style={{ width: '970px' }} >
                     <nav className="navbar navbar-light">
                         <div className="text-right">
                             <Link to='/'>
@@ -90,8 +90,8 @@ class Dashboard extends React.Component {
                         </div>
                     </nav>
                 </div>
-                <div style={{ backgroundColor: 'white', width: '970px' }} className="container-xl">
-                    <div style={{ border: 'solid 1px #ced4da' }} className="row">
+                <div style={{ backgroundColor: 'white', width: '970px' }} className="container-fluid">
+                    <div style={{border:'solid 1px silver ' }} className="row">
                         <div className="col-md-3 left">
                             <span className="d-block p-4">
                                 <h3>Menu</h3>

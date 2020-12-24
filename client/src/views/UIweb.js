@@ -168,8 +168,8 @@ class UIweb extends React.Component {
                   Tạo cuộc họp</a></button> */}
 
               <Link to={sessionStorage["users_email"] ? '/create' : '/login'}>
-                <button className="meeting pl-2 pr-2">
-                  <h5 style={{ color: 'white' }}>+ Create a poll </h5>
+                <button className="meeting btn btn-danger  pl-2 pr-2">
+                  <h5 style={{ color: 'white', fontWeight:700 }}>+ Create a poll </h5>
                 </button>
               </Link>
             </span>
@@ -193,8 +193,8 @@ class UIweb extends React.Component {
                 <br />
                 <div className="text-center">
                   <Link to={sessionStorage["email"] ? '/create' : '/login'}>
-                    <button className="meeting mt-4 pl-2 pr-2 ">
-                      <h5 style={{ color: 'white' }}>+ Create a poll </h5>
+                    <button className="meeting btn btn-danger mt-4 pl-2 pr-2 ">
+                      <h5 style={{ color: 'white', fontWeight:700 }}>+ Create a poll </h5>
                     </button>
                   </Link>
                 </div>
@@ -214,7 +214,7 @@ class UIweb extends React.Component {
                 - và các dự án tiến triển nhanh hơn.
               </div>
               <div className="col-md-6 pt-5 pb-5">
-                <img style={{ width: '100%' }} src={require("../images/anh16.jpg")} alt="" />
+                <img style={{ width: '100%' }} src={require("../images/banner4.jpg")} alt="" />
               </div>
             </div>
           </div>
@@ -223,7 +223,7 @@ class UIweb extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-6 pt-5 pb-5">
-                <img style={{ width: '100%' }} src={require("../images/anh16.jpg")} alt="" />
+                <img style={{ width: '100%' }} src={require("../images/anh18.png")} alt="" />
               </div>
               <div className="col-md-6 p-5">
                 <h1 className="title"> Kết nối nhanh với nhiều máy tính.</h1>
@@ -247,7 +247,7 @@ class UIweb extends React.Component {
                 tầm nhìn của công chúng..
               </div>
               <div className="col-md-6 pt-5 pb-5">
-                <img style={{ width: '100%' }} src={require("../images/anh16.jpg")} alt="" />
+                <img style={{ width: '100%' }} src={require("../images/bgr.jpg")} alt="" />
               </div>
             </div>
           </div>
@@ -256,7 +256,7 @@ class UIweb extends React.Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-6 pt-5 pb-5">
-                <img style={{ width: '100%' }} src={require("../images/anh16.jpg")} alt="" />
+                <img style={{ width: '100%' }} src={require("../images/anh17.jpg")} alt="" />
               </div>
               <div className="col-md-6 p-5">
                 <h1 className="title">Cũng hoạt động với các giải pháp hội

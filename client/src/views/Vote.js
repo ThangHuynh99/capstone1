@@ -207,7 +207,7 @@ class Vote extends React.Component {
     render() {
         // console.log(this.state.poll_id)
         // console.log(this.state.data)
-        // console.log(this.state.poll)
+        console.log(this.state.poll)
         // console.log(sessionStorage["poll_id"])
         let schedule1 = this.state.schedule.map((schedule, i) => {
             return <Schedule key={i} schedule={schedule} date={this.state.date[i]} />
@@ -307,7 +307,7 @@ class Vote extends React.Component {
                             : null}
                     </nav>
                     <div className="text-center">
-                        <h3 className=" mt-3 text-center" >TÊN CUỘC HỌP</h3>
+                        <h3 className=" mt-3 text-center" >{this.state.poll.poll_title}</h3>
                         <h3 className=" mt-3 text-center">
                             {this.state.data.map(element => {
                                 if (element.user_id.toString() === sessionStorage["users_id"]) {

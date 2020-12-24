@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS Poll(
     poll_endVoteDate date,
     poll_status int,
 	poll_note varchar,
+    poll_option varchar
 );
 
 Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
@@ -81,35 +82,42 @@ CREATE TABLE IF NOT EXISTS Vote(
     FOREIGN KEY (schedule_id) REFERENCES Schedule(schedule_id),
     FOREIGN KEY (users_id) REFERENCES Users(users_id)
 );
+Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
+values ('vinhtoan20@gmail.com','vinh toan','202cb962ac59075b964b07152d234b70','VietNam','07/10/1999','Viet Nam');
+
+
+
+
+
 ----------------------------------------------------------------------------------------------------------------
 Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
-values ('toan','vinh toan','123','VietNam','07/10/1999','Viet Nam');
+values ('vinhtoan20@gmail.com','vinh toan','202cb962ac59075b964b07152d234b70','VietNam','07/10/1999','Viet Nam');
 Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
-values ('thang','Thang Huynh','123','VietNam','02/8/1999','Viet Nam');
+values ('thanghuynh20@gmail.com','Thang Huynh','202cb962ac59075b964b07152d234b70','VietNam','02/8/1999','Viet Nam');
 Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
-values ('dong','dong ky','123','VietNam','05/9/1999','Viet Nam');
+values ('kyhuudong@gmail.com','dong ky','202cb962ac59075b964b07152d234b70','VietNam','05/9/1999','Viet Nam');
 Insert Into Users(users_email,users_name,users_password,users_country,users_birthday,users_language) 
-values ('phat','Phat Pham','123','VietNam','03/9/1999','Viet Nam');
+values ('phatpham@gmail.com','Phat Pham','202cb962ac59075b964b07152d234b70','VietNam','03/9/1999','Viet Nam');
 ----------------------------------------------------------------------------------------------------------------
 Insert into Groups (group_auth) values ('1');
 Insert into Groups (group_auth) values ('2');
 ----------------------------------------------------------------------------------------------------------------
-Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
-values('QF5O7THf2al5WbnJ','Cuộc họp tuần 11','4/11/2011','Thư viện ','15/11/2011','4/11/2011','8/11/2011',1,'Đáng chú ý');
-Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
-values('SdODnNEcYCSj2KwC','Cuộc party 15','5/12/2013','Sảnh ','12/12/2013','11/12/2013','12/12/2013',1,'Bữa tiệc rất bự');
-Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note) 
-values('ZTjDhggXqJTMnW7f','Đi du lịch Đà Lạt','5/7/2018','Đà Lạt ','12/7/2018','11/7/2018','14/7/2018',1,'Rất vui vẻ và này nọ');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note,poll_option) 
+values('QF5O7THf2al5WbnJ','Cuộc họp tuần 11','4/11/2011','Thư viện ','15/11/2011','4/11/2011','8/11/2011',1,'Đáng chú ý','public');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note,poll_option) 
+values('SdODnNEcYCSj2KwC','Cuộc party 15','5/12/2013','Sảnh ','12/12/2013','11/12/2013','12/12/2013',1,'Bữa tiệc rất bự','private');
+Insert into Poll (poll_id,poll_title,poll_date,poll_location,poll_predictDate,poll_beginVoteDate,poll_endVoteDate,poll_status,poll_note,poll_option) 
+values('ZTjDhggXqJTMnW7f','Đi du lịch Đà Lạt','5/7/2018','Đà Lạt ','12/7/2018','11/7/2018','14/7/2018',1,'Rất vui vẻ và này nọ','public');
 ----------------------------------------------------------------------------------------------------------------
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7THf2al5WbnJ',1,'user');
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7THf2al5WbnJ',2,'host');
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7THf2al5WbnJ',3,'user');
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('SdODnNEcYCSj2KwC',1,'host');
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('SdODnNEcYCSj2KwC',4,'user');
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('SdODnNEcYCSj2KwC',2,'user');
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnW7f',3,'host');
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnW7f',4,'user');
-Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnW7f',2,'user');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7THf2al5WbnJ',7,'user');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7THf2al5WbnJ',8,'host');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('QF5O7THf2al5WbnJ',9,'user');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('SdODnNEcYCSj2KwC',7,'host');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('SdODnNEcYCSj2KwC',10,'user');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('SdODnNEcYCSj2KwC',8,'user');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnW7f',9,'host');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnW7f',10,'user');
+Insert into Poll_User(poll_id,users_id,PU_Role) values ('ZTjDhggXqJTMnW7f',8,'user');
 ----------------------------------------------------------------------------------------------------------------
 Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
 values ('15/11/2011','7:00','9:00','QF5O7THf2al5WbnJ');
@@ -123,26 +131,43 @@ Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id)
 values ('13/11/2011','15:00','17:00','ZTjDhggXqJTMnW7f');
 Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
 values ('14/11/2011','13:00','15:00','ZTjDhggXqJTMnW7f');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('11/11/2011','7:00','9:00','SdODnNEcYCSj2KwC');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('13/11/2011','15:00','17:00','SdODnNEcYCSj2KwC');
+Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
+values ('14/11/2011','13:00','15:00','SdODnNEcYCSj2KwC');
 ----------------------------------------------------------------------------------------------------------------
-Insert into Vote (schedule_id,users_id,vote_status) values('1','1',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('1','2',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('1','3',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('2','1',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('2','2',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('2','3',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('3','1',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('3','2',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('3','3',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('515','7',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('515','8',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('515','9',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('516','7',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('516','8',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('516','9',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('517','7',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('517','8',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('517','9',0);
 ---------------------------------------------------------------------------------------------------------------------------
-Insert into Vote (schedule_id,users_id,vote_status) values('4','3',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('4','4',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('4','2',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('5','3',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('5','4',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('5','2',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('6','3',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('6','4',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('6','2',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('518','7',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('518','10',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('518','8',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('519','7',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('519','10',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('519','8',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('520','7',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('520','10',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('520','8',0);
+---------------------------------------------------------------------------------------------------------------------------
+Insert into Vote (schedule_id,users_id,vote_status) values('521','9',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('521','10',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('521','8',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('522','9',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('522','10',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('522','8',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('523','9',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('523','10',1);
+Insert into Vote (schedule_id,users_id,vote_status) values('523','8',0);
+
 
 
 ----------------------------------------------------------------------------------------------------------------
