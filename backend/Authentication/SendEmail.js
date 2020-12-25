@@ -1,5 +1,6 @@
 const Pool = require('pg').Pool;
 var md5 = require('md5');
+const rn=require('random-number')
 const nodemailer = require('nodemailer');
 const pool = new Pool({
     user: 'postgres',
@@ -8,6 +9,11 @@ const pool = new Pool({
     password: 'vinhtoan123',
     port: 5432
 })
+var options = {
+    min:  100000
+  , max:  999999
+  , integer: true
+  }
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {

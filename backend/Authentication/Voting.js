@@ -144,7 +144,7 @@ const deleteUser = (req, res) => {
     res.status(400).send("complete")
 }
 const FinalOption = (req, res) => {
-    const { poll_id,schedule_finish } = req.body
+    const { poll_id,schedule_finish,schedule_starttime,schedule_endtime,dataPoll } = req.body
     console.log("--------------------------------------------")
     console.log(poll_id)
     console.log(schedule_finish)
@@ -165,7 +165,7 @@ const FinalOption = (req, res) => {
                     else{
                         console.log(result1.rows)
                         result1.rows.forEach(element=>{
-                            setTimeout(sendEmail,1000,element.users_email,schedule_finish)
+                            setTimeout(sendEmail,1000,element.users_email,schedule_finish,schedule_starttime,schedule_endtime,dataPoll)
                         })
                     }
                 })
@@ -173,13 +173,13 @@ const FinalOption = (req, res) => {
             }
         })
 }
-const sendEmail =(sendEmail,schedule_finish)=>{
-    console.log(schedule_finish)
+const sendEmail =(sendEmail,schedule_finish,schedule_starttime,schedule_endtime,dataPoll)=>{
+    console.log(dataPoll.poll_title)
     let mailOptions = {
         mail: 'meetingplanner1234@gmail.com',
         to: sendEmail,
         subject: 'Infomation Poll:',
-        text: 'Schedule: '+ schedule_finish.date+'\n Zoom:'
+        text: 'Schedule: '+ schedule_finish.date+'\nName poll:'+dataPoll.poll_title+'\nLocation'+dataPoll.poll_location+'\nStart Time:'+schedule_starttime+'\nEnd time'+schedule_endtime+'\n Zoom:[Link zoom ]'
     };
     transporter.sendMail(mailOptions, (err, data) => {
         if (err) {

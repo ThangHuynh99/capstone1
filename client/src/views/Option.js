@@ -48,6 +48,7 @@ export default class Example extends React.Component {
     const newRoomUser = firebase.database().ref('roomusers/').push();
     newRoomUser.set(newroomuser);
   };
+  //insert date to array
   handleDayClick(day, { selected }) {
     const { selectedDays, schedule } = this.state;
     if (selected) {
@@ -67,11 +68,13 @@ export default class Example extends React.Component {
     }
     this.setState({ selectedDays, schedule });
   }
+  //function change  begin time in function option 
   ChangeTimeBegin(value, i) {
     let newSchedule = [...this.state.schedule]
     newSchedule[i].beginTime = value;
     this.setState({ schedule: newSchedule })
   }
+  //function change  end time in function option 
   ChangeTimeEnd(value, i) {
     console.log(value)
     console.log(i)
@@ -79,8 +82,10 @@ export default class Example extends React.Component {
     newSchedule[i].endTime = value;
     this.setState({ schedule: newSchedule })
   }
+  // function next page vote
   ClickContinue = (e) => {
     e.preventDefault();
+    //crate data post HTTPs 
     const addSchedule = {
       users_id: sessionStorage["users_id"],
       title: this.state.title,
@@ -89,6 +94,7 @@ export default class Example extends React.Component {
       schedule: this.state.schedule,
       poll_option: this.state.poll_option
     };
+    //Post HTTPS
     fetch('http://localhost:3001/schedule', {
       method: "POST",
       headers: {

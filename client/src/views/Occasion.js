@@ -25,8 +25,7 @@ class Occasion extends React.Component {
         // this.changeHandler = this.changeHandler.bind(this);
         // this.submitHandler = this.submitHandler.bind(this);
 
-    }
-
+    } 
     changeHandler = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }

@@ -1,4 +1,5 @@
 const Pool = require('pg').Pool;
+const nodemailer = require('nodemailer');
 const pool = new Pool({
         user: 'postgres',
         host: 'localhost',
@@ -6,6 +7,13 @@ const pool = new Pool({
         password: 'vinhtoan123',
         port: 5432
 })
+let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+                user: 'meetingplanner1234@gmail.com',
+                pass: 'vinhtoan123'
+        }
+});
 const invite = async (req, res) => {
         const { user_email, poll_id, schedule } = req.body;
         // console.log(user_email)
@@ -16,11 +24,12 @@ const invite = async (req, res) => {
                 (error, result) => {
                         if (error)
                                 throw error
-                        else if(result.rowCount===0){
+                        else if (result.rowCount === 0) {
                                 res.status(201).send("not exist")
                         }
                         else if (result.rowCount >= 1) {
                                 console.log(result)
+                                const users_email = result.rows[0].users_email
                                 const users_id = result.rows[0].users_id
                                 console.log("user_id: " + users_id)
                                 pool.query('Select * from poll_user where users_id=$1 and poll_id=$2', [users_id, poll_id], (error, result1) => {
@@ -36,7 +45,29 @@ const invite = async (req, res) => {
                                                 console.log(User)
                                                 const InVote = vote(schedule, users_id)
                                                 console.log("InVote:" + InVote)
-                                                res.status(201).send("Complete")
+                                                pool.query('Select * from poll where poll_id=$1', [poll_id], (error, result2) => {
+                                                        if (error)
+                                                                return error
+                                                        else {
+                                                                let mailOptions = {
+                                                                        mail: 'meetingplanner1234@gmail.com',
+                                                                        to: users_email,
+                                                                        subject: 'Invite poll:',
+                                                                        text: 'Name poll ' + result2.rows[0].poll_title + '\n Poll location: ' + result2.rows[0].poll_location
+                                                                };
+                                                                transporter.sendMail(mailOptions, (err, data) => {
+                                                                        if (err) {
+                                                                                console.log('Error occurs', err);
+                                                                        }
+                                                                        else {
+                                                                                console.log('Email sent!!!');
+                                                                                res.status(201).send("Complete")
+                                                                        }
+                                                                });
+                                                        }
+                                                })
+
+
                                         }
                                         //         console.log("User:"+User)
                                         //         console.log("-------------------Check User --------------------")
@@ -78,5 +109,19 @@ const vote = (schedule, users_id) => {
                                 // console.log(result);
                         })
         }
+}
+const pollData = (poll_id) => {
+        let data;
+        pool.query('Select * from poll where poll_id=$1', [poll_id], (error, result) => {
+                if (error)
+                        return error
+                else {
+                        console.log("===============================")
+                        console.log(result.rows[0])
+                        console.log("===============================")
+                        data = result.rows[0]
+                }
+        })
+        return data;
 }
 module.exports = { invite }

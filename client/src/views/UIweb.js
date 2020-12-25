@@ -169,7 +169,7 @@ class UIweb extends React.Component {
 
               <Link to={sessionStorage["users_email"] ? '/create' : '/login'}>
                 <button className="meeting btn btn-danger  pl-2 pr-2">
-                  <h5 style={{ color: 'white', fontWeight:700 }}>+ Create a poll </h5>
+                  <h5 style={{ color: 'white', fontWeight: 700 }}>+ Create a poll </h5>
                 </button>
               </Link>
             </span>
@@ -182,19 +182,20 @@ class UIweb extends React.Component {
                 <img style={{ width: '100%' }} src={require("../images/anh16.jpg")} alt="" />
               </div>
               <div className="col-md-6 p-5">
-                <h1 className="title">Trải nghiệm hội họp dễ dàng.</h1>
-                Meet giúp bạn không phải lo lắng khi tham gia cuộc gọi
-                video ở cơ quan. Chỉ cần thiết lập cuộc họp và chia sẻ
-                một liên kết. Không phải lo lắng về việc liệu người
-                trong nhóm hoặc khách hàng có tài khoản hoặc plug-in
-                thích hợp hay không. Với giao diện nhanh chóng, gọn nhẹ
-                và tính năng quản lý người tham gia thông minh, cuộc gọi
-                video nhiều người diễn ra thật dễ dàng.
+                <h1 className="title">Easy meeting experience.</h1>
+
+Meet saves you from having to worry about joining a call
+                video at work. Just set up meeting and sharing
+                a link. No worries about whether people
+                in groups or clients with accounts or plug-ins
+                appropriate or not. With a fast, lightweight interface
+                and smart participant management, calls
+                Multiplayer video is so easy.
                 <br />
                 <div className="text-center">
                   <Link to={sessionStorage["email"] ? '/create' : '/login'}>
                     <button className="meeting btn btn-danger mt-4 pl-2 pr-2 ">
-                      <h5 style={{ color: 'white', fontWeight:700 }}>+ Create a poll </h5>
+                      <h5 style={{ color: 'white', fontWeight: 700 }}>+ Create a poll </h5>
                     </button>
                   </Link>
                 </div>
@@ -207,11 +208,9 @@ class UIweb extends React.Component {
             <div className="row">
               <div className="col-md-6 p-5">
                 <h1 className="title">
-                  Sắp xếp nhanh thời gian và lịch trình bận rộn.
+                  Quickly schedule busy times and schedules.
                 </h1>
-                Kiểm tra tính khả dụng trên các múi giờ, để những người
-                chơi chính không bị bỏ sót trong các cuộc họp quan trọng
-                - và các dự án tiến triển nhanh hơn.
+Check availability across time zones, so key players aren't left out in key meetings - and projects progress faster.
               </div>
               <div className="col-md-6 pt-5 pb-5">
                 <img style={{ width: '100%' }} src={require("../images/banner4.jpg")} alt="" />
@@ -226,10 +225,11 @@ class UIweb extends React.Component {
                 <img style={{ width: '100%' }} src={require("../images/anh18.png")} alt="" />
               </div>
               <div className="col-md-6 p-5">
-                <h1 className="title"> Kết nối nhanh với nhiều máy tính.</h1>
-                Cung cấp giải pháp nhắn tin và hội nghị truyền hình cho
-                máy tính, sử dụng rất nhanh và dễ dàng có nhiều tính
-                năng có thể mở rộng sử dụng trực tuyến
+                <h1 className="title">
+                  Quick connection with multiple computers.
+                  </h1>
+                      Provides PC-based messaging and video conferencing solutions,
+                      very fast and easy to use with many features that can be expanded online.
               </div>
             </div>
           </div>
@@ -239,12 +239,10 @@ class UIweb extends React.Component {
             <div className="row">
               <div className="col-md-6 p-5">
                 <h1 className="title">
-                  Giữ lịch của bạn ở chế độ riêng tư.
+                  Keep your calendar private.
                 </h1>
-                Lịch của bạn - và lịch của những người tham dự - là lịch
-                cá nhân. Chúng tôi hiểu rồi. Với Doodle, các sự kiện,
-                cuộc họp, cuộc hẹn và các hoạt động hàng ngày nằm ngoài
-                tầm nhìn của công chúng..
+                Your calendar - and the attendees' calendar - is personal. We understand.
+                With Meeting planner, events, meetings, appointments and daily activities are out of the public's view ..
               </div>
               <div className="col-md-6 pt-5 pb-5">
                 <img style={{ width: '100%' }} src={require("../images/bgr.jpg")} alt="" />
@@ -259,40 +257,29 @@ class UIweb extends React.Component {
                 <img style={{ width: '100%' }} src={require("../images/anh17.jpg")} alt="" />
               </div>
               <div className="col-md-6 p-5">
-                <h1 className="title">Cũng hoạt động với các giải pháp hội
-                  họp khác.</h1>
-                Những nhóm sử dụng Skype for Business hoặc các hệ thống
-                hội họp dựa trên tiêu chuẩn SIP và H.323 (ví dụ: Polycom
-                và Cisco) có thể tham gia liền mạch một cuộc họp trên
-                Meet thông qua Nền tảng Pexip Infinity.
+                <h1 className="title">
+                  Also works with other meeting solutions.</h1>
+                  Groups that use Skype for Business or systems Meetings based on the SIP and H.323 standards (eg Polycom and Cisco) can seamlessly join a meeting above Meet through Pexip Infinity Platform.
               </div>
             </div>
           </div>
         </section>
         <section className="slide pt-5 pb-5">
           <div className="container-fluid p-4 mt-4 mb-4">
-            <h1 className="text-center title">Người dùng nói gì về Plan Meeting</h1>
+            <h1 className="text-center title">What users said about Plan Meeting</h1>
             <div className="row pt-3">
               <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
                 <div className="carousel-inner">
                   <div className="carousel-item active">
-                    <p className="comment p-4">"Đã qua rồi cái thời mà
-                    bạn gửi hàng loạt email để biết tình trạng
-                    sẵn có và phải
-                    phân loại từng người để tìm ra thời điểm
-                    thích hợp nhất.
-                      "</p>
+                    <p className="comment p-4">"Gone are the days you send mass emails to know the status available and right categorize each person to find the timing most suitable."</p>
                     <img className="avt mr-4" src={require("../images/avt1.JPG")} alt="" />
                     <strong className=" mr-4" style={{ color: '#000000' }}>Huỳnh Bá Thắng</strong>
                     <small style={{ color: '#000000' }}><i>"SV Khoa Quốc Tế
                       Ngành CNTT - HV khóa K23"</i></small>
                   </div>
                   <div className="carousel-item">
-                    <p className="comment p-4">"Tôi sử dụng nó để lập kế
-                    hoạch các cuộc họp với các thành viên trong
-                    nhóm, cộng
-                    tác viên dự án và các nhà cung cấp bên
-                      ngoài. Đó là một khái niệm đơn giản!"</p>
+                    <p className="comment p-4">
+"I use it to plan meetings with team members, project collaborators and outside providers. It's a simple concept!"</p>
                     <img className="avt mr-4" src={require("../images/avt1.JPG")} alt="" />
                     <strong className=" mr-4" style={{ color: '#000000' }}>Trần Tuấn Kiệt</strong><br />
                     <small style={{ color: '#000000' }}><i>"SV Ngành Kinh Doanh
@@ -408,9 +395,9 @@ class UIweb extends React.Component {
           </div>
         </section>
         <footer className=" pb-5 mb-5 mr-5 ml-5" >
-          <nav  class="navbar navbar-expand-lg navbar-light ">
+          <nav class="navbar navbar-expand-lg navbar-light ">
             <div class="container-fluid">
-            <a class="nav-link " aria-current="page" href="#">About Us</a>
+              <a class="nav-link " aria-current="page" href="#">About Us</a>
 
               {/* <a class="nav-link active" href="#"></a> */}
               <div class=" navbar-collapse" id="navbarNav">
@@ -434,15 +421,15 @@ class UIweb extends React.Component {
                     <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Contact Sales</a>
                   </li>
                 </ul>
-                
+
               </div>
               <span class="navbar-text">
-                <i style={{fontSize:'25px'}} class="fab fa-instagram "></i>
-                <i style={{fontSize:'25px'}}  class="fab fa-twitter-square ml-3"></i>
-                <i style={{fontSize:'25px'}}  class="fab fa-facebook-square ml-3"></i>
-            </span>
+                <i style={{ fontSize: '25px' }} class="fab fa-instagram "></i>
+                <i style={{ fontSize: '25px' }} class="fab fa-twitter-square ml-3"></i>
+                <i style={{ fontSize: '25px' }} class="fab fa-facebook-square ml-3"></i>
+              </span>
             </div>
-          
+
           </nav>
         </footer>
       </div>

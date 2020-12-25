@@ -32,7 +32,7 @@ class ChatRoom extends React.Component {
             roomname: '',
             room: '',
             message: '',
-            inputVal_1:''
+            inputVal_1: ''
         }
         this.closeForm = this.closeForm.bind(this)
         this.openForm = this.openForm.bind(this)
@@ -112,11 +112,11 @@ class ChatRoom extends React.Component {
         // alert(chat.message)
         // chat.date = Moment(new Date()).format('DD/MM/YYYY HH:mm:ss');
         // chat.type = 'message';
-        alert(chat)
+        // alert(chat)
         const newMessage = firebase.database().ref('chats/').push();
         newMessage.set(chat);
 
-        this.setState({ message: ''})
+        this.setState({ message: '' })
         e.target.reset();
     };
 
@@ -159,49 +159,79 @@ class ChatRoom extends React.Component {
             <>
                 <button id="myBtn" onClick={this.openForm}><i class="fas fa-comment-dots"></i></button>
                 <div id="myModal" class="modal">
-                    {/* <!-- Modal content --> */}
                     <div className="modal-content">
                         <span className="close text-right p-3 " onClick={this.closeForm}>&times;</span>
                         <div className="scroll_mess">
                             <div className="popup-head">
                             </div>
                             {this.state.chats.map((item, idx) => (
+                                //     <div className="modal-body">
+                                //     <div className="chatbot__message-window">
+                                //       <ul className="chatbot__messages">
+                                //         <li className="is-ai animation">
+                                //           <div className="is-ai__profile-picture">
+                                //             <svg className="icon-avatar" viewBox="0 0 32 32">
+                                //               <use xlinkHref="#avatar" />
+                                //             </svg>
+                                //           </div>
+                                //           <span className="chatbot__arrow chatbot__arrow--left" />
+                                //           <p className="chatbot__message">{item.message} </p>
+                                //         </li>
+                                //       </ul>
+                                //     </div>
+                                //     <div className="chatbot__entry chatbot--closed">
+                                //       <input type="text" className="chatbot__input" placeholder="Write a message..." />
+                                //       <svg className="chatbot__submit" viewBox="0 0 32 32">
+                                //         <use xlinkHref="#icon-send" />
+                                //       </svg>
+                                //     </div>
+                                //   </div>
+
                                 <div className="popup-messages">
                                     <div className="direct-chat-messages">
                                         <div className="chat-box-single-line">
-                                            <abbr className="timestamp">{item.date}</abbr>
+                                            {item.date}
                                         </div>
                                         <div className="direct-chat-msg doted-border">
-                                                                           
-                                        
-                                            <div className={`${item.nickname === sessionStorage["users_name"] ? "RightBubble" : "LeftBubble"}`}>
+                                            {item.nickname === sessionStorage["users_name"] ? (<div className="media media-chat media-chat-reverse">
+                                                <div className="media-body">
+                                                    <p>{item.message}</p>
+                                                </div>
+                                            </div>) : (<>
+                                            <p>{item.nickname}</p>
+                                                <div className="media media-chat">
+                                                    <div className="media-body">
+                                                        <p>{item.message}</p>
+                                                    </div>
+                                                </div>
+                                            </>)}
+                                            {/* <div className={`${item.nickname === sessionStorage["users_name"] ? "RightBubble" : "LeftBubble"}`}>
                                                 {item.nickname === sessionStorage["users_name"] ?
                                                     <span className="MsgName">Me</span> : <span className="MsgName">{item.nickname}</span>
                                                 }
-                                                <p>{item.message}</p>
-                                            </div>
-                                            
+                                                <p className="p-3">{item.message}</p>
+                                            </div> */}
                                         </div>
                                     </div>
                                 </div>
                             ))}
-                            
-                        </div>
-                        <div style ={{"position":"sticky"}} className="popup-messages-footer">
-                                <Form className="MessageForm" onSubmit={this.submitMessage}>
-                                    <InputGroup>
-                                        <Input type="text" name="message"  id="message" placeholder="Enter message here" onChange={this.onChange} />
-                                        <InputGroupAddon addonType="append">
-                                            <Button variant="primary" type="submit">Send</Button>
-                                       </InputGroupAddon>
-                                    </InputGroup>
-                                </Form>
 
-                            </div>
+                        </div>
+                        <div style={{ "position": "sticky" }} className="popup-messages-footer">
+                            <Form className="MessageForm" onSubmit={this.submitMessage}>
+                                <InputGroup>
+                                    <Input type="text" name="message" id="message" placeholder="Enter message here" onChange={this.onChange} />
+                                    <InputGroupAddon addonType="append">
+                                        <Button variant="primary" type="submit">Send</Button>
+                                    </InputGroupAddon>
+                                </InputGroup>
+                            </Form>
+
+                        </div>
                     </div>
 
                 </div>
-             
+
             </>
         );
     }

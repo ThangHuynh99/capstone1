@@ -200,8 +200,6 @@ body
 
     background-color: red;
     margin: 0px;
-
-
 }
 .modal-content{
     padding: 0;
@@ -255,11 +253,14 @@ body
     
 }
 .popup-messages .chat-box-single-line {
-    border-bottom: 1px solid #a4c6b5;
+   border: none !important ; 
     height: 12px;
     margin: 7px 0 20px;
     position: relative;
     text-align: center;
+}
+.chat-box-single-line {
+  font-size: 12px;
 }
 .popup-messages abbr.timestamp {
     background: #3f9684 none repeat scroll 0 0;
@@ -568,4 +569,61 @@ footer.StickyFooter {
 .ChatContent {
   overflow-y: scroll;
   height: 600px;
+}
+.media {
+  padding: 16px 12px;
+  -webkit-transition: background-color .2s linear;
+  transition: background-color .2s linear
+}
+.media-chat .media-body {
+  -webkit-box-flex: initial;
+  flex: initial;
+  display: table
+}
+
+.media-body {
+  min-width: 0
+}
+
+.media-chat .media-body p {
+  position: relative;
+  padding: 6px 8px;
+  margin: 4px 0;
+  background-color: #f5f6f7;
+  border-radius: 3px;
+  font-weight: 100;
+  color: #9b9b9b
+}
+.media-chat.media-chat-reverse {
+  padding-right: 12px;
+  padding-left: 64px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  flex-direction: row-reverse
+}
+
+.media-chat {
+  padding-right: 64px;
+  margin-bottom: 0
+}
+.media {
+  padding: 16px 12px;
+  -webkit-transition: background-color .2s linear;
+  transition: background-color .2s linear
+}
+
+.media-chat.media-chat-reverse .media-body p {
+  float: right;
+  clear: right;
+  background-color: #48b0f7;
+  color: #fff
+}
+
+.media-chat .media-body p {
+  position: relative;
+  color: #fff;
+  padding: 6px 8px;
+  margin: 4px 0;
+  background-color: #4d4d4d;
+  border-radius: 3px
 }

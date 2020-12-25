@@ -8,14 +8,16 @@ class Schedule extends React.Component {
     super(props)
     this.state = {
       schedule: props.schedule,
-      date: props.date
+      date: props.date,
+      final: props.final
     }
   }
   render() {
-    console.log(this.state.date.date)
+    console.log(this.state.final)
     return (
-      <td style={{ width: '110px', height: '130px', textAlign: 'center' }} className="date">
-        {this.state.date.date}<br></br>{this.state.schedule.schedule_starttime.substring(0,5)}-{this.state.schedule.schedule_endtime.substring(0,5)}
+      <td style={this.state.final === 0 ? { width: '110px', height: '130px', textAlign: 'center', backgroundColor: '#0080ff' } 
+      : { width: '110px', height: '130px', textAlign: 'center' }} className="date">
+        {this.state.date.date}<br></br>{this.state.schedule.schedule_starttime.substring(0, 5)}-{this.state.schedule.schedule_endtime.substring(0, 5)}
       </td>
     );
   }

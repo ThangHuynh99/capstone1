@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS Group_User(
     FOREIGN KEY (group_id) REFERENCES Groups(group_id)
 );
 
-Insert into Group_User (group_id,users_id) values(1,1);
-Insert into Group_User (group_id,users_id) values(1,1);
-Insert into Group_User (group_id,users_id) values(1,3);
-Insert into Group_User (group_id,users_id) values(2,4);
+Insert into Group_User (group_id,users_id) values(1,7);
+Insert into Group_User (group_id,users_id) values(1,8);
+Insert into Group_User (group_id,users_id) values(1,9);
+Insert into Group_User (group_id,users_id) values(1,10);
 
 CREATE TABLE IF NOT EXISTS Poll(
     poll_id VARCHAR(16) PRIMARY KEY NOT NULL,
@@ -138,9 +138,9 @@ values ('13/11/2011','15:00','17:00','SdODnNEcYCSj2KwC');
 Insert into Schedule (schedule_date,schedule_endTime,schedule_startTime,poll_id) 
 values ('14/11/2011','13:00','15:00','SdODnNEcYCSj2KwC');
 ----------------------------------------------------------------------------------------------------------------
-Insert into Vote (schedule_id,users_id,vote_status) values('515','7',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('515','8',0);
-Insert into Vote (schedule_id,users_id,vote_status) values('515','9',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('524','7',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('525','7',0);
+Insert into Vote (schedule_id,users_id,vote_status) values('526','7',0);
 Insert into Vote (schedule_id,users_id,vote_status) values('516','7',0);
 Insert into Vote (schedule_id,users_id,vote_status) values('516','8',0);
 Insert into Vote (schedule_id,users_id,vote_status) values('516','9',0);

@@ -69,10 +69,11 @@ class Vote extends React.Component {
                 }
                 this.setState({ vote: dataVote, schedule_finish: index })
                 if (this.state.poll.poll_status === 0) {
-                    document.getElementById("bntFinal").disabled = 'disabled'
+                    
                     document.getElementById("bntSubmit").disabled = 'disabled'
                     if (this.state.pu_role === 'host') {
                         document.getElementById("bntSend").disabled = 'disabled'
+                        document.getElementById("bntFinal").disabled = 'disabled'
                     }
                 }
                 // console.log(dataVote)
@@ -165,6 +166,12 @@ class Vote extends React.Component {
     finalOption() {
         const poll_id = this.state.poll_id;
         const schedule_finish=this.state.date[this.state.schedule_finish]
+        const schedule_starttime=this.state.schedule[this.state.schedule_finish].schedule_starttime.substring(0,5)
+        console.log("================================")
+    //    alert(schedule_starttime)
+        const schedule_endtime=this.state.schedule[this.state.schedule_finish].schedule_endtime.substring(0,5)
+        const dataPoll=this.state.poll
+        alert(dataPoll)
         // console.log(poll_id)
         fetch('http://localhost:3001/vote/finaloption', {
             method: "POST",
@@ -172,7 +179,7 @@ class Vote extends React.Component {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ poll_id,schedule_finish })
+            body: JSON.stringify({ poll_id,schedule_finish,schedule_starttime,schedule_endtime,dataPoll})
         })
             .then(res => res.text())
             .then(result => {
@@ -205,12 +212,15 @@ class Vote extends React.Component {
     }
 
     render() {
-        // console.log(this.state.poll_id)
+        console.log(this.state.schedule)
+        // console.log(this.state.schedule[this.state.schedule_finish].schedule_starttime.substring(0,5))
+        // console.log(this.state.schedule[this.state.schedule_finish].schedule_endtime.substring(0,5))
+        console.log(this.state.poll_id)
         // console.log(this.state.data)
-        console.log(this.state.poll)
+        console.log(this.state.poll.poll_status)
         // console.log(sessionStorage["poll_id"])
         let schedule1 = this.state.schedule.map((schedule, i) => {
-            return <Schedule key={i} schedule={schedule} date={this.state.date[i]} />
+            return <Schedule key={i} final={this.state.poll.poll_status==0 &&this.state.schedule_finish==i ?0:1}  schedule={schedule} date={this.state.date[i]} />
         })
         let users = this.state.data.map((data, i) => {
             let data1 = data.data1.map((element, j) => {
