@@ -160,6 +160,7 @@ class ChatRoom extends React.Component {
                 <button id="myBtn" onClick={this.openForm}><i class="fas fa-comment-dots"></i></button>
                 <div id="myModal" class="modal">
                     <div className="modal-content">
+                    
                         <span className="close text-right p-3 " onClick={this.closeForm}>&times;</span>
                         <div className="scroll_mess">
                             <div className="popup-head">
@@ -198,7 +199,7 @@ class ChatRoom extends React.Component {
                                                     <p>{item.message}</p>
                                                 </div>
                                             </div>) : (<>
-                                            <p>{item.nickname}</p>
+                                            <p style={{fontSize:"14px",color:"silver" , marginBottom: "-14px" ,paddingLeft:"10px"}}>{item.nickname}</p>
                                                 <div className="media media-chat">
                                                     <div className="media-body">
                                                         <p>{item.message}</p>
@@ -220,9 +221,9 @@ class ChatRoom extends React.Component {
                         <div style={{ "position": "sticky" }} className="popup-messages-footer">
                             <Form className="MessageForm" onSubmit={this.submitMessage}>
                                 <InputGroup>
-                                    <Input type="text" name="message" id="message" placeholder="Enter message here" onChange={this.onChange} />
+                                    <Input type="text" name="message" id="message" placeholder="Enter message here..." onChange={this.onChange} />
                                     <InputGroupAddon addonType="append">
-                                        <Button variant="primary" type="submit">Send</Button>
+                                        <Button variant="primary" type="submit"><i style={{color:"#bf2024",backgroundColor:"transparent"}} class="fas fa-paper-plane"></i></Button>
                                     </InputGroupAddon>
                                 </InputGroup>
                             </Form>

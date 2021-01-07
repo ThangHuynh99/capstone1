@@ -93,17 +93,16 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
-    background-color: red;
+    background-color: #bf2024 !important;
     opacity: 1;
   }
   
   .close:hover,
   .close:focus {
     color: #000;
-    text-decoration: none;
     cursor: pointer;
     opacity: 2;
-    background-color: red;
+    background-color: #bf2024 !important;
 
   }
   /* .scroll {
@@ -462,7 +461,7 @@ footer.StickyFooter {
 }
   
 .MessageForm {
-  margin-left: 10px;
+  border-radius: 0px !important;
 }
   
 .MessageBox {
@@ -626,4 +625,19 @@ footer.StickyFooter {
   margin: 4px 0;
   background-color: #4d4d4d;
   border-radius: 3px
+}
+button.btn.btn-secondary {
+  border: none;
+  background-color: transparent;
+ 
+}
+.input-group {
+  border-top: solid 1px silver;
+  font-family: "Open Sans", sans-serif;
+  box-shadow: none;
+}
+input#message {
+  border: none;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
 }

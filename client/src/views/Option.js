@@ -31,7 +31,7 @@ export default class Example extends React.Component {
   }
   save = (poll_id) => {
     // e.preventDefault();
-    alert(poll_id)
+<p className="thongbao">    alert("message")</p>
     const user = [...this.state.room]
     user[0].roomname = poll_id
     alert(user[0].roomname)
@@ -197,9 +197,7 @@ export default class Example extends React.Component {
       <>
         <div className="justify-center">
           <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-            <Link to='/'>
               <h3 className="navbar-brand" href="#" style={{ color: '#98cdfb' }}>Meeting planner</h3>
-            </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle
       navigation">
               <span className="navbar-toggler-icon" />
@@ -240,6 +238,7 @@ export default class Example extends React.Component {
               </div>
               
               <div style={{ height: '300px', overflow: 'auto' }} className="col-md-7 mt-4">
+                <h5 class="form-select">Select of option</h5>
               <select class="form-select" aria-label="Default select example" onChange={this.handleOption}>
                 <option value="public" selected>Public</option>
                 <option value="private">Private</option>

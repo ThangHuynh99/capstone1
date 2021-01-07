@@ -38,17 +38,21 @@ class Dashboard extends React.Component {
     }
   
     render() {
+        console.log(this.state.ViewPoll)
         let ViewPoll1 = this.state.ViewPoll.map((poll,i) => {
             return <ViewPoll key={i} poll={poll} />
         })
+        // let ViewConFirmed=this.state.ViewPoll.map((poll1,i)=>{
+        //     return(
+        //     {poll1.poll_status ===1? <ViewPoll key={i} poll={poll} /> :null}
+        //     )
+        // })
         return (
             <div className="bgr">
                 <div className="container-fluid" style={{ width: '970px' }} >
                     <nav className="navbar navbar-light">
                         <div className="text-right">
-                            <Link to='/'>
                             <h3 style={{ color: 'lightskyblue' }} >Meeting Planner</h3>
-                            </Link>
                         </div>
                        
                         
@@ -111,7 +115,6 @@ class Dashboard extends React.Component {
                                 <div className="row mt-5">
                                     <div className="col-md-12">
                                         {ViewPoll1}
-
                                     </div>
                                 </div>
                             </div>
